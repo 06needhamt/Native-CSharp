@@ -1,0 +1,28 @@
+START
+public ,int ,i ,= ,INTVALUE(0;)
+END
+
+START
+public ,int ,j ,= ,INTVALUE(1;)
+END
+
+START
+public ,int ,k ,= ,i ,+ ,j;,
+END
+
+START
+public ,const ,int ,l ,= ,INTVALUE(2;)
+END
+
+START
+public ,static ,string ,m ,= ,"Hello";,
+END
+
+START
+private ,static ,void ,main(,int ,i),
+END
+
+START
+i ,= ,INTVALUE(1)
+END
+
