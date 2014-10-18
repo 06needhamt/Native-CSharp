@@ -396,7 +396,7 @@ namespace CSharpToNative
                     //char[] partype;
                     string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
 
-                    if (functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
+                    if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
                     {
                         functionsymboltable.Add(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2])); // add it
                         for (int m = 0; m < funcsplit.Length; m++)
@@ -415,7 +415,7 @@ namespace CSharpToNative
                     {
                         //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
                         //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-                        writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file 
+                        writer.Write(funcsplit[0] + funcsplit[1] + funcsplit[2]); // write the function to the file 
                         writer.Write(',');
                         return;
                     }

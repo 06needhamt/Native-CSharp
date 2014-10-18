@@ -16,7 +16,7 @@ namespace CSharpToNative
             {
                 if ( ch == '(' || ch == ')')
                 {
-                    //Result.AddLast(ch.ToString() + word.ToString());
+                    //Result.AddLast(ch.ToString());
                     word.Append(ch.ToString());
                     Result.AddLast(word.ToString());
                     word.Length = 0;
