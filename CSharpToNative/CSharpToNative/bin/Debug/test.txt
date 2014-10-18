@@ -4,7 +4,7 @@ public int j = 1;
 public int k = i + j;
 public const int l = 2;
 public static string m = "Hello";
-private static void main(int i)
+private static void main (int i)
 {
 i = 1
 }

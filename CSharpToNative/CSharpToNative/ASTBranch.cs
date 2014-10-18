@@ -83,7 +83,9 @@ namespace CSharpToNative
                         }
                         catch (Exception ex)
                         {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
                             Console.Error.WriteLine("An Error Occured");
+                            Console.ResetColor();
                             Console.ReadKey();
                             Environment.Exit(-1);
                         }

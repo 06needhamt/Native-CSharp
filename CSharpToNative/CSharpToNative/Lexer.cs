@@ -307,7 +307,7 @@ namespace CSharpToNative
                         isafunction = checkisafunction(ref tokens, ref i); // if not it must be a function so check if it is
                         if (isafunction) // if it is a function
                         {
-                            string[] funcsplit = tokens[i].Split(new char[] { '(', ' ', ')'}); // split the brackets
+                            string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
                             
                             if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if the function is not in the symbpl table
                             {
@@ -394,7 +394,7 @@ namespace CSharpToNative
                         }
                     }
                     //char[] partype;
-                    string[] funcsplit = tokens[i].Split(new char[] { '(', ')'});
+                    string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
 
                     if (functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
                     {
