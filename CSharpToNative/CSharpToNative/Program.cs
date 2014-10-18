@@ -62,33 +62,32 @@ namespace CSharpToNative
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
             Console.WriteLine(Lexer.pubtokenslist.Count);
-            for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
-            {
-                Console.WriteLine("In loop 1");
-                for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
-                {
-                    Console.WriteLine("In loop 2");
-                    if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
-                    {
-                        nullornot[j] = true;
-                    }
-                    else
-                    {
-                        AST<dynamic, dynamic, dynamic, dynamic> tokentree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
-                        Parser parse = new Parser(tokentree, ref i); 
-                    }
-                }
+            //for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
+            //{
+            //    Console.WriteLine("In loop 1");
+            //    for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
+            //    {
+            //        Console.WriteLine("In loop 2");
+            //        if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
+            //        {
+            //            nullornot[j] = true;
+            //        }
+            //        else
+            //        {
+            //            AST<dynamic, dynamic, dynamic, dynamic> tokentree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
+            //            Parser parse = new Parser(tokentree, ref i); 
+            //        }
+            //    }
+            //if (checknull(nullornot))
+            //{
+            //    continue;
+            //}
 
-                if (checknull(nullornot))
-                {
-                    continue;
-                }
-                
-            }
             Console.WriteLine("Compilation Complete");
             Console.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
         }
+
         private static bool checknull(bool[] nullornot)
         {
             for (int i = 0; i < nullornot.Length; i++)

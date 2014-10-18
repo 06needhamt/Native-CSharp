@@ -1,28 +1,28 @@
 START
-public ,int ,i ,= ,INTVALUE(0;)
+PUBLIC,INT,i,ASSIGNMEMT,INTVALUE(0)
 END
 
 START
-public ,int ,j ,= ,INTVALUE(1;)
+PUBLIC,INT,j,ASSIGNMEMT,INTVALUE(1)
 END
 
 START
-public ,int ,k ,= ,i ,+ ,j;,
+PUBLIC,INT,k,ASSIGNMEMT,UNARY_PLUS,
 END
 
 START
-public ,const ,int ,l ,= ,INTVALUE(2;)
+PUBLIC,CONST,INT,l,ASSIGNMEMT,INTVALUE(2)
 END
 
 START
-public ,static ,string ,m ,= ,"Hello";,
+PUBLIC,STRING,m,ASSIGNMEMT,
 END
 
 START
-private ,static ,void ,main(,int ,i),
+PRIVATE,VOID,INT,i),
 END
 
 START
-i ,= ,INTVALUE(1)
+i,ASSIGNMEMT,INTVALUE(1)
 END
 
