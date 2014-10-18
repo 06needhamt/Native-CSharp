@@ -14,8 +14,9 @@ namespace CSharpToNative
             var word = new StringBuilder();
             foreach (var ch in input)
             {
-                if (ch == '(' || ch == ')')
+                if ( ch == '(' || ch == ')')
                 {
+                    //Result.AddLast(ch.ToString() + word.ToString());
                     word.Append(ch);
                     Result.AddLast(word.ToString());
                     word.Length = 0;

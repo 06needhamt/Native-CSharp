@@ -21,7 +21,7 @@ namespace CSharpToNative
 
             bool[] nullornot = new bool[100];
             //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
-            //for (int i = 0; i < split.Length; i++ )
+            //for (int i = 0; i < split.Length; i++)
             //{
             //    Console.WriteLine(split[i]);
             //}
