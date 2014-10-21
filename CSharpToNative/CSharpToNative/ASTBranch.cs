@@ -35,9 +35,16 @@ namespace CSharpToNative
             EnumAccessModifiers eprotval = EnumAccessModifiers.NO_MODIFIER;
             EnumTypes etypeval = EnumTypes.NO_TYPE;
             EnumOperator eopval = EnumOperator.NO_OPERATOR;
+            bool infunction = false;
+
+            if (tokens.Contains((EnumTypes.VOID.ToString())))
+            {
+                return;
+            }
            
             for (int i = 0; i < tokens.Length; i++)
             {
+            
                 if (Enum.IsDefined(typeof(EnumAccessModifiers),tokens[i].ToUpper())) // if current token is a access modifier
                 {
                     eprotval = (EnumAccessModifiers) Enum.Parse(typeof(EnumAccessModifiers),tokens[i].ToUpper()); // assign it to access modifier variable
@@ -65,6 +72,20 @@ namespace CSharpToNative
                 }
                 else // if here it must be the name or value
                 {
+                    if (tokens[i].Equals(string.Empty))
+                    {
+                        return;
+                    }
+                    if (tokens[i].Equals("{"))
+                    {
+                        infunction = true;
+                        return;
+                    }
+                    if (tokens[i].Equals("}"))
+                    {
+                        infunction = false;
+                        return;
+                    }
                     if (times == 0)
                     {
                         this.name = tokens[i]; // if this is the first time we have been here it is the name

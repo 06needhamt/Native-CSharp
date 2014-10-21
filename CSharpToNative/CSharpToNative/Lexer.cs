@@ -369,58 +369,66 @@ namespace CSharpToNative
                 writer.Write(','); // and a seperating comma
                 return;
             }
-            else // if we are here it must be a function or a non implemented type
-            {
-                isafunction = checkisafunction(ref tokens, ref i); // check if it is a function
+            //else // if we are here it must be a function or a non implemented type
+            //{
+            //    isafunction = checkisafunction(ref tokens, ref i); // check if it is a function
 
-                if (isafunction) // if it is a function
-                {
-                    // parse parameters not working yet
-                    List<char[]> partype = new List<char[]>(0);
-                    char[] partypechararr;
-                    string[] partypearr;
-                    if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower()))
-                    {
-                        for (int j = 0; j < tokens.Length; j++)
-                        {
-                            if (tokens[j] == EnumTypes.INT.ToString().ToLower())
-                            {
-                                partypearr = tokens[i].Split(tokens,1,StringSplitOptions.RemoveEmptyEntries);
-                                foreach (string str in partypearr)
-                                {
-                                    partype.Add(str.ToCharArray());
-                                }
-                            }
-                        }
-                    }
-                    //char[] partype;
-                    string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
+            //    if (isafunction) // if it is a function
+            //    {
+            //        // parse parameters not working yet
+            //        List<char[]> partype = new List<char[]>(0);
+            //        char[] partypechararr;
+            //        string[] partypearr;
+            //        if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower()))
+            //        {
+            //            for (int j = 0; j < tokens.Length; j++)
+            //            {
+            //                if (tokens[j] == EnumTypes.INT.ToString().ToLower())
+            //                {
+            //                    partypearr = tokens[i].Split(tokens, 1, StringSplitOptions.RemoveEmptyEntries);
+            //                    foreach (string str in partypearr)
+            //                    {
+            //                        partype.Add(str.ToCharArray());
+            //                    }
+            //                }
+            //            }
+            //        }
+            //        // return;
+            //        //char[] partype;
 
-                    if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
-                    {
-                        functionsymboltable.Add(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2])); // add it
-                        for (int m = 0; m < funcsplit.Length; m++)
-                        {
-                            Console.WriteLine(funcsplit[m]);
-                            Console.ReadKey();
-                        }
-                        if (string.IsNullOrWhiteSpace(funcsplit[1])) // if it has no parameters
-                        {
-                            funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis 
-                        }
-                        writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file 
-                        writer.Write(','); // and a seperating comma
-                    }
-                    else // just write it to the file
-                    {
-                        //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
-                        //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-                        writer.Write(funcsplit[0] + funcsplit[1] + funcsplit[2]); // write the function to the file 
-                        writer.Write(',');
-                        return;
-                    }
-                }
-            }
+            //        string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
+
+            //        for (int m = 0; m < funcsplit.Length; m++)
+            //        {
+            //            Console.WriteLine(funcsplit[m]);
+            //            Console.ReadKey();
+            //        }
+
+            //        if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
+            //        {
+            //            functionsymboltable.Add(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2])); // add it
+            //            for (int m = 0; m < funcsplit.Length; m++)
+            //            {
+            //                Console.WriteLine(funcsplit[m]);
+            //                Console.ReadKey();
+            //            }
+            //            if (string.IsNullOrWhiteSpace(funcsplit[1])) // if it has no parameters
+            //            {
+            //                funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis 
+            //            }
+            //            writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file 
+            //            writer.Write(','); // and a seperating comma
+            //        }
+            //        else // just write it to the file
+            //        {
+            //            //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
+            //            //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
+            //            writer.Write(funcsplit[0] + funcsplit[1] + funcsplit[2]); // write the function to the file 
+            //            writer.Write(',');
+            //            return;
+            //        }
+            //    }
+            //}
          
         }
     }

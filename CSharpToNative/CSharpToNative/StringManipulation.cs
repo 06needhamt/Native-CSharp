@@ -8,15 +8,16 @@ namespace CSharpToNative
 {
     static class StringManipulation
     {
-        public static IEnumerable<string> HandMadeSplit(string input)
+        public static LinkedList<string> HandMadeSplit(string input)
         {
-            var Result = new LinkedList<string>();
-            var word = new StringBuilder();
-            foreach (var ch in input)
+            LinkedList<string> Result = new LinkedList<string>();
+            StringBuilder word = new StringBuilder();
+            foreach (char ch in input)
             {
                 if ( ch == '(' || ch == ')')
                 {
-                    //Result.AddLast(ch.ToString());
+                    Result.AddLast(word.ToString());
+                    word.Length = 0;
                     word.Append(ch.ToString());
                     Result.AddLast(word.ToString());
                     word.Length = 0;
@@ -29,10 +30,29 @@ namespace CSharpToNative
                 else
                 {
                     word.Append(ch);
+                    //Result.AddLast(word.ToString());
                 }
             }
             Result.AddLast(word.ToString());
             return Result;
+        }
+        public static string getarray(string[] tokens)
+        {
+            int length = tokens.Length;
+            string array = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                if (i < length - 2)
+                {
+                    array = array + tokens[i];
+                    array = array + ",";
+                }
+                else
+                {
+                    array = array + tokens[i];
+                }
+            }
+            return array;
         }
     }
 }
