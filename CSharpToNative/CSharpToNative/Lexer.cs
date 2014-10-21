@@ -24,7 +24,7 @@ namespace CSharpToNative
         private static bool isafunction = false;
         private static List<Tuple<string>> integersymboltable = new List<Tuple<string>>(0);
         private static List<Tuple<string>> stringsymboltable = new List<Tuple<string>>(0);
-        private static List<Tuple<string, string, string>> functionsymboltable = new List<Tuple<string, string, string>>(0);
+        private static LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private static bool isbracket = false;
         
         public static void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
@@ -309,9 +309,9 @@ namespace CSharpToNative
                         {
                             string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
                             
-                            if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if the function is not in the symbpl table
+                            if (!functionsymboltable.Contains(funcsplit)) // if the function is not in the symbpl table
                             {
-                                functionsymboltable.Add(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2])); // add it to the symbol table
+                                functionsymboltable.AddLast(funcsplit); // add it to the symbol table
                                 for (int j = 2; j < funcsplit.Length; j++)
                                 {
                                     writer.Write(funcsplit[j]); // and write it to the file
@@ -375,7 +375,7 @@ namespace CSharpToNative
 
             //    if (isafunction) // if it is a function
             //    {
-            //        // parse parameters not working yet
+            //         parse parameters not working yet
             //        List<char[]> partype = new List<char[]>(0);
             //        char[] partypechararr;
             //        string[] partypearr;
@@ -393,8 +393,8 @@ namespace CSharpToNative
             //                }
             //            }
             //        }
-            //        // return;
-            //        //char[] partype;
+            //         return;
+            //        char[] partype;
 
             //        string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
 
@@ -404,15 +404,15 @@ namespace CSharpToNative
             //            Console.ReadKey();
             //        }
 
-            //        if (!functionsymboltable.Contains(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2]))) // if it is not in the symbol table
+            //        if (!functionsymboltable.Contains(funcsplit)) // if it is not in the symbol table
             //        {
-            //            functionsymboltable.Add(new Tuple<string, string, string>(funcsplit[0], funcsplit[1], funcsplit[2])); // add it
+            //            functionsymboltable.AddLast(funcsplit); // add it
             //            for (int m = 0; m < funcsplit.Length; m++)
             //            {
             //                Console.WriteLine(funcsplit[m]);
             //                Console.ReadKey();
             //            }
-            //            if (string.IsNullOrWhiteSpace(funcsplit[1])) // if it has no parameters
+            //            if (string.IsNullOrWhiteSpace(functionsymboltable.ElementAt(i)[1])) // if it has no parameters
             //            {
             //                funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis 
             //            }
@@ -423,8 +423,12 @@ namespace CSharpToNative
             //        {
             //            //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
             //            //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-            //            writer.Write(funcsplit[0] + funcsplit[1] + funcsplit[2]); // write the function to the file 
-            //            writer.Write(',');
+            //            for (int j = 0; i < funcsplit.Length; j++)
+            //            {
+            //                writer.Write(funcsplit[j]);
+            //                writer.Write(',');
+            //            }
+                        
             //            return;
             //        }
             //    }
