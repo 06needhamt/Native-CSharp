@@ -101,6 +101,7 @@ namespace CSharpToNative
                         try
                         {
                             throw new Exception();
+                            
                         }
                         catch (Exception ex)
                         {

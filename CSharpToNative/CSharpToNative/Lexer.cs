@@ -22,8 +22,8 @@ namespace CSharpToNative
         private static StreamWriter writer;
         private static string[] temptokens;  // tokens from each checking stage are stored here
         private static bool isafunction = false;
-        private static List<Tuple<string>> integersymboltable = new List<Tuple<string>>(0);
-        private static List<Tuple<string>> stringsymboltable = new List<Tuple<string>>(0);
+        private static LinkedList<Tuple<string,string>> integersymboltable = new LinkedList<Tuple<string,string>>();
+        private static LinkedList<Tuple<string,string>> stringsymboltable = new LinkedList<Tuple<string,string>>();
         private static LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private static bool isbracket = false;
         
@@ -172,13 +172,15 @@ namespace CSharpToNative
                 if (type.Equals("string")) // if the token was a variable of type string
                 {
                     System.Threading.Thread.Sleep(50);
-                    return (stringsymboltable.Contains(new Tuple<string>(tokens[i])) ? true : false);
+                    return (stringsymboltable.Contains(new Tuple<string,string>(tokens[i], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
                 }
                 else if (type.Equals("int"))
                 {
+                    //Tuple<string> j  = new Tuple<string>("j");
                     System.Threading.Thread.Sleep(50);
-                    return (integersymboltable.Contains(new Tuple<string>(tokens[i])) ? true : false);
+                  
+                    return (integersymboltable.Contains(new Tuple<string,string>(tokens[i], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
                 }
                 else
@@ -235,10 +237,10 @@ namespace CSharpToNative
                     if ((EnumTypes)index == EnumTypes.INT) // if it is of type int
                     {
                         
-                            integersymboltable.Add(new Tuple<string>(tokens[i + 1])); // add it to the integer symbol table
+                            integersymboltable.AddLast(new Tuple<string,string>(tokens[i + 1], tokens[i - 1])); // add it to the integer symbol table
                             for (int j = 0; j < integersymboltable.Count; j++)
                             {
-                                Console.WriteLine(integersymboltable.ElementAt<Tuple<string>>(j));
+                                Console.WriteLine(integersymboltable.ElementAt<Tuple<string,string>>(j));
                                 //Console.ReadKey();
                             }
 
@@ -246,10 +248,10 @@ namespace CSharpToNative
 
                     else if ((EnumTypes) index == EnumTypes.STRING) // do the same for strings
                     {
-                        stringsymboltable.Add(new Tuple<string>(tokens[i + 1]));
+                        stringsymboltable.AddLast(new Tuple<string,string>(tokens[i + 1], tokens[i - 1]));
                         for (int j = 0; j < stringsymboltable.Count; j++)
                         {
-                            Console.WriteLine(stringsymboltable.ElementAt<Tuple<string>>(j));
+                            Console.WriteLine(stringsymboltable.ElementAt<Tuple<string,string>>(j));
                             //Console.ReadKey();
                         }
                     }
@@ -355,16 +357,25 @@ namespace CSharpToNative
         {
             //EnumTypes type;
             string name = tokens[i]; // copy the name from the tokens 
+            string value;
+            if (i + 2 > tokens.Length - 1)
+            {
+                value = tokens.ElementAt(tokens.Length - 1);
+            }
+            else
+            {
+                value = tokens[i + 2];
+            }
             if (tokens[i-1].Equals(EnumTypes.INT.ToString().ToLower())) // if it is of type int
             {
-                integersymboltable.Add(new Tuple<string>(name)); // add it to the int symbol table
+                integersymboltable.AddLast(new Tuple<string,string>(name,value)); // add it to the int symbol table
                 writer.Write(name); // write the name to the file
                 writer.Write(','); // and a seperating comma
                 return;
             }
             else if (tokens[i - 1].Equals(EnumTypes.STRING.ToString().ToLower())) // if it is of type string
             {
-                stringsymboltable.Add(new Tuple<string>(name)); // add it to the string symbol table
+                stringsymboltable.AddLast(new Tuple<string,string>(name,value)); // add it to the string symbol table
                 writer.Write(name); // write the name to the file
                 writer.Write(','); // and a seperating comma
                 return;
@@ -434,6 +445,11 @@ namespace CSharpToNative
             //    }
             //}
          
+        }
+
+        public static dynamic getsymboltable()
+        {
+            return integersymboltable;
         }
     }
 }

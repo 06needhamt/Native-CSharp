@@ -52,3 +52,9 @@ F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt
 F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
 F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
 F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb

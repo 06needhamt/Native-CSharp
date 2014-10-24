@@ -16,12 +16,12 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
   </PropertyGroup>
@@ -63,6 +63,7 @@
     <Compile Include="Tokenizer.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TypeMismatchException.cs" />
+    <Compile Include="Unsafe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

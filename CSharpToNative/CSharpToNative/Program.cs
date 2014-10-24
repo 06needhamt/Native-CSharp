@@ -16,7 +16,7 @@ namespace CSharpToNative
 		private static StreamWriter writer; // writer for writing to the file
 		private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
 
-        static void Main(string[] args)
+        static unsafe void Main(string[] args)
         {
 
             bool[] nullornot = new bool[100];
@@ -61,6 +61,7 @@ namespace CSharpToNative
             writer.Close();
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
+            Unsafe.readsymboltable(Lexer.getsymboltable());
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {
