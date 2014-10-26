@@ -11,10 +11,21 @@ namespace CSharpToNative
         byte[] fileheader = new byte[52];
         string currentdir = System.Environment.CurrentDirectory + "/";
         public static long origin;
+        public Dictionary<string, string> datasegment = new Dictionary<string, string>();
         public ELFFile(string name)
         {
             CreateHeader();
+            Createdatasement(Lexer.integersymboltable);
+            Createdatasement(Lexer.stringsymboltable);
             WriteFile(name);
+        }
+
+        private void Createdatasement(LinkedList<Tuple<string,string>> symboltable)
+        {
+            foreach (var item in symboltable)
+            {
+                datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
+            }
         }
         private long WriteFile(string name)
         {
@@ -24,16 +35,37 @@ namespace CSharpToNative
             }
             BinaryWriter writer = new BinaryWriter(File.Open(currentdir + name, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             writer.Seek(0, SeekOrigin.Begin);
-            for (int i = 0; i < fileheader.Length; i++)
-            {
-                writer.Write(fileheader[i]);
-            }
+            writeheader(ref writer, ref origin);
+            writedatasegment(datasegment, ref origin, ref writer);
+            writer.Write(".code");
+            origin = writer.Seek(0, SeekOrigin.End);
             writer.Flush();
-            origin = writer.Seek(0, SeekOrigin.Current);
             writer.Close();
             writer.Dispose();
             return origin;
             
+        }
+
+        private long writeheader(ref BinaryWriter writer, ref long origin)
+        {
+            for (int i = 0; i < fileheader.Length; i++)
+            {
+                writer.Write(fileheader[i]);
+            }
+            origin = writer.Seek(0, SeekOrigin.Current);
+            return origin;
+        }
+
+        private long writedatasegment(Dictionary<string, string> datasegment, ref long origin, ref BinaryWriter writer)
+        {
+            writer.Write(".data");
+            foreach(var item in datasegment)
+            {
+                writer.Write(item.Key);
+                writer.Write(item.Value);
+            }
+            origin = writer.Seek(0, SeekOrigin.Current);
+            return origin;
         }
         private void CreateHeader()
         {

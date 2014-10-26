@@ -28,7 +28,7 @@ namespace CSharpToNative
             //Console.ReadKey();
             //Environment.Exit(0);
             // DefineTest.run();
-            // Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
+            //Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
             //ins.printAssemblyInstruction();
             //ins.PrintBinaryInstruction();
             //Environment.Exit(0);
@@ -61,7 +61,7 @@ namespace CSharpToNative
             writer.Close();
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
-            Unsafe.readsymboltable(Lexer.getsymboltable());
+            //Unsafe.readsymboltable(Lexer.getsymboltable());
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {

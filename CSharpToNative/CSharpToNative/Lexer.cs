@@ -22,8 +22,8 @@ namespace CSharpToNative
         private static StreamWriter writer;
         private static string[] temptokens;  // tokens from each checking stage are stored here
         private static bool isafunction = false;
-        private static LinkedList<Tuple<string,string>> integersymboltable = new LinkedList<Tuple<string,string>>();
-        private static LinkedList<Tuple<string,string>> stringsymboltable = new LinkedList<Tuple<string,string>>();
+        public static LinkedList<Tuple<string,string>> integersymboltable = new LinkedList<Tuple<string,string>>();
+        public static LinkedList<Tuple<string,string>> stringsymboltable = new LinkedList<Tuple<string,string>>();
         private static LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private static bool isbracket = false;
         
