@@ -8,11 +8,15 @@ namespace CSharpToNative
 {
     class Unsafe
     {
-        public static unsafe void readsymboltable(LinkedList<dynamic> symboltable)
+        public static void readsymboltable(LinkedList<Tuple<string,string>> symboltable)
         {
-            foreach (var i in symboltable)
+            LinkedListNode<Tuple<string, string>> node = symboltable.First;
+            while (node.Next != null)
             {
-                int* mem = null;
+                Console.WriteLine(node.Value.Item1.ToString());
+                Console.WriteLine(node.Value.Item2.ToString());
+                Console.ReadKey();
+                node = node.Next;
             }
         }
     }

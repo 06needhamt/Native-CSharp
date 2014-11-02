@@ -14,12 +14,15 @@ namespace CSharpToNative
 		//private static List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
 		private static string[] lines; // array to hold the lines
 		private static StreamWriter writer; // writer for writing to the file
+        private static StreamWriter conwriter;
 		private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
 
         static unsafe void Main(string[] args)
         {
 
             bool[] nullornot = new bool[100];
+            //conwriter = new StreamWriter(currentdir + "output.txt",false);
+            //Console.SetOut(conwriter);
             //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
             //for (int i = 0; i < split.Length; i++)
             //{
@@ -61,7 +64,7 @@ namespace CSharpToNative
             writer.Close();
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
-            //Unsafe.readsymboltable(Lexer.getsymboltable());
+            Unsafe.readsymboltable(Lexer.getsymboltable());
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {
