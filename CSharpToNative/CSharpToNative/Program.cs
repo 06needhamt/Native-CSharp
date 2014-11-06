@@ -17,11 +17,11 @@ namespace CSharpToNative
         private static StreamWriter conwriter;
 		private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
 
-        static unsafe void Main(string[] args)
+        static void Main(string[] args)
         {
 
             bool[] nullornot = new bool[100];
-            //conwriter = new StreamWriter(currentdir + "output.txt",false);
+            //conwriter = new StreamWriter(currentdir + "output.txt", false);
             //Console.SetOut(conwriter);
             //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
             //for (int i = 0; i < split.Length; i++)
@@ -64,7 +64,13 @@ namespace CSharpToNative
             writer.Close();
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
-            Unsafe.readsymboltable(Lexer.getsymboltable());
+            Console.WriteLine("Reading int symbol table");
+            Unsafe.readvarsymboltable(Lexer.getintsymboltable());
+            Console.WriteLine("Reading string symbol table");
+            Unsafe.readvarsymboltable(Lexer.getstringsymboltable());
+            Console.WriteLine("Reading Function Symbol table");
+            Unsafe.readfunctionsymboltable(Lexer.getfunctionsymboltable());
+            Console.WriteLine("Compilation Commencing");
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {

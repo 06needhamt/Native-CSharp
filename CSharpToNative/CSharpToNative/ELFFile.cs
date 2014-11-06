@@ -15,12 +15,12 @@ namespace CSharpToNative
         public ELFFile(string name)
         {
             CreateHeader();
-            Createdatasement(Lexer.integersymboltable);
-            Createdatasement(Lexer.stringsymboltable);
+            Createdatasement(Lexer.getintsymboltable());
+            Createdatasement(Lexer.getstringsymboltable());
             WriteFile(name);
         }
 
-        private void Createdatasement(LinkedList<Tuple<string,string>> symboltable)
+        private void Createdatasement(LinkedList<Tuple<string,string,string>> symboltable)
         {
             foreach (var item in symboltable)
             {
