@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 namespace CSharpToNative
 {
@@ -19,10 +20,10 @@ namespace CSharpToNative
 
         static void Main(string[] args)
         {
-
+            Process.Start(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe",null);
             bool[] nullornot = new bool[100];
-            //conwriter = new StreamWriter(currentdir + "output.txt", false);
-            //Console.SetOut(conwriter);
+            conwriter = new StreamWriter(currentdir + "output.txt", false);
+            Console.SetOut(conwriter);
             //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
             //for (int i = 0; i < split.Length; i++)
             //{
@@ -65,11 +66,11 @@ namespace CSharpToNative
             writer.Dispose();
             Console.WriteLine("Lexical Analasis Complete");
             Console.WriteLine("Reading int symbol table");
-            Unsafe.readvarsymboltable(Lexer.getintsymboltable());
+            Symbol.readintsymboltable(Lexer.getintsymboltable());
             Console.WriteLine("Reading string symbol table");
-            Unsafe.readvarsymboltable(Lexer.getstringsymboltable());
+            Symbol.readstringsymboltable(Lexer.getstringsymboltable());
             Console.WriteLine("Reading Function Symbol table");
-            Unsafe.readfunctionsymboltable(Lexer.getfunctionsymboltable());
+            Symbol.readfunctionsymboltable(Lexer.getfunctionsymboltable());
             Console.WriteLine("Compilation Commencing");
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)

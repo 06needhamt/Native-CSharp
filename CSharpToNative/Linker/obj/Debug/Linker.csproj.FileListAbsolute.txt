@@ -1,0 +1,5 @@
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe.config
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb

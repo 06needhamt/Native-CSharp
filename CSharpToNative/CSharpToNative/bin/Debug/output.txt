@@ -1,0 +1,1677 @@
+public int i = 0;
+lhs 0= public
+lhs 1= int
+lhs 2= i
+lhs 3= =
+lhs 4= 0
+lhs 5= 
+PUBLIC
+lhs 0 = public
+lhs 1 = int
+lhs 2 = i
+lhs 3 = =
+lhs 4 = 0
+lhs 5 = 
+True
+lhs 0= public
+lhs 1= int
+lhs 2= i
+lhs 3= =
+lhs 4= 0
+lhs 5= 
+PUBLIC
+True
+lhs 0= public
+lhs 1= int
+lhs 2= i
+lhs 3= =
+lhs 4= 0
+lhs 5= 
+True
+PUBLIC
+INT
+Tokens i =  i
+ASSIGNMEMT
+public int j = 1;
+lhs 0= public
+lhs 1= int
+lhs 2= j
+lhs 3= =
+lhs 4= 1
+lhs 5= 
+PUBLIC
+lhs 0 = public
+lhs 1 = int
+lhs 2 = j
+lhs 3 = =
+lhs 4 = 1
+lhs 5 = 
+True
+lhs 0= public
+lhs 1= int
+lhs 2= j
+lhs 3= =
+lhs 4= 1
+lhs 5= 
+PUBLIC
+True
+lhs 0= public
+lhs 1= int
+lhs 2= j
+lhs 3= =
+lhs 4= 1
+lhs 5= 
+True
+PUBLIC
+(public, i, 0)
+INT
+Tokens i =  j
+ASSIGNMEMT
+public int k = i + j;
+lhs 0= public
+lhs 1= int
+lhs 2= k
+lhs 3= =
+lhs 4= i
+lhs 5= +
+lhs 6= j
+lhs 7= 
+PUBLIC
+lhs 0 = public
+lhs 1 = int
+lhs 2 = k
+lhs 3 = =
+lhs 4 = i
+lhs 5 = +
+lhs 6 = j
+lhs 7 = 
+True
+lhs 0= public
+lhs 1= int
+lhs 2= k
+lhs 3= =
+lhs 4= i
+lhs 5= +
+lhs 6= j
+lhs 7= 
+PUBLIC
+True
+lhs 0= public
+lhs 1= int
+lhs 2= k
+lhs 3= =
+lhs 4= i
+lhs 5= +
+lhs 6= j
+lhs 7= 
+lhs 0= public
+lhs 1= int
+lhs 2= k
+lhs 3= =
+lhs 4= i
+lhs 5= +
+lhs 6= j
+lhs 7= 
+True
+PUBLIC
+(public, i, 0)
+(public, j, 1)
+INT
+Tokens i =  k
+ASSIGNMEMT
+Tokens i =  i
+UNARY_PLUS
+Tokens i =  j
+public const int l = 2;
+lhs 0= public
+lhs 1= const
+lhs 2= int
+lhs 3= l
+lhs 4= =
+lhs 5= 2
+lhs 6= 
+lhs 0= public
+lhs 1= const
+lhs 2= int
+lhs 3= l
+lhs 4= =
+lhs 5= 2
+lhs 6= 
+PUBLIC
+CONST
+lhs 0 = public
+lhs 1 = const
+lhs 2 = int
+lhs 3 = l
+lhs 4 = =
+lhs 5 = 2
+lhs 6 = 
+True
+lhs 0= public
+lhs 1= const
+lhs 2= int
+lhs 3= l
+lhs 4= =
+lhs 5= 2
+lhs 6= 
+lhs 0= public
+lhs 1= const
+lhs 2= int
+lhs 3= l
+lhs 4= =
+lhs 5= 2
+lhs 6= 
+PUBLIC
+CONST
+True
+lhs 0= public
+lhs 1= const
+lhs 2= int
+lhs 3= l
+lhs 4= =
+lhs 5= 2
+lhs 6= 
+True
+PUBLIC
+CONST
+(public, i, 0)
+(public, j, 1)
+(public, k, i)
+INT
+Tokens i =  l
+ASSIGNMEMT
+public static string m = "Hello";
+lhs 0= public
+lhs 1= static
+lhs 2= string
+lhs 3= m
+lhs 4= =
+lhs 5= "Hello"
+lhs 6= 
+PUBLIC
+lhs 0 = public
+lhs 1 = static
+lhs 2 = string
+lhs 3 = m
+lhs 4 = =
+lhs 5 = "Hello"
+lhs 6 = 
+True
+lhs 0= public
+lhs 1= static
+lhs 2= string
+lhs 3= m
+lhs 4= =
+lhs 5= "Hello"
+lhs 6= 
+PUBLIC
+True
+lhs 0= public
+lhs 1= static
+lhs 2= string
+lhs 3= m
+lhs 4= =
+lhs 5= "Hello"
+lhs 6= 
+True
+PUBLIC
+Tokens i =  static
+STRING
+Tokens i =  m
+ASSIGNMEMT
+Tokens i =  "Hello"
+private static void main (int i)
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+PRIVATE
+STATIC
+VOID
+lhs 0 = private
+lhs 1 = static
+lhs 2 = void
+lhs 3 = main
+lhs 4 = 
+lhs 5 = (
+lhs 6 = int
+lhs 7 = i
+lhs 8 = )
+lhs 9 = 
+True
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+lhs 0= private
+lhs 1= static
+lhs 2= void
+lhs 3= main
+lhs 4= 
+lhs 5= (
+lhs 6= int
+lhs 7= i
+lhs 8= )
+lhs 9= 
+PRIVATE
+STATIC
+VOID
+True
+False
+PRIVATE
+Tokens i =  static
+VOID
+Tokens i =  main
+Tokens i =  (
+(public, i, 0)
+(public, j, 1)
+(public, k, i)
+(public, l, 2)
+INT
+Tokens i =  i
+Tokens i =  )
+{
+i = 1
+lhs 0= i
+lhs 1= =
+lhs 2= 1
+False
+False
+lhs 0= i
+lhs 1= =
+lhs 2= 1
+True
+Tokens i =  i
+i
+=
+1
+i
+=
+1
+ASSIGNMEMT
+}
+Lexical Analasis Complete
+Reading int symbol table
+public
+i
+0
+public
+j
+1
+public
+k
+i
+public
+l
+2
+private
+i
+
+Reading string symbol table
+public
+m
+"Hello"
+Reading Function Symbol table
+No Functions
+Compilation Commencing
+7
+In loop 1
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+
+INT
+ASSIGNMEMT
+PUBLIC
+i
+0
+In loop 1
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+In loop 2
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+
+INT
+ASSIGNMEMT
+PUBLIC
+j
+1
+NO_TYPE
+NO_OPERATOR
+PUBLIC
+
+
+INT
+NO_OPERATOR

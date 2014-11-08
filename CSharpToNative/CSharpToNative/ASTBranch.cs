@@ -59,7 +59,7 @@ namespace CSharpToNative
                     
                     for (int j = 0; j < operators.Count; j++)
                     {
-                        if (operators[j] == tokens[i]) // find which operator it is
+                        if (operators[j].Equals(tokens[i])) // find which operator it is
                         {
                             index = j; // save the index
                         }
@@ -72,7 +72,7 @@ namespace CSharpToNative
                 }
                 else // if here it must be the name or value
                 {
-                    if (tokens[i].Equals(string.Empty))
+                    if (string.IsNullOrWhiteSpace(tokens[i]))
                     {
                         return;
                     }
