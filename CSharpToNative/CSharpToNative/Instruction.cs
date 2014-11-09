@@ -78,7 +78,7 @@ namespace CSharpToNative
             {
                 File.Delete(outfile);
             }
-            File.Create(outfile);
+            //File.Create(outfile);
             StreamWriter writer = new StreamWriter(currentdir + "Output.asm", true); // writer to write to the assembly file
             //writer.Write(" ");
             if (this.Operands != null) // if this instruction has operands
@@ -129,7 +129,7 @@ namespace CSharpToNative
             //writer.Write(" ");
             if (this.Operands != null)
             {
-                writer.Seek((int)ELFFile.origin, SeekOrigin.Begin);
+                writer.Seek((int)ELFFile.getorigin(), SeekOrigin.Begin);
                 if(BitConverter.IsLittleEndian)
                 {
                     Array.Reverse(opcodebytes); // if the system is little endian (least significant byte first) reverse the array so the bytes print in the correct order

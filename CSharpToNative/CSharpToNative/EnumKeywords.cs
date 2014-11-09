@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-    enum EnumKeywords
+    public enum EnumKeywords
     {
         PUBLIC = 0,
         PROTECTED = 1,

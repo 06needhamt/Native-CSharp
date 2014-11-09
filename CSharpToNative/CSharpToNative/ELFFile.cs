@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 using System.IO;
 namespace CSharpToNative
 {
-    class ELFFile
+    public class ELFFile
     {
         byte[] fileheader = new byte[52];
         string currentdir = System.Environment.CurrentDirectory + "/";
-        public static long origin;
-        public Dictionary<string, string> datasegment = new Dictionary<string, string>();
+        static long origin;
+        Dictionary<string, string> datasegment = new Dictionary<string, string>();
+        public ELFFile()
+        {
+
+        }
         public ELFFile(string name)
         {
             CreateHeader();
@@ -118,6 +122,32 @@ namespace CSharpToNative
            // return SeekOrigin.Current;
             
         }
+        public byte[] getheader()
+        {
+            return this.fileheader;
+        }
+        public static long getorigin()
+        {
+            return origin;
+        }
+        public Dictionary<string, string> getdatasegment()
+        {
+            return this.datasegment;
+        }
+
+        public byte[] setheader(byte[] header)
+        {
+            this.fileheader = header;
+            return this.fileheader;
+        }
+              
+        public Dictionary<string, string> setdatasegment(Dictionary<string, string> seg)
+        {
+            this.datasegment = seg;
+            return this.datasegment;
+        }
+
+
     }
 }
 

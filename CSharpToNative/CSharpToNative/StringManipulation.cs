@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-    static class StringManipulation
+    public static class StringManipulation
     {
         public static LinkedList<string> HandMadeSplit(string input)
         {
