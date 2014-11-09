@@ -63,7 +63,7 @@ namespace CSharpToNative
                    Console.Write(node.Value[i]);
                }
                Console.WriteLine();
-               Console.ReadKey();
+               //Console.ReadKey();
                node = node.Next;
            }
         }

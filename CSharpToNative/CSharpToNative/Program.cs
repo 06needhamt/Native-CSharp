@@ -24,8 +24,8 @@ namespace CSharpToNative
             // @"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\Output.o");
             //Environment.Exit(0);
             bool[] nullornot = new bool[100];
-            //conwriter = new StreamWriter(currentdir + "output.txt", false);
-            //Console.SetOut(conwriter);
+            conwriter = new StreamWriter(currentdir + "output.txt", false);
+            Console.SetOut(conwriter);
             //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
             //for (int i = 0; i < split.Length; i++)
             //{
@@ -36,10 +36,10 @@ namespace CSharpToNative
             // DefineTest.run();
             Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
             ins.printAssemblyInstruction();
-            Console.ReadKey();
+            //Console.ReadKey();
             ins.PrintBinaryInstruction();
-            Console.ReadKey();
-            Environment.Exit(0);
+            //Console.ReadKey();
+            //Environment.Exit(0);
             //outloc = args[0] + ".lex";
             //Console.WriteLine(EnumKeywords.PUBLIC.ToString());
             //Console.ReadKey();

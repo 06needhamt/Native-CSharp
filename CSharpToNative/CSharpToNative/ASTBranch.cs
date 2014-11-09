@@ -56,7 +56,7 @@ namespace CSharpToNative
                 }
                 else if (operators.Contains(tokens[i])) // id current token is a operator
                 {
-                    
+
                     for (int j = 0; j < operators.Count; j++)
                     {
                         if (operators[j].Equals(tokens[i])) // find which operator it is
@@ -68,7 +68,7 @@ namespace CSharpToNative
                             continue;
                         }
                     }
-                    eopval = (EnumOperator) index; // lookup the index in the enumerator and assign it to the operator value
+                    eopval = (EnumOperator)index; // lookup the index in the enumerator and assign it to the operator value
                 }
                 else // if here it must be the name or value
                 {
@@ -76,40 +76,67 @@ namespace CSharpToNative
                     {
                         return;
                     }
-                    if (tokens[i].Equals("{"))
+                    else if (tokens[i].Equals("{"))
                     {
                         infunction = true;
                         return;
                     }
-                    if (tokens[i].Equals("}"))
+                    else if (tokens[i].Equals("}"))
                     {
                         infunction = false;
                         return;
                     }
-                    if (times == 0)
+                    else
                     {
-                        this.name = tokens[i]; // if this is the first time we have been here it is the name
-                        times++;
-                    }
-                    else if (times == 1) // if this is the second time we have been here it is the value
-                    {
-                        this.Value = tokens[i];
-                        times++;
-                    }
-                    else // if we have been here more than twice it is a error
-                    {
-                        try
+                        if (times == 0)
                         {
-                            throw new Exception();
+                            this.name = tokens[i]; // if this is the first time we have been here it is the name
+                            times++;
+                        }
+                        else if (times == 1) // if this is the second time we have been here it is the value
+                        {
+                            this.Value = tokens[i];
+                            times++;
+                        }
+                        else if (times > 1 && this.Value != null)
+                        {
+                            int index2 = 0;
+                            if(operators.Contains(tokens[i]))
+                            {
+                                for (int j = 0; j < operators.Count; j++)
+                                {
+                                    if (operators[j].Equals(tokens[i])) // find which operator it is
+                                    {
+                                        index2 = j; // save the index
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+                                this.operation2 = (EnumOperator)index; // lookup the index in the enumerator and assign it to the operator value
+                            }
+                            else
+                            {
+                                this.value2 = tokens[i];
+                            }
                             
                         }
-                        catch (Exception ex)
+                        else // if we have been here more than twice it is a error
                         {
-                            Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.Error.WriteLine("An Error Occured");
-                            Console.ResetColor();
-                            Console.ReadKey();
-                            Environment.Exit(-1);
+                            try
+                            {
+                                throw new Exception();
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.Error.WriteLine("An Error Occured");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                                Environment.Exit(-1);
+                            }
                         }
                     }
                 }
@@ -122,7 +149,8 @@ namespace CSharpToNative
                 Console.WriteLine(Convert.ToString(this.protectionlevel));
                 Console.WriteLine(this.name);
                 Console.WriteLine(this.Value);
-                // Console.ReadKey();
+                Console.WriteLine(this.value2);
+                //Console.ReadKey();
             }
             
             if (tree.ASTbranches.Count == 0) // if this is the first branch in the tree

@@ -20,6 +20,8 @@ namespace CSharpToNative
             public EnumAccessModifiers protectionlevel;
             public EnumOperator operation;
             public object Value;
+            public object value2 = null;
+            public EnumOperator operation2 = EnumOperator.NO_OPERATOR;
             public Branch<T1, T2> parent = null;
             ///public long depth;
 

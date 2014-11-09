@@ -153,7 +153,7 @@ namespace CSharpToNative
                     for (int i = 0; i < b.Length; i++) // write the operand bytes to the object file
                     {
                         Console.WriteLine(b[i]);
-                        Console.ReadKey();
+                        //Console.ReadKey();
                         writer.Write(b[i]);
                     }
                 }

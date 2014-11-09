@@ -21,7 +21,6 @@ namespace Linker
             ELFFile file = new ELFFile();
             file.setheader(read.ReadBytes(50));
             origin += 50;
-
             return file;
         }
     }
