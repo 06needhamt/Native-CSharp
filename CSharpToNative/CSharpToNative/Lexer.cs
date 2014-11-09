@@ -12,7 +12,7 @@ namespace CSharpToNative
         //public static string[] pubtokens;
         public static List<string[]> pubtokenslist = new List<string[]>(0);
         private static readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
-        private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly"});
+        private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private static readonly List<string> types = new List<string>(new string[] { /*"const", "void","static void","static",*/"int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private static string[] lines;
         private static List<EnumOperator> ops = new List<EnumOperator>(0);
@@ -22,11 +22,11 @@ namespace CSharpToNative
         private static StreamWriter writer;
         private static string[] temptokens;  // tokens from each checking stage are stored here
         private static bool isafunction = false;
-        private static LinkedList<Tuple<string,string,string>> integersymboltable = new LinkedList<Tuple<string,string,string>>();
-        private static LinkedList<Tuple<string,string,string>> stringsymboltable = new LinkedList<Tuple<string,string,string>>();
+        private static LinkedList<Tuple<string, string, string>> integersymboltable = new LinkedList<Tuple<string, string, string>>();
+        private static LinkedList<Tuple<string, string, string>> stringsymboltable = new LinkedList<Tuple<string, string, string>>();
         private static LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private static bool isbracket = false;
-        
+
         public static void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
         {
             lines = linespar;
@@ -55,9 +55,9 @@ namespace CSharpToNative
         }
 
 
-           private static bool checkoperators(ref int i)
+        private static bool checkoperators(ref int i)
         {
-          
+
             int cops = 0; // amount of operators found in the current line
             for (int j = 0; j < operators.Count; j++)
             {
@@ -67,7 +67,7 @@ namespace CSharpToNative
                     //lhs = string.Split(new string[] { operators[j] } , 5 , StringSplitOptions.RemoveEmptyEntries)));
                     ops.Add((EnumOperator)j); // add it to the list of found operators
                     temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray(); // define splitting characters and split the line into tokens
-                    for (int str = -0; str < temptokens.Length; str++ )
+                    for (int str = -0; str < temptokens.Length; str++)
                     {
                         Console.WriteLine("lhs " + str + "= " + temptokens[str]);
                     }
@@ -92,7 +92,7 @@ namespace CSharpToNative
             {
                 if (lines[i].Contains(keywords[j])) // if the line contains the keyword at index j 
                 {
-                    if(j <= 2 && !accessmodifier) // if j <= 2 (is an access modifier) and we have not yet found one
+                    if (j <= 2 && !accessmodifier) // if j <= 2 (is an access modifier) and we have not yet found one
                     {
                         accessmodifier = true; // we have found an access modifier
                     }
@@ -137,13 +137,13 @@ namespace CSharpToNative
                         Console.WriteLine("lhs " + str + " = " + temptokens[str]);
                     }
                 }
-                
+
             }
             typedefs.Clear();
             return (ctypes > 0) ? true : false; // return true if we found a type false if we did not
         }
 
-        private static bool isvardeclared(ref string[] tokens , ref int i) // function for checking if a variable is declared
+        private static bool isvardeclared(ref string[] tokens, ref int i) // function for checking if a variable is declared
         {
             string type = tokens.FirstOrDefault<string>(j => types.Contains(j)); // string to hold the type of a variable
             if (string.IsNullOrEmpty(tokens[i]) || tokens[i].Equals("{") || tokens[i].Equals("{")) // if the variable is a bracket skip it
@@ -154,7 +154,7 @@ namespace CSharpToNative
             if ((Object)type == null && i < tokens.Length - 1) // if the token is not a variable (does not have a type)
             {
                 int iref = i; // keep i for future reference
-                for (int m = 0; m < tokens.Length; m++ )
+                for (int m = 0; m < tokens.Length; m++)
                 {
                     Console.WriteLine(tokens[m]);
                 }
@@ -172,15 +172,15 @@ namespace CSharpToNative
                 if (type.Equals("string")) // if the token was a variable of type string
                 {
                     System.Threading.Thread.Sleep(50);
-                    return (stringsymboltable.Contains(new Tuple<string,string,string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
+                    return (stringsymboltable.Contains(new Tuple<string, string, string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
                 }
                 else if (type.Equals("int"))
                 {
                     //Tuple<string> j  = new Tuple<string>("j");
                     System.Threading.Thread.Sleep(50);
-                  
-                    return (integersymboltable.Contains(new Tuple<string,string,string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
+
+                    return (integersymboltable.Contains(new Tuple<string, string, string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
                 }
                 else
@@ -196,10 +196,10 @@ namespace CSharpToNative
                 // if we get here the variable type is not declared
                 return false;
             }
-            
+
         }
 
-        private static bool checkisafunction(ref string[] tokens , ref int i)
+        private static bool checkisafunction(ref string[] tokens, ref int i)
         {
             // is the current line a function
             // Currently not working
@@ -231,27 +231,27 @@ namespace CSharpToNative
                     writer.Write((EnumOperator)index);
                     writer.Write(',');
                 }
-                else if (types.Contains<string>(tokens[i])) 
+                else if (types.Contains<string>(tokens[i]))
                 {
                     index = types.IndexOf(tokens[i]); // get the index of the type of the token
                     if ((EnumTypes)index == EnumTypes.INT) // if it is of type int
                     {
-                        
-                            //integersymboltable.AddLast(new Tuple<string,string,string>(tokens[i - 1], tokens[i], tokens[i + 1])); // add it to the integer symbol table
-                            for (int j = 0; j < integersymboltable.Count; j++)
-                            {
-                                Console.WriteLine(integersymboltable.ElementAt<Tuple<string,string,string>>(j));
-                                //Console.ReadKey();
-                            }
 
-                     }
+                        //integersymboltable.AddLast(new Tuple<string,string,string>(tokens[i - 1], tokens[i], tokens[i + 1])); // add it to the integer symbol table
+                        for (int j = 0; j < integersymboltable.Count; j++)
+                        {
+                            Console.WriteLine(integersymboltable.ElementAt<Tuple<string, string, string>>(j));
+                            //Console.ReadKey();
+                        }
 
-                    else if ((EnumTypes) index == EnumTypes.STRING) // do the same for strings
+                    }
+
+                    else if ((EnumTypes)index == EnumTypes.STRING) // do the same for strings
                     {
                         //stringsymboltable.AddLast(new Tuple<string,string,string>(tokens[i - 1], tokens[i], tokens[i + 1]));
                         for (int j = 0; j < stringsymboltable.Count; j++)
                         {
-                            Console.WriteLine(stringsymboltable.ElementAt<Tuple<string,string,string>>(j));
+                            Console.WriteLine(stringsymboltable.ElementAt<Tuple<string, string, string>>(j));
                             //Console.ReadKey();
                         }
                     }
@@ -266,7 +266,7 @@ namespace CSharpToNative
                             Console.WriteLine(ex2.Message);
                             Environment.Exit(-1);
                         }
-                        
+
                     }
                     Console.WriteLine((EnumTypes)index);
                     writer.Write((EnumTypes)index);
@@ -294,7 +294,7 @@ namespace CSharpToNative
                 {
                     Console.WriteLine("Tokens i =  " + tokens[i]);
                     if ((tokens[0].Equals(EnumKeywords.PRIVATE.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PUBLIC.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PROTECTED.ToString().ToLower())) /*&& !isvardeclared(ref tokens,ref i)*/)
-                        // if it has an access modifier 
+                    // if it has an access modifier 
                     {
                         defineVariable(ref tokens, ref i); // try and define a variable
                         continue;
@@ -310,7 +310,7 @@ namespace CSharpToNative
                         if (isafunction) // if it is a function
                         {
                             string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
-                            
+
                             if (!functionsymboltable.Contains(funcsplit)) // if the function is not in the symbpl table
                             {
                                 functionsymboltable.AddLast(funcsplit); // add it to the symbol table
@@ -323,8 +323,8 @@ namespace CSharpToNative
                             {
                                 //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
                                 //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-                                 
-                                
+
+
                                 continue;
                             }
 
@@ -343,14 +343,14 @@ namespace CSharpToNative
                 else
                 {
                     writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
-                   // writer.Write(',');
+                    // writer.Write(',');
                 }
-               
-                
+
+
             }
             writer.WriteLine();
             writer.WriteLine("END"); // mark the end of the line
-            
+
         }
 
         private static void defineVariable(ref string[] tokens, ref int i) // function to define variables
@@ -359,6 +359,7 @@ namespace CSharpToNative
             string prot = tokens[0];
             string name = tokens[i]; // copy the name from the tokens 
             string value;
+            tokens = tokens.Where(x => !string.IsNullOrEmpty(x) || x.Equals("\n")).ToArray();
             if (i + 2 > tokens.Length - 1)
             {
                 value = tokens.ElementAt(tokens.Length - 1);
@@ -367,16 +368,16 @@ namespace CSharpToNative
             {
                 value = tokens[i + 2];
             }
-            if (tokens[i-1].Equals(EnumTypes.INT.ToString().ToLower())) // if it is of type int
+            if (tokens[i - 1].Equals(EnumTypes.INT.ToString().ToLower())) // if it is of type int
             {
-                integersymboltable.AddLast(new Tuple<string,string,string>(prot,name,value)); // add it to the int symbol table
+                integersymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the int symbol table
                 writer.Write(name); // write the name to the file
                 writer.Write(','); // and a seperating comma
                 return;
             }
             else if (tokens[i - 1].Equals(EnumTypes.STRING.ToString().ToLower())) // if it is of type string
             {
-                stringsymboltable.AddLast(new Tuple<string,string,string>(prot,name,value)); // add it to the string symbol table
+                stringsymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the string symbol table
                 writer.Write(name); // write the name to the file
                 writer.Write(','); // and a seperating comma
                 return;
@@ -440,12 +441,12 @@ namespace CSharpToNative
             //                writer.Write(funcsplit[j]);
             //                writer.Write(',');
             //            }
-                        
+
             //            return;
             //        }
             //    }
             //}
-         
+
         }
 
         public static dynamic getintsymboltable()

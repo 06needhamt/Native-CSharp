@@ -355,7 +355,7 @@ l
 2
 private
 i
-
+)
 Reading string symbol table
 public
 m
@@ -9234,4 +9234,4 @@ i
 NO_TYPE
 ASSIGNMEMT
 NO_MODIFIER
-i
+i

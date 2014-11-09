@@ -98,7 +98,7 @@ namespace CSharpToNative
                             this.Value = tokens[i];
                             times++;
                         }
-                        else if (times > 1 && this.Value != null)
+                        else if (times > 1 && this.Value != null) // check if this is a two operand expression
                         {
                             int index2 = 0;
                             if(operators.Contains(tokens[i]))

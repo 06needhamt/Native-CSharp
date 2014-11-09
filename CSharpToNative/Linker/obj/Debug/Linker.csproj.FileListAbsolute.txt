@@ -1,9 +1,9 @@
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\test.txt.tokens
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe.config
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\test.txt.tokens
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.pdb
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb
