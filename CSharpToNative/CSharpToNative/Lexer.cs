@@ -122,7 +122,7 @@ namespace CSharpToNative
 
         }
 
-        private static bool checktypes(ref int i) // TODO  add user typedefs
+        private static bool checktypes(ref int i) // TODO add user typedefs
         {
             int ctypes = 0; // the number of types we have found
             for (int j = -0; j < types.Count; j++)
@@ -303,6 +303,8 @@ namespace CSharpToNative
                     {
                         writer.Write(tokens[i]); // if it is write it to the file with a seperating comma
                         writer.Write(',');
+                        //writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
+                        // writer.Write(',');
                     }
                     else
                     {
@@ -323,8 +325,8 @@ namespace CSharpToNative
                             {
                                 //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
                                 //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-
-
+                                writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
+                                // writer.Write(',');
                                 continue;
                             }
 
