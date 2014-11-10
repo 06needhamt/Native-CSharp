@@ -117,14 +117,14 @@ namespace CSharpToNative
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
             ELFFile elf = new ELFFile(outfile);
-            //if (File.Exists(outfile))
-            //{
-            //    File.Delete(outfile);
-            //}
-            //else
-            //{
-            //    File.Create(outfile);
-            //}
+            if (File.Exists(outfile))
+            {
+                File.Delete(outfile);
+            }
+            else
+            {
+                File.Create(outfile);
+            }
             BinaryWriter writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             //writer.Write(" ");
             if (this.Operands != null)
