@@ -31,10 +31,23 @@ namespace CSharpToNative
         {
             lines = linespar;
             writer = writerpar;
-            if (string.IsNullOrEmpty(lines[i]) || lines[i].Equals("{") || lines[i].Equals("}")) // if the line is only a brace skip it
+            if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
             {
                 return;
             }
+            else if (lines[i].Equals("{") || lines[i].Equals("}")) // if the line is a brace write it to the file and return
+            {
+                writer.WriteLine(lines[i]);
+                return;
+            }
+            if (lines[i].Contains('\t'))
+            {
+                while (lines[i].Contains('\t'))
+                {
+                    lines[i] = lines[i].Remove(0, 1);
+                    Console.WriteLine(lines[i]);
+                }
+                            }
             if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
             {
                 Console.Error.Write("Invalid Input");
@@ -293,6 +306,22 @@ namespace CSharpToNative
                 else if (!System.Text.RegularExpressions.Regex.IsMatch(tokens[i], "([0-9])")) // if the token is something else
                 {
                     Console.WriteLine("Tokens i =  " + tokens[i]);
+                    if (tokens[i].StartsWith("\"") && tokens[i].EndsWith("\""))
+                    {
+                        writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
+                        continue;
+                    }
+                    else if (tokens[i].StartsWith("\"") && !tokens[i].EndsWith("\""))
+                    {
+                        writer.Write("STRINGVALUE(" + tokens[i]); // it must be a string literal so give it a STRINGVALUE tag
+                        while(!tokens[i].EndsWith("\""))
+                        {
+                            i++;
+                            writer.Write(" ");
+                            writer.Write(tokens[i]);
+                        }
+                        writer.Write(")");
+                    }
                     if ((tokens[0].Equals(EnumKeywords.PRIVATE.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PUBLIC.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PROTECTED.ToString().ToLower())) /*&& !isvardeclared(ref tokens,ref i)*/)
                     // if it has an access modifier 
                     {
