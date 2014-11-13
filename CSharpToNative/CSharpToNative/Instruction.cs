@@ -184,7 +184,7 @@ namespace CSharpToNative
             writer.Flush();
             writer.Close();
             writer.Dispose(); // flush and close the writer
-            Environment.Exit(0);
+            //Environment.Exit(0);
             return;
         }
     }
