@@ -116,7 +116,8 @@ namespace CSharpToNative
             List<byte[]> operandbyes = new List<byte[]>(0);     // Array to hold the byte value of the operands
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
-            ELFFile elf = new ELFFile(outfile);
+            ELFFile elf;
+            BinaryWriter writer;
             if (File.Exists(outfile))
             {
                 File.Delete(outfile);
@@ -125,11 +126,12 @@ namespace CSharpToNative
             {
                 File.Create(outfile);
             }
-            BinaryWriter writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
+            elf = new ELFFile(outfile);
+            writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             //writer.Write(" ");
             if (this.Operands != null)
             {
-                writer.Seek((int)ELFFile.getorigin(), SeekOrigin.Begin);
+                writer.Seek(0, SeekOrigin.End);
                 if(BitConverter.IsLittleEndian)
                 {
                     Array.Reverse(opcodebytes); // if the system is little endian (least significant byte first) reverse the array so the bytes print in the correct order
@@ -182,6 +184,7 @@ namespace CSharpToNative
             writer.Flush();
             writer.Close();
             writer.Dispose(); // flush and close the writer
+            Environment.Exit(0);
             return;
         }
     }

@@ -47,7 +47,7 @@ namespace CSharpToNative
                     lines[i] = lines[i].Remove(0, 1);
                     Console.WriteLine(lines[i]);
                 }
-                            }
+            }
             if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
             {
                 Console.Error.Write("Invalid Input");

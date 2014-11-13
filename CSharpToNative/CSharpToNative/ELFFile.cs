@@ -8,9 +8,9 @@ namespace CSharpToNative
 {
     public class ELFFile
     {
-        byte[] fileheader = new byte[52];
+        byte[] fileheader = new byte[41];
         string currentdir = System.Environment.CurrentDirectory + "/";
-        static long origin;
+        public static long origin;
         Dictionary<string, string> datasegment = new Dictionary<string, string>();
         public ELFFile()
         {
@@ -39,13 +39,14 @@ namespace CSharpToNative
             }
             BinaryWriter writer = new BinaryWriter(File.Open(currentdir + name, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             writer.Seek(0, SeekOrigin.Begin);
-            writeheader(ref writer, ref origin);
-            writedatasegment(datasegment, ref origin, ref writer);
+            origin = writeheader(ref writer, ref origin);
+            origin = writedatasegment(datasegment, ref origin, ref writer);
             writer.Write(".code");
-            origin = writer.Seek(0, SeekOrigin.End);
+            origin = writer.Seek((int)origin, SeekOrigin.End);
             writer.Flush();
             writer.Close();
             writer.Dispose();
+            //Environment.Exit(0);
             return origin;
             
         }
@@ -56,8 +57,10 @@ namespace CSharpToNative
             {
                 writer.Write(fileheader[i]);
             }
-            origin = writer.Seek(0, SeekOrigin.Current);
+            origin = writer.Seek((int)origin, SeekOrigin.Current);
+            //Environment.Exit(0);
             return origin;
+            
         }
 
         private long writedatasegment(Dictionary<string, string> datasegment, ref long origin, ref BinaryWriter writer)
@@ -68,7 +71,7 @@ namespace CSharpToNative
                 writer.Write(item.Key);
                 writer.Write(item.Value);
             }
-            origin = writer.Seek(0, SeekOrigin.Current);
+            origin = writer.Seek((int)origin, SeekOrigin.Current);
             return origin;
         }
         private void CreateHeader()
@@ -90,37 +93,31 @@ namespace CSharpToNative
             this.fileheader[13] = 0x00;
             this.fileheader[14] = 0x00;
             this.fileheader[15] = 0x00;
-            this.fileheader[16] = 0x01;
-            this.fileheader[17] = 0x00;
-            this.fileheader[18] = 0x3E;
-            this.fileheader[19] = 0x00;
-            this.fileheader[20] = 0x01;
+            this.fileheader[16] = 0x00;
+            this.fileheader[17] = 0x01;
+            this.fileheader[18] = 0x00;
+            this.fileheader[19] = 0x3E;
+            this.fileheader[20] = 0x00;
             this.fileheader[21] = 0x00;
             this.fileheader[22] = 0x00;
-            this.fileheader[23] = 0x00;
-            this.fileheader[24] = 0x7C;
+            this.fileheader[23] = 0x01;
+            this.fileheader[24] = 0x00;
             this.fileheader[25] = 0x00;
             this.fileheader[26] = 0x00;
-            this.fileheader[27] = 0x00;
-            this.fileheader[28] = 0x34;
+            this.fileheader[27] = 0x7C;
+            this.fileheader[28] = 0x00;
             this.fileheader[29] = 0x00;
             this.fileheader[30] = 0x00;
-            this.fileheader[31] = 0x00;
+            this.fileheader[31] = 0x34;
             this.fileheader[32] = 0x00;
             this.fileheader[33] = 0x00;
             this.fileheader[34] = 0x00;
             this.fileheader[35] = 0x00;
             this.fileheader[36] = 0x00;
-            this.fileheader[37] = 0x00;
+            this.fileheader[37] = 0x32;
             this.fileheader[38] = 0x00;
             this.fileheader[39] = 0x00;
-            this.fileheader[40] = 0x34;
-            
-
-
-
-           // return SeekOrigin.Current;
-            
+            this.fileheader[40] = 0x12;
         }
         public byte[] getheader()
         {
