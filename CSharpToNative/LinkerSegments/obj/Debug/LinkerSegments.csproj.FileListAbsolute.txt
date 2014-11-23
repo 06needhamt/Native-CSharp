@@ -1,0 +1,5 @@
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\LinkerSegments\bin\Debug\LinkerSegments.dll
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\LinkerSegments\bin\Debug\LinkerSegments.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\LinkerSegments\obj\Debug\LinkerSegments.dll
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\LinkerSegments\obj\Debug\LinkerSegments.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\LinkerSegments\obj\Debug\LinkerSegments.csprojResolveAssemblyReference.cache

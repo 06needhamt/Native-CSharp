@@ -4,26 +4,24 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{40BF607B-DE72-4E99-B04D-097AA5F5C612}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{24E20C82-2C45-4AD7-8867-2C9AD83552D3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Linker</RootNamespace>
-    <AssemblyName>Linker</AssemblyName>
+    <RootNamespace>LinkerSegments</RootNamespace>
+    <AssemblyName>LinkerSegments</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,22 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LinkExecutable.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DataSegment.cs" />
+    <Compile Include="Segment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CSharpToNative\CSharpToNative.csproj">
-      <Project>{3d28d321-e3bc-4673-86e1-15ade77d027b}</Project>
-      <Name>CSharpToNative</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LinkerSegments\LinkerSegments.csproj">
-      <Project>{24e20c82-2c45-4ad7-8867-2c9ad83552d3}</Project>
-      <Name>LinkerSegments</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
