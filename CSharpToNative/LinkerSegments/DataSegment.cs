@@ -8,6 +8,8 @@ namespace LinkerSegments
 {
     class DataSegment : Segment
     {
-
+        protected EnumDataSizes datasize = 0x00;
+        protected Boolean aligned = false;
+        protected short alignsize = 0x00; 
     }
 }
