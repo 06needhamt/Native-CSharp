@@ -3,9 +3,9 @@ C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\De
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.pdb
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.exe
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\LinkerSegments.dll
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\LinkerSegments.pdb
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\ELFLib.dll
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\ELFLib.pdb

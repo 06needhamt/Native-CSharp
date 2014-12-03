@@ -47,6 +47,7 @@
     <Compile Include="AST.cs" />
     <Compile Include="ASTBranch.cs" />
     <Compile Include="Branch.cs" />
+    <Compile Include="CPUInfo.cs" />
     <Compile Include="DefineTest.cs" />
     <Compile Include="ELFFile.cs" />
     <Compile Include="EnumAccessModifiers.cs" />
@@ -75,9 +76,9 @@
     <Content Include="test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LinkerSegments\LinkerSegments.csproj">
-      <Project>{24e20c82-2c45-4ad7-8867-2c9ad83552d3}</Project>
-      <Name>LinkerSegments</Name>
+    <ProjectReference Include="..\ELFLib\ELFLib.csproj">
+      <Project>{afda37b8-7187-42f1-aec1-ebb60946a7b0}</Project>
+      <Name>ELFLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

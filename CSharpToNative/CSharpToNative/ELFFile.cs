@@ -4,20 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.InteropServices;
+using ELFLib;
 namespace CSharpToNative
 {
+    
     public class ELFFile
     {
         byte[] fileheader = new byte[41];
         string currentdir = System.Environment.CurrentDirectory + "/";
         public static long origin;
+        public string archetecture;
         Dictionary<string, string> datasegment = new Dictionary<string, string>();
+        ShsrtabSegment s;
         public ELFFile()
         {
-
+            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+            Console.WriteLine(this.archetecture);
+            CreateHeader();
+            Createdatasement(Lexer.getintsymboltable());
+            Createdatasement(Lexer.getstringsymboltable());
+            WriteFile("Default.o");
         }
         public ELFFile(string name)
         {
+            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+            Console.WriteLine(this.archetecture);
             CreateHeader();
             Createdatasement(Lexer.getintsymboltable());
             Createdatasement(Lexer.getstringsymboltable());
@@ -30,6 +42,11 @@ namespace CSharpToNative
             {
                 datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
             }
+        }
+
+        private void CreateShsrTabSegment()
+        {
+            s = new ShsrtabSegment(null);
         }
         private long WriteFile(string name)
         {
@@ -65,12 +82,23 @@ namespace CSharpToNative
 
         private long writedatasegment(Dictionary<string, string> datasegment, ref long origin, ref BinaryWriter writer)
         {
-            writer.Write(".data");
+            LinkedList<byte> bytes = new LinkedList<byte>();
             foreach(var item in datasegment)
             {
-                writer.Write(item.Key);
-                writer.Write(item.Value);
+                char[] cbytes = item.Key.ToCharArray();
+                for (int i = 0; i < cbytes.Length; i++)
+                {
+                    bytes.AddLast((byte) cbytes[i]);
+                }
+                cbytes = item.Value.ToCharArray();
+                for(int i = 0; i < cbytes.Length; i++)
+                {
+                    bytes.AddLast((byte) cbytes[i]);
+                }
             }
+            DataSegment d = new DataSegment(".data",origin,origin,bytes);
+            //writer.Write(".data");
+
             origin = writer.Seek((int)origin, SeekOrigin.Current);
             return origin;
         }

@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkerSegments
+namespace ELFLib
 {
     public class Segment
     {
-        private long sizeofsegment = 0x00;
-        private long beginoffset = 0x00;
-        private long endoffset = 0x00;
-        private string name = string.Empty;
-        private bool isempty = true;
-        private LinkedList<byte> bytes;
+        protected Boolean aligned = false;
+        protected short alignsize = 0x00;
+        protected long sizeofsegment = 0x00;
+        protected long beginoffset = 0x00;
+        protected long endoffset = 0x00;
+        protected string name = string.Empty;
+        protected bool isempty = true;
+        protected LinkedList<byte> bytes;
 
         public Segment()
         {
@@ -68,6 +70,16 @@ namespace LinkerSegments
             return this.bytes;
         }
 
+        public bool getAligned()
+        {
+            return this.aligned;
+        }
+
+        public short getAlignSize()
+        {
+            return this.alignsize;
+        }
+
         public void setSizeofSegment(long size)
         {
             this.sizeofsegment = size;
@@ -96,6 +108,16 @@ namespace LinkerSegments
         public void setBytes(LinkedList<byte> bytes)
         {
             this.bytes = bytes;
+        }
+
+        public void setAligned(bool align)
+        {
+            this.aligned = align;
+        }
+
+        public void setAlignSize(short alignsize)
+        {
+            this.alignsize = alignsize;
         }
     }
 }

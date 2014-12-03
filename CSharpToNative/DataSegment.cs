@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkerSegments
+namespace ELFLib
 {
     class DataSegment : Segment
     {
-        protected EnumDataSizes datasize = 0x00;
-        protected Boolean aligned = false;
-        protected short alignsize = 0x00; 
+        protected EnumDataSizes datasize = EnumDataSizes.NO_DATA;
     }
 }
