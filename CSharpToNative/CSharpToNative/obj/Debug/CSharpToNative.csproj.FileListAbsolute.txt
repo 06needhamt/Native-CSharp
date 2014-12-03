@@ -51,12 +51,21 @@ F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSha
 F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
 F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb

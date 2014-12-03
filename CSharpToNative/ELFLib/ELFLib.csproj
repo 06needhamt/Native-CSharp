@@ -41,9 +41,13 @@
   <ItemGroup>
     <Compile Include="DataSegment.cs" />
     <Compile Include="EnumDataSizes.cs" />
+    <Compile Include="NullSegement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Segment.cs" />
     <Compile Include="ShsrtabSegment.cs" />
+    <Compile Include="SourceSegment.cs" />
+    <Compile Include="Symbol.cs" />
+    <Compile Include="SymTab.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

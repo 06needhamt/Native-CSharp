@@ -23,7 +23,7 @@ namespace ELFLib
         }
         public Segment(string name, long beginoffset, long endoffset, LinkedList<byte> bytes)
         {
-            if (bytes.Count != 0 || bytes == null)
+            if (bytes.Count == 0)
             {
                 this.setEmpty(true);
                 this.setSizeofSegment(0);

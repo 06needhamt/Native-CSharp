@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ELFLib
 {
-    class DataSegment : Segment
+    class Symbol
     {
-        protected EnumDataSizes datasize = EnumDataSizes.NO_DATA;
+        string name;
+        string type;
+        string value;
     }
 }

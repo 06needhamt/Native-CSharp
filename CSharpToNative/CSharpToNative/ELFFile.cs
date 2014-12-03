@@ -36,18 +36,23 @@ namespace CSharpToNative
             WriteFile(name);
         }
 
-        private void Createdatasement(LinkedList<Tuple<string,string,string>> symboltable)
+        private DataSegment Createdatasement(LinkedList<Tuple<string,string,string>> symboltable)
         {
-            foreach (var item in symboltable)
-            {
-                datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
-            }
+            //foreach (var item in symboltable)
+            //{
+            //    datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
+            //}
+            ShsrtabSegment shr = CreateShsrtabSegment();
+            DataSegment data = new DataSegment(".data", shr.getBeginOffset(),shr.getEndOffset(), new LinkedList<byte>());
+            return data;
         }
 
-        private void CreateShsrTabSegment()
+        private ShsrtabSegment CreateShsrtabSegment()
         {
-            s = new ShsrtabSegment(null);
+            ShsrtabSegment shr = new ShsrtabSegment(new LinkedList<string>());
+            return shr;
         }
+
         private long WriteFile(string name)
         {
             if (File.Exists(currentdir + name))

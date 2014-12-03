@@ -1,5 +1,9 @@
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\ELFLib\bin\Debug\ELFLib.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\Debug\ELFLib.pdb
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
