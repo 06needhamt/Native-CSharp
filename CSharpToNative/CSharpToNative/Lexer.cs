@@ -55,13 +55,13 @@ namespace CSharpToNative
                 //Console.ReadKey();
 
             }
-            System.Threading.Thread.Sleep(100);
+            // System.Threading.Thread.Sleep(100);
             Console.WriteLine(checktypes(ref i)); // check the current line for types
-            System.Threading.Thread.Sleep(100);
+            // System.Threading.Thread.Sleep(100);
             Console.WriteLine(checkkeywords(ref i)); // check the current line for keywords
-            System.Threading.Thread.Sleep(100);
+            // System.Threading.Thread.Sleep(100);
             Console.WriteLine(checkoperators(ref i)); // check the current line for operators
-            System.Threading.Thread.Sleep(100);
+            // System.Threading.Thread.Sleep(100);
 
             printTokens(temptokens); // tokenize the checked line and print it to the file
             writer.WriteLine();
@@ -184,14 +184,14 @@ namespace CSharpToNative
                 }
                 if (type.Equals("string")) // if the token was a variable of type string
                 {
-                    System.Threading.Thread.Sleep(50);
+                    // System.Threading.Thread.Sleep(50);
                     return (stringsymboltable.Contains(new Tuple<string, string, string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
                 }
                 else if (type.Equals("int"))
                 {
                     //Tuple<string> j  = new Tuple<string>("j");
-                    System.Threading.Thread.Sleep(50);
+                    // System.Threading.Thread.Sleep(50);
 
                     return (integersymboltable.Contains(new Tuple<string, string, string>(tokens[i], tokens[i + 1], tokens[i + 2])) ? true : false);
                     // if the variable is in the symbol table return true else return false
@@ -199,7 +199,7 @@ namespace CSharpToNative
                 else
                 {
                     // if we get here the variable type is not yet implemented
-                    System.Threading.Thread.Sleep(50);
+                    // System.Threading.Thread.Sleep(50);
                     return false;
                 }
 

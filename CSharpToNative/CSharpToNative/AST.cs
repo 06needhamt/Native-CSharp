@@ -58,7 +58,7 @@ namespace CSharpToNative
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("FATAL ERROR THE BRANCH IS ALREADY THE ROOT OF THIS TREE EXITING");
                     Console.ResetColor();
-                    System.Threading.Thread.Sleep(2500);
+                    // System.Threading.Thread.Sleep(2500);
                     Environment.Exit(-1);
                 }
             }

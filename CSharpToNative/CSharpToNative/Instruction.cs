@@ -55,7 +55,7 @@ namespace CSharpToNative
                  Console.ForegroundColor = ConsoleColor.Magenta;
                  Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
                  Console.ResetColor();
-                 System.Threading.Thread.Sleep(2500);
+                 // // System.Threading.Thread.Sleep(2500);
                  Environment.Exit(-1);
             }
                         
