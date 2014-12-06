@@ -218,15 +218,60 @@ namespace CSharpToNative
             // Currently not working
             return (tokens.Contains("(") && tokens.Contains(")")) ? true : false;
         }
+
+        public static bool isInteger(String str)
+        {
+            if (str == null)
+            {
+                return false;
+            }
+            int length = str.Length;
+            if (length == 0)
+            {
+                return false;
+            }
+            int i = 0;
+            if (str.ElementAt(0) == '-')
+            {
+                if (length == 1)
+                {
+                    return false;
+                }
+                i = 1;
+            }
+            for (; i < length; i++)
+            {
+                char c = str.ElementAt(i);
+                if (c <= '/' || c >= ':')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private static void printTokens(string[] tokens)  // function to print tokens
         {
             int index; // int to store the index of the current token in reference arrays 
             //bool keyword = false;
             //pubtokens = tokens; // create a publically acessable copy of the tokens for later
+            
+
             pubtokenslist.Add(tokens); // add the current tokens to a publically accessable list for later 
             writer.WriteLine("START");
             for (int i = 0; i < tokens.Length; i++)
             {
+                bool negated = false;
+                Console.WriteLine(isInteger(tokens[i]));
+                if (isInteger(tokens[i]))
+                {
+                    Console.WriteLine(Convert.ToInt32(tokens[i]));
+                }
+                if (isInteger(tokens[i]) && Convert.ToInt32(tokens[i]) < 0)
+                {
+                    int negatedToken = (Convert.ToInt32(tokens[i])) * -1;
+                    tokens[i] = Convert.ToString(negatedToken);
+                    negated = true;
+                }
                 if (keywords.Contains<string>(tokens[i])) // if the current token is equal to a valid keyword
                 {
                     //keyword = true;
@@ -293,6 +338,12 @@ namespace CSharpToNative
 
                 else if (System.Text.RegularExpressions.Regex.IsMatch(tokens[i], "([0-9])")) // if the token is numerical
                 {
+                    if (negated)
+                    {
+                        int realToken = (Convert.ToInt32(tokens[i])) * -1;
+                        tokens[i] = Convert.ToString(realToken);
+                        negated = false;
+                    }
                     writer.Write("INTVALUE(" + tokens[i] + ")"); // write it to the file with an INTVALUE tag
                     continue;
 
