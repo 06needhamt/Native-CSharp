@@ -321,17 +321,20 @@ namespace CSharpToNative
                             writer.Write(tokens[i]);
                         }
                         writer.Write(")");
+                        continue;
                     }
                     if ((tokens[0].Equals(EnumKeywords.PRIVATE.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PUBLIC.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PROTECTED.ToString().ToLower())) /*&& !isvardeclared(ref tokens,ref i)*/)
                     // if it has an access modifier 
                     {
                         defineVariable(ref tokens, ref i); // try and define a variable
+                        writer.Write(tokens[i]); // if it is write it to the file with a seperating comma
+                        writer.Write(',');
                         continue;
                     }
                     if (isvardeclared(ref tokens, ref i)) // otherwise check if it is already defined
                     {
-                        writer.Write(tokens[i]); // if it is write it to the file with a seperating comma
-                        writer.Write(',');
+                        //writer.Write(tokens[i]); // if it is write it to the file with a seperating comma
+                        //writer.Write(',');
                         //writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
                         // writer.Write(',');
                     }
@@ -402,15 +405,15 @@ namespace CSharpToNative
             if (tokens[i - 1].Equals(EnumTypes.INT.ToString().ToLower())) // if it is of type int
             {
                 integersymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the int symbol table
-                writer.Write(name); // write the name to the file
-                writer.Write(','); // and a seperating comma
+                //writer.Write(name); // write the name to the file
+                //writer.Write(','); // and a seperating comma
                 return;
             }
             else if (tokens[i - 1].Equals(EnumTypes.STRING.ToString().ToLower())) // if it is of type string
             {
                 stringsymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the string symbol table
-                writer.Write(name); // write the name to the file
-                writer.Write(','); // and a seperating comma
+                //writer.Write(name); // write the name to the file
+                //writer.Write(','); // and a seperating comma
                 return;
             }
             //else // if we are here it must be a function or a non implemented type
