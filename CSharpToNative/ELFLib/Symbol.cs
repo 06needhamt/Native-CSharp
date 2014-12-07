@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ELFLib
+﻿namespace ELFLib
 {
-    class Symbol
+    internal class Symbol
     {
-        string name;
-        string type;
-        string value;
+        private string name;
+        private string type;
+        private string value;
     }
 }

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ELFLib
 {
-    class NullSegement : Segment
+    internal class NullSegement : Segment
     {
-        public NullSegement(string name, long beginoffset, long endoffset, LinkedList<byte> bytes) : base(name,beginoffset,endoffset,bytes)
+        public NullSegement(string name, long beginoffset, long endoffset, LinkedList<byte> bytes)
+            : base(name, beginoffset, endoffset, bytes)
         {
             this.name = ".null";
             this.beginoffset = beginoffset;

@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-        public class Tree<T1, T2, T3> : Branch<T1, T2>
+    public class Tree<T1, T2, T3> : Branch<T1, T2>
     {
         public List<Branch<T1, T2>> treebranches = new List<Branch<T1, T2>>(0); // create a list of branches to the tree
         public ulong depth = 0; // depth of the tree
+
         public Tree()
         {
             this.depth = 0; // set the depth to 0
             this.treebranches = null; // set the branches to null as there arent any yet
         }
+
         public Tree(List<Branch<T1, T2>> branches)
         {
             this.treebranches = branches; // assign the passed list of branches to this tree
@@ -59,21 +58,21 @@ namespace CSharpToNative
             }
         }
 
-        protected Branch<T1, T2> GetBranch(Tree<T1,T2,T3> tree, dynamic criteria = null)
+        protected Branch<T1, T2> GetBranch(Tree<T1, T2, T3> tree, dynamic criteria = null)
         {
-            Branch<T1,T2> b = new Branch<T1,T2>();
-            
+            Branch<T1, T2> b = new Branch<T1, T2>();
+
             if (criteria.Equals(null))
             {
                 return tree.treebranches.First<Branch<T1, T2>>();
             }
             else
             {
-                return tree.treebranches.FirstOrDefault<Branch<T1,T2>>(c => c.Value.Equals(criteria));
+                return tree.treebranches.FirstOrDefault<Branch<T1, T2>>(c => c.Value.Equals(criteria));
             }
         }
 
-        protected ulong GetTreeDepth(Tree<T1,T2,T3> tree)
+        protected ulong GetTreeDepth(Tree<T1, T2, T3> tree)
         {
             return tree.depth;
         }

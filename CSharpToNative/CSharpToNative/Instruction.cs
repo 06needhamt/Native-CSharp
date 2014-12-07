@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Text;
 
 namespace CSharpToNative
 {
-    class Instruction
+    internal class Instruction
     {
-        uint Opcode;
-        string[] Operands;
+        private uint Opcode;
+        private string[] Operands;
 
         public Instruction(uint opcode, string[] operands)
         {
@@ -44,22 +42,22 @@ namespace CSharpToNative
             }
             catch (InvalidOperationException ex)
             {
-                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                 Console.WriteLine(ex.GetType());
-                 Console.WriteLine(ex.Message);
-                 Console.WriteLine(ex.StackTrace);
-                 Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine(ex.GetType());
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                Console.ResetColor();
             }
             finally
             {
-                 Console.ForegroundColor = ConsoleColor.Magenta;
-                 Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
-                 Console.ResetColor();
-                 // // System.Threading.Thread.Sleep(2500);
-                 Environment.Exit(-1);
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
+                Console.ResetColor();
+                // // System.Threading.Thread.Sleep(2500);
+                Environment.Exit(-1);
             }
-                        
         }
+
         public uint getOpcode()
         {
             return this.Opcode;
@@ -87,7 +85,7 @@ namespace CSharpToNative
                 writer.Write(" "); // Followed by a space
                 for (int i = 0; i < this.Operands.Length; i++)
                 {
-                    writer.Write(this.Operands[i]); // write operand to the file 
+                    writer.Write(this.Operands[i]); // write operand to the file
                     //if (i == 0)
                     //{
                     //    writer.Write(" ");
@@ -110,6 +108,7 @@ namespace CSharpToNative
             writer.Dispose(); // flush and close the writer
             return;
         }
+
         public void PrintBinaryInstruction()
         {
             byte[] opcodebytes = BitConverter.GetBytes(this.Opcode); // Array to hold the byte value of the opcode
@@ -132,11 +131,11 @@ namespace CSharpToNative
             if (this.Operands != null)
             {
                 writer.Seek(0, SeekOrigin.End);
-                if(BitConverter.IsLittleEndian)
+                if (BitConverter.IsLittleEndian)
                 {
                     Array.Reverse(opcodebytes); // if the system is little endian (least significant byte first) reverse the array so the bytes print in the correct order
                 }
-                for (int i = 0; i < opcodebytes.Length; i++ )
+                for (int i = 0; i < opcodebytes.Length; i++)
                 {
                     writer.Write(opcodebytes[i]); // write the opcode bytes to the object file
                 }
@@ -146,7 +145,7 @@ namespace CSharpToNative
                     operandbyes.Add(Encoding.ASCII.GetBytes(Operands[i])); // write the opcode bytes to the object file
                 }
 
-                foreach(byte[] b in operandbyes)
+                foreach (byte[] b in operandbyes)
                 {
                     if (BitConverter.IsLittleEndian) // if the system is little endian (least significant byte first) reverse the array so the bytes print in the correct order
                     {
@@ -160,18 +159,18 @@ namespace CSharpToNative
                     }
                 }
 
-                    //writer.Write((Convert.ToString(this.Opcode, 2)));
-                    //writer.Write(" ");
+                //writer.Write((Convert.ToString(this.Opcode, 2)));
+                //writer.Write(" ");
 
-                    //for (int i = 0; i < this.Operands.Length; i++)
-                    //{
-                    //    foreach (byte b in this.Operands[i])
-                    //    {
-                    //        writer.Write(b);
-                    //        //writer.Write(" ");
-                    //    }
-                    //    //writer.Write(",");
-                    //}
+                //for (int i = 0; i < this.Operands.Length; i++)
+                //{
+                //    foreach (byte b in this.Operands[i])
+                //    {
+                //        writer.Write(b);
+                //        //writer.Write(" ");
+                //    }
+                //    //writer.Write(",");
+                //}
                 //writer.WriteLine();
             }
             else

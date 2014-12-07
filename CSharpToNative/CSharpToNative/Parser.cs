@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-    class Parser
+    internal class Parser
     {
-        int[] numericaltypes = { 0, 3, 4, 5, 6, 9, 11 }; // array to hold the enum values of numerical types
-        int[] alphanumericaltypes = { 1, 8 }; // array to hold the enum values of alphanumerical types
-        List<ASTBranch<dynamic, dynamic,dynamic,dynamic>> branches; // list to hold the branches we are working with
-        AST<dynamic, dynamic, dynamic, dynamic> thetree; /* new AST<dynamic,dynamic,dynamic,dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(0)); */ 
+        private int[] numericaltypes = { 0, 3, 4, 5, 6, 9, 11 }; // array to hold the enum values of numerical types
+        private int[] alphanumericaltypes = { 1, 8 }; // array to hold the enum values of alphanumerical types
+        private List<ASTBranch<dynamic, dynamic, dynamic, dynamic>> branches; // list to hold the branches we are working with
+        private AST<dynamic, dynamic, dynamic, dynamic> thetree; /* new AST<dynamic,dynamic,dynamic,dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(0)); */
+
         // the tree we are working with
         public Parser()
         {
-
         }
+
         public Parser(AST<dynamic, dynamic, dynamic, dynamic> tree, ref int i)
         {
-
             this.thetree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
             //create a tree with the current tokens
             this.branches = thetree.ASTbranches; // get the trees branches
@@ -30,11 +28,11 @@ namespace CSharpToNative
             //    tree.treebranches.Add(new Branch<dynamic, dynamic>(Lexer.pubtokens));
             //}
 
-            foreach (ASTBranch<dynamic, dynamic,dynamic,dynamic> branch in this.branches)
+            foreach (ASTBranch<dynamic, dynamic, dynamic, dynamic> branch in this.branches)
             {
                 if (IsNumerical(branch.type)) // check if the branch is numerical
                 {
-                    CreateNumericalInstruction(branch.type, branch.operation, branch.name, branch.Value); 
+                    CreateNumericalInstruction(branch.type, branch.operation, branch.name, branch.Value);
                     // Call the numerical instruction creation function
                 }
                 else if (isAlphaNumerical(branch.type)) // check if the branch is alpha numerical
@@ -49,14 +47,17 @@ namespace CSharpToNative
                 }
             }
         }
+
         private void SetBranches()
         {
             this.branches = this.thetree.ASTbranches;
         }
-        private List<ASTBranch<dynamic, dynamic,dynamic,dynamic>> GetBranches()
+
+        private List<ASTBranch<dynamic, dynamic, dynamic, dynamic>> GetBranches()
         {
             return this.branches;
         }
+
         private void CreateNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
             List<string> ops = new List<string>(0); // list to hold the operands
@@ -64,7 +65,6 @@ namespace CSharpToNative
 
             switch (operation) // see what operation we are performing
             {
-                
                 case EnumOperator.UNARY_PLUS: // adding
                     {
                         for (int i = 0; i < branches.Count; i++)
@@ -114,14 +114,12 @@ namespace CSharpToNative
                                     // System.Threading.Thread.Sleep(2500);
                                     Environment.Exit(-1);
                                 }
-
                             }
                         }
                         Instruction ins = new Instruction((int)EnumOpcodes.ADD, ops.ToArray<string>()); // create an add instruction with the found operands
                         break;
-                        
                     }
-                    
+
                 case EnumOperator.UNARY_MINUS:
                     {
                         for (int i = 0; i < branches.Count; i++)
@@ -171,7 +169,6 @@ namespace CSharpToNative
                                     // System.Threading.Thread.Sleep(2500);
                                     Environment.Exit(-1);
                                 }
-
                             }
                         }
                         Instruction ins = new Instruction((int)EnumOpcodes.SUB, ops.ToArray<string>()); // create an SUB instruction with the found operands
@@ -195,7 +192,7 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree 
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
                                     {
                                         ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
                                     }
@@ -231,7 +228,6 @@ namespace CSharpToNative
                                     // System.Threading.Thread.Sleep(2500);
                                     Environment.Exit(-1);
                                 }
-
                             }
                         }
                         if (issigned)
@@ -242,7 +238,7 @@ namespace CSharpToNative
                         {
                             Instruction ins = new Instruction((int)EnumOpcodes.MUL, ops.ToArray<string>()); // if it is unsigned create an MUL instruction with the found operands
                         }
-                        
+
                         break;
                     }
                 case EnumOperator.UNARY_DIVIDE:
@@ -263,7 +259,7 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree 
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
                                     {
                                         ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
                                     }
@@ -299,7 +295,6 @@ namespace CSharpToNative
                                     // System.Threading.Thread.Sleep(2500);
                                     Environment.Exit(-1);
                                 }
-
                             }
                         }
                         if (issigned)
@@ -314,20 +309,18 @@ namespace CSharpToNative
                     }
             }
             return;
-            
-
         }
 
         private void CreateAlphaNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
             DefineVariable(Type, name, null);
-
         }
+
         private void CreateBinaryInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
             List<string> ops = new List<string>(0);
             DefineVariable(Type, name, null);
-            switch(operation)
+            switch (operation)
             {
                 case EnumOperator.ASSIGNMEMT: // if it is an assignment
                     {
@@ -339,9 +332,8 @@ namespace CSharpToNative
                     }
                     break;
             }
-           
-
         }
+
         private int GetOperation(EnumOperator Operator) // get the current operator's int value
         {
             return (int)Operator;
@@ -364,10 +356,12 @@ namespace CSharpToNative
         {
             return (alphanumericaltypes.Contains<int>(Convert.ToInt32(Type))); // return true if it is alphanumerical
         }
+
         private bool IsBinary(EnumTypes Type)
         {
             return (!alphanumericaltypes.Contains<int>(Convert.ToInt32(Type)) && !numericaltypes.Contains<int>(Convert.ToInt32(Type))) ? true : false; // return true if it is not numerical or alphanumerical
         }
+
         protected bool executebranch(ASTBranch<dynamic, dynamic, dynamic, dynamic> branch)
         {
             // create instructions from a branch

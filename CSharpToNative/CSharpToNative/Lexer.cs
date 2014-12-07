@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace CSharpToNative
 {
-    class Lexer
+    internal class Lexer
     {
         //public static string[] pubtokens;
         public static List<string[]> pubtokenslist = new List<string[]>(0);
+
         private static readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private static readonly List<string> types = new List<string>(new string[] { /*"const", "void","static void","static",*/"int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
@@ -53,7 +52,6 @@ namespace CSharpToNative
                 Console.Error.Write("Invalid Input");
                 Console.WriteLine(lines[i]);
                 //Console.ReadKey();
-
             }
             // System.Threading.Thread.Sleep(100);
             Console.WriteLine(checktypes(ref i)); // check the current line for types
@@ -67,10 +65,8 @@ namespace CSharpToNative
             writer.WriteLine();
         }
 
-
         private static bool checkoperators(ref int i)
         {
-
             int cops = 0; // amount of operators found in the current line
             for (int j = 0; j < operators.Count; j++)
             {
@@ -93,9 +89,7 @@ namespace CSharpToNative
             //}
             ops.Clear(); // empty the list of operators
             return (cops > 0) ? true : false; // return true if we found an operator false if we did not
-
         }
-
 
         private static bool checkkeywords(ref int i)
         {
@@ -103,7 +97,7 @@ namespace CSharpToNative
             bool accessmodifier = false; // does the line contain an access modifier
             for (int j = 0; j < keywords.Count; j++) // check for each valid keyword
             {
-                if (lines[i].Contains(keywords[j])) // if the line contains the keyword at index j 
+                if (lines[i].Contains(keywords[j])) // if the line contains the keyword at index j
                 {
                     if (j <= 2 && !accessmodifier) // if j <= 2 (is an access modifier) and we have not yet found one
                     {
@@ -132,7 +126,6 @@ namespace CSharpToNative
             }
             kywrds.Clear();
             return (ckeywords > 0) ? true : false; // return true if we found a keyword false if we did not
-
         }
 
         private static bool checktypes(ref int i) // TODO add user typedefs
@@ -140,7 +133,7 @@ namespace CSharpToNative
             int ctypes = 0; // the number of types we have found
             for (int j = -0; j < types.Count; j++)
             {
-                if ((lines[i].Contains(types[j]))) // if the line contains the type at index j 
+                if ((lines[i].Contains(types[j]))) // if the line contains the type at index j
                 {
                     ctypes++; // increment the number of types found
                     typedefs.Add((EnumTypes)j); // add it to the list of found types
@@ -150,7 +143,6 @@ namespace CSharpToNative
                         Console.WriteLine("lhs " + str + " = " + temptokens[str]);
                     }
                 }
-
             }
             typedefs.Clear();
             return (ctypes > 0) ? true : false; // return true if we found a type false if we did not
@@ -199,17 +191,16 @@ namespace CSharpToNative
                 else
                 {
                     // if we get here the variable type is not yet implemented
-                    // System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(50);
                     return false;
                 }
-
             }
             else
             {
+                System.Threading.Thread.Sleep(50);
                 // if we get here the variable type is not declared
                 return false;
             }
-
         }
 
         private static bool checkisafunction(ref string[] tokens, ref int i)
@@ -249,14 +240,14 @@ namespace CSharpToNative
             }
             return true;
         }
+
         private static void printTokens(string[] tokens)  // function to print tokens
         {
-            int index; // int to store the index of the current token in reference arrays 
+            int index; // int to store the index of the current token in reference arrays
             //bool keyword = false;
             //pubtokens = tokens; // create a publically acessable copy of the tokens for later
-            
 
-            pubtokenslist.Add(tokens); // add the current tokens to a publically accessable list for later 
+            pubtokenslist.Add(tokens); // add the current tokens to a publically accessable list for later
             writer.WriteLine("START");
             for (int i = 0; i < tokens.Length; i++)
             {
@@ -281,7 +272,6 @@ namespace CSharpToNative
                     writer.Write(','); // write a seperating comma
                     continue;
                 }
-
                 else if (operators.Contains<string>(tokens[i])) // do the same for operators
                 {
                     index = operators.IndexOf(tokens[i]);
@@ -294,16 +284,13 @@ namespace CSharpToNative
                     index = types.IndexOf(tokens[i]); // get the index of the type of the token
                     if ((EnumTypes)index == EnumTypes.INT) // if it is of type int
                     {
-
                         //integersymboltable.AddLast(new Tuple<string,string,string>(tokens[i - 1], tokens[i], tokens[i + 1])); // add it to the integer symbol table
                         for (int j = 0; j < integersymboltable.Count; j++)
                         {
                             Console.WriteLine(integersymboltable.ElementAt<Tuple<string, string, string>>(j));
                             //Console.ReadKey();
                         }
-
                     }
-
                     else if ((EnumTypes)index == EnumTypes.STRING) // do the same for strings
                     {
                         //stringsymboltable.AddLast(new Tuple<string,string,string>(tokens[i - 1], tokens[i], tokens[i + 1]));
@@ -324,18 +311,15 @@ namespace CSharpToNative
                             Console.WriteLine(ex2.Message);
                             Environment.Exit(-1);
                         }
-
                     }
                     Console.WriteLine((EnumTypes)index);
                     writer.Write((EnumTypes)index);
                     writer.Write(',');
                 }
-
                 else if (tokens[i].Equals(" ") || tokens[i].Equals("") || tokens[i].Equals(null)) // if the token is whitespace skip it
                 {
                     continue;
                 }
-
                 else if (System.Text.RegularExpressions.Regex.IsMatch(tokens[i], "([0-9])")) // if the token is numerical
                 {
                     if (negated)
@@ -346,14 +330,11 @@ namespace CSharpToNative
                     }
                     writer.Write("INTVALUE(" + tokens[i] + ")"); // write it to the file with an INTVALUE tag
                     continue;
-
                 }
-
                 else if (tokens[i].Equals("\n")) // if it is a new line get the next token
                 {
                     return;
                 }
-
                 else if (!System.Text.RegularExpressions.Regex.IsMatch(tokens[i], "([0-9])")) // if the token is something else
                 {
                     Console.WriteLine("Tokens i =  " + tokens[i]);
@@ -365,7 +346,7 @@ namespace CSharpToNative
                     else if (tokens[i].StartsWith("\"") && !tokens[i].EndsWith("\""))
                     {
                         writer.Write("STRINGVALUE(" + tokens[i]); // it must be a string literal so give it a STRINGVALUE tag
-                        while(!tokens[i].EndsWith("\""))
+                        while (!tokens[i].EndsWith("\""))
                         {
                             i++;
                             writer.Write(" ");
@@ -375,7 +356,7 @@ namespace CSharpToNative
                         continue;
                     }
                     if ((tokens[0].Equals(EnumKeywords.PRIVATE.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PUBLIC.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PROTECTED.ToString().ToLower())) /*&& !isvardeclared(ref tokens,ref i)*/)
-                    // if it has an access modifier 
+                    // if it has an access modifier
                     {
                         defineVariable(ref tokens, ref i); // try and define a variable
                         writer.Write(tokens[i]); // if it is write it to the file with a seperating comma
@@ -412,7 +393,6 @@ namespace CSharpToNative
                                 // writer.Write(',');
                                 continue;
                             }
-
                         }
                         else
                         {
@@ -421,7 +401,6 @@ namespace CSharpToNative
                             Console.ResetColor();
                             return;
                         }
-
                     }
                     //writer.Write(',');
                 }
@@ -430,19 +409,16 @@ namespace CSharpToNative
                     writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
                     // writer.Write(',');
                 }
-
-
             }
             writer.WriteLine();
             writer.WriteLine("END"); // mark the end of the line
-
         }
 
         private static void defineVariable(ref string[] tokens, ref int i) // function to define variables
         {
             //EnumTypes type;
             string prot = tokens[0];
-            string name = tokens[i]; // copy the name from the tokens 
+            string name = tokens[i]; // copy the name from the tokens
             string value;
             tokens = tokens.Where(x => !string.IsNullOrEmpty(x) || x.Equals("\n")).ToArray();
             if (i + 2 > tokens.Length - 1)
@@ -512,9 +488,9 @@ namespace CSharpToNative
             //            }
             //            if (string.IsNullOrWhiteSpace(functionsymboltable.ElementAt(i)[1])) // if it has no parameters
             //            {
-            //                funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis 
+            //                funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis
             //            }
-            //            writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file 
+            //            writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file
             //            writer.Write(','); // and a seperating comma
             //        }
             //        else // just write it to the file
@@ -531,17 +507,18 @@ namespace CSharpToNative
             //        }
             //    }
             //}
-
         }
 
         public static dynamic getintsymboltable()
         {
             return integersymboltable;
         }
+
         public static dynamic getstringsymboltable()
         {
             return stringsymboltable;
         }
+
         public static dynamic getfunctionsymboltable()
         {
             return functionsymboltable;

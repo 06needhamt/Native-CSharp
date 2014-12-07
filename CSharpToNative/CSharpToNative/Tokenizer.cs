@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace CSharpToNative
 {
-    static class Tokenizer
+    internal static class Tokenizer
     {
         //public static string[] pubtokens;
         public static List<string[]> pubtokenslist = new List<string[]>(0);
+
         private static readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private static readonly List<string> types = new List<string>(new string[] { /*"const", "void","static void","static",*/"int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
@@ -27,12 +25,12 @@ namespace CSharpToNative
         private static List<Tuple<string, string, string>> functionsymboltable = new List<Tuple<string, string, string>>(0);
         private static bool isbracket = false;
 
-        public static void Start (string[] linespar , StreamWriter writerpar)
+        public static void Start(string[] linespar, StreamWriter writerpar)
         {
             lines = linespar;
             writer = writerpar;
 
-            for (int i = 0; i < lines.Length; i++ )
+            for (int i = 0; i < lines.Length; i++)
             {
                 temptokens.Add(lines[i].ToCharArray());
             }

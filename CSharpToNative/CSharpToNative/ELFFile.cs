@@ -1,22 +1,19 @@
-﻿using System;
+﻿using ELFLib;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.InteropServices;
-using ELFLib;
+
 namespace CSharpToNative
 {
-    
     public class ELFFile
     {
-        byte[] fileheader = new byte[41];
-        string currentdir = System.Environment.CurrentDirectory + "/";
+        private byte[] fileheader = new byte[41];
+        private string currentdir = System.Environment.CurrentDirectory + "/";
         public static long origin;
         public string archetecture;
-        Dictionary<string, string> datasegment = new Dictionary<string, string>();
-        ShsrtabSegment s;
+        private Dictionary<string, string> datasegment = new Dictionary<string, string>();
+        private ShsrtabSegment s;
+
         public ELFFile()
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
@@ -26,6 +23,7 @@ namespace CSharpToNative
             Createdatasement(Lexer.getstringsymboltable());
             WriteFile("Default.o");
         }
+
         public ELFFile(string name)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
@@ -36,14 +34,14 @@ namespace CSharpToNative
             WriteFile(name);
         }
 
-        private DataSegment Createdatasement(LinkedList<Tuple<string,string,string>> symboltable)
+        private DataSegment Createdatasement(LinkedList<Tuple<string, string, string>> symboltable)
         {
             //foreach (var item in symboltable)
             //{
             //    datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
             //}
             ShsrtabSegment shr = CreateShsrtabSegment();
-            DataSegment data = new DataSegment(".data", shr.getBeginOffset(),shr.getEndOffset(), new LinkedList<byte>());
+            DataSegment data = new DataSegment(".data", shr.getBeginOffset(), shr.getEndOffset(), new LinkedList<byte>());
             return data;
         }
 
@@ -70,7 +68,6 @@ namespace CSharpToNative
             writer.Dispose();
             //Environment.Exit(0);
             return origin;
-            
         }
 
         private long writeheader(ref BinaryWriter writer, ref long origin)
@@ -82,31 +79,31 @@ namespace CSharpToNative
             origin = writer.Seek((int)origin, SeekOrigin.Current);
             //Environment.Exit(0);
             return origin;
-            
         }
 
         private long writedatasegment(Dictionary<string, string> datasegment, ref long origin, ref BinaryWriter writer)
         {
             LinkedList<byte> bytes = new LinkedList<byte>();
-            foreach(var item in datasegment)
+            foreach (var item in datasegment)
             {
                 char[] cbytes = item.Key.ToCharArray();
                 for (int i = 0; i < cbytes.Length; i++)
                 {
-                    bytes.AddLast((byte) cbytes[i]);
+                    bytes.AddLast((byte)cbytes[i]);
                 }
                 cbytes = item.Value.ToCharArray();
-                for(int i = 0; i < cbytes.Length; i++)
+                for (int i = 0; i < cbytes.Length; i++)
                 {
-                    bytes.AddLast((byte) cbytes[i]);
+                    bytes.AddLast((byte)cbytes[i]);
                 }
             }
-            DataSegment d = new DataSegment(".data",origin,origin,bytes);
+            DataSegment d = new DataSegment(".data", origin, origin, bytes);
             //writer.Write(".data");
 
             origin = writer.Seek((int)origin, SeekOrigin.Current);
             return origin;
         }
+
         private void CreateHeader()
         {
             // write elf header bytes
@@ -152,14 +149,17 @@ namespace CSharpToNative
             this.fileheader[39] = 0x00;
             this.fileheader[40] = 0x12;
         }
+
         public byte[] getheader()
         {
             return this.fileheader;
         }
+
         public static long getorigin()
         {
             return origin;
         }
+
         public Dictionary<string, string> getdatasegment()
         {
             return this.datasegment;
@@ -170,14 +170,12 @@ namespace CSharpToNative
             this.fileheader = header;
             return this.fileheader;
         }
-              
+
         public Dictionary<string, string> setdatasegment(Dictionary<string, string> seg)
         {
             this.datasegment = seg;
             return this.datasegment;
         }
-
-
     }
 }
 

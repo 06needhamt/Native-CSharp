@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-    class Symbol
+    internal class Symbol
     {
         public static void readintsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
         {
@@ -28,11 +25,12 @@ namespace CSharpToNative
                 node = node.Next;
             }
         }
+
         public static void readstringsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
         {
             if (symboltable.Count == 0)
             {
-                Console.WriteLine("No Strings"); 
+                Console.WriteLine("No Strings");
                 return;
             }
 
@@ -48,6 +46,7 @@ namespace CSharpToNative
                 node = node.Next;
             }
         }
+
         public static void readfunctionsymboltable(LinkedList<string[]> funcsymboltable)
         {
             if (funcsymboltable.Count == 0)
@@ -56,16 +55,16 @@ namespace CSharpToNative
                 return;
             }
             LinkedListNode<string[]> node = funcsymboltable.First;
-           while(node != null)
-           {
-               for (int i = 0; i < node.Value.Length; i++)
-               {
-                   Console.Write(node.Value[i]);
-               }
-               Console.WriteLine();
-               //Console.ReadKey();
-               node = node.Next;
-           }
+            while (node != null)
+            {
+                for (int i = 0; i < node.Value.Length; i++)
+                {
+                    Console.Write(node.Value[i]);
+                }
+                Console.WriteLine();
+                //Console.ReadKey();
+                node = node.Next;
+            }
         }
     }
 }

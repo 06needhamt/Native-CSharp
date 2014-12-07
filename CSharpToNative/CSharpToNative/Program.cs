@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Diagnostics;
+using System.Linq;
 
 namespace CSharpToNative
 {
-	class Program
-	{
-		//private static List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
-		//private static List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void" });
-		//private static List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
-		private static string[] lines; // array to hold the lines
-		private static StreamWriter writer; // writer for writing to the file
-        private static StreamWriter conwriter;
-		private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
+    internal class Program
+    {
+        //private static List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
+        //private static List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void" });
+        //private static List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
+        private static string[] lines; // array to hold the lines
 
-        static void Main(string[] args)
+        private static StreamWriter writer; // writer for writing to the file
+        private static StreamWriter conwriter;
+        private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
+
+        private static void Main(string[] args)
         {
             //Process.Start(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe",
             // @"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\Output.o");
@@ -103,6 +100,7 @@ namespace CSharpToNative
                 Console.ReadKey();
             }
         }
+
         private static bool checknull(bool[] nullornot)
         {
             for (int i = 0; i < nullornot.Length; i++)
@@ -118,9 +116,5 @@ namespace CSharpToNative
             }
             return false;
         }
-
-       
-
-
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
     public class ASTBranch<T1, T2, T3, T4> : Branch<T1, T2>
     {
-        bool isroot = false;
+        private bool isroot = false;
+
         //static Type T4;
         public ASTBranch()
         {
@@ -24,9 +23,10 @@ namespace CSharpToNative
             //    Console.ResetColor();
             //}
         }
+
         public ASTBranch(string[] tokens, AST<T1, T2, T3, T4> tree)
         {
-            List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," }); 
+            List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
             // list of allowed operators
             int times = 0;
             int index = 0;
@@ -41,22 +41,19 @@ namespace CSharpToNative
             {
                 return;
             }
-           
+
             for (int i = 0; i < tokens.Length; i++)
             {
-            
-                if (Enum.IsDefined(typeof(EnumAccessModifiers),tokens[i].ToUpper())) // if current token is a access modifier
+                if (Enum.IsDefined(typeof(EnumAccessModifiers), tokens[i].ToUpper())) // if current token is a access modifier
                 {
-                    eprotval = (EnumAccessModifiers) Enum.Parse(typeof(EnumAccessModifiers),tokens[i].ToUpper()); // assign it to access modifier variable
-                    
+                    eprotval = (EnumAccessModifiers)Enum.Parse(typeof(EnumAccessModifiers), tokens[i].ToUpper()); // assign it to access modifier variable
                 }
-                else if (Enum.IsDefined(typeof(EnumTypes), tokens[i].ToUpper())) // if current token is a type 
+                else if (Enum.IsDefined(typeof(EnumTypes), tokens[i].ToUpper())) // if current token is a type
                 {
                     etypeval = (EnumTypes)Enum.Parse(typeof(EnumTypes), tokens[i].ToUpper());  // assign it to type variable
                 }
                 else if (operators.Contains(tokens[i])) // id current token is a operator
                 {
-
                     for (int j = 0; j < operators.Count; j++)
                     {
                         if (operators[j].Equals(tokens[i])) // find which operator it is
@@ -101,7 +98,7 @@ namespace CSharpToNative
                         else if (times > 1 && this.Value != null) // check if this is a two operand expression
                         {
                             int index2 = 0;
-                            if(operators.Contains(tokens[i]))
+                            if (operators.Contains(tokens[i]))
                             {
                                 for (int j = 0; j < operators.Count; j++)
                                 {
@@ -120,14 +117,12 @@ namespace CSharpToNative
                             {
                                 this.value2 = tokens[i];
                             }
-                            
                         }
                         else // if we have been here more than twice it is a error
                         {
                             try
                             {
                                 throw new Exception();
-
                             }
                             catch (Exception ex)
                             {
@@ -152,7 +147,7 @@ namespace CSharpToNative
                 Console.WriteLine(this.value2);
                 //Console.ReadKey();
             }
-            
+
             if (tree.ASTbranches.Count == 0) // if this is the first branch in the tree
             {
                 this.isroot = true; // make it the root
@@ -182,8 +177,6 @@ namespace CSharpToNative
             }
             else if (tokens.Contains(Convert.ToString(EnumTypes.STATIC)))
             {
-
-
                 //int protval = Convert.ToInt32(tokens[0]);
                 eprotval = (EnumAccessModifiers)Enum.Parse(typeof(EnumAccessModifiers), tokens[0].ToUpper());
                 //int typeval = Convert.ToInt32(tokens[1]);
@@ -201,7 +194,7 @@ namespace CSharpToNative
                 }
             }
             else
-            { 
+            {
                 if ((int)eprotval > 2)
                 {
                     this.protectionlevel = EnumAccessModifiers.NO_MODIFIER;
@@ -219,7 +212,6 @@ namespace CSharpToNative
                 {
                     this.type = (EnumTypes)Enum.Parse(typeof(EnumTypes), tokens[1].ToUpper() + "_" + tokens[2].ToUpper());
                 }
-
                 else if(etypeval == EnumTypes.STATIC || tokens[1].ToUpper().Equals("STATIC"))
                 {
                     if (tokens[2].ToUpper().Equals("CONST"))
@@ -239,14 +231,11 @@ namespace CSharpToNative
                     //}
 
                     this.type = (EnumTypes)Enum.Parse(typeof(EnumTypes), tokens[2].ToUpper());
-                  
                 }
-
                 else
                 {
                     this.type = (EnumTypes)Enum.Parse(typeof(EnumTypes), tokens[1].ToUpper());
                 }
-
 
                 if ((int)eopval >= 36 || (int)eopval < 0)
                 {
@@ -256,9 +245,6 @@ namespace CSharpToNative
                 {
                     this.operation = (EnumOperator)Enum.Parse(typeof(EnumOperator), tokens[2].ToUpper());
                 }*/
-            
-           
         }
-
     }
 }

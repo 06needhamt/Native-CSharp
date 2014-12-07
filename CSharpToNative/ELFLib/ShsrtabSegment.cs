@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ELFLib
 {
@@ -11,6 +7,7 @@ namespace ELFLib
         private LinkedList<string> segmentnames;
         private LinkedListNode<string> node;
         private const byte sizeofHeader = 0x29;
+
         public ShsrtabSegment(LinkedList<string> names)
         {
             //char[] temp;
@@ -46,22 +43,20 @@ namespace ELFLib
 
         public void AddSegmentName(string name)
         {
-            this.segmentnames.AddLast(name);;
+            this.segmentnames.AddLast(name); ;
             this.sizeofsegment = this.CalculateBytesSize();
             this.endoffset += (beginoffset + this.sizeofsegment);
-
         }
 
         public LinkedListNode<string> FindName(string nametofind)
         {
             node = this.segmentnames.First;
-            while(node != null)
+            while (node != null)
             {
                 if (node.Value.Equals(nametofind))
                 {
                     return node;
                 }
-                 
             }
             return null;
         }
@@ -80,7 +75,5 @@ namespace ELFLib
             }
             return bytes.Count + 1;
         }
-
-
     }
 }

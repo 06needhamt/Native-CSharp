@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
@@ -14,7 +11,7 @@ namespace CSharpToNative
             StringBuilder word = new StringBuilder();
             foreach (char ch in input)
             {
-                if ( ch == '(' || ch == ')')
+                if (ch == '(' || ch == ')')
                 {
                     Result.AddLast(word.ToString());
                     word.Length = 0;
@@ -25,7 +22,7 @@ namespace CSharpToNative
                 else if (ch == ' ' || ch == ';')
                 {
                     Result.AddLast(word.ToString());
-                    word.Length = 0; 
+                    word.Length = 0;
                 }
                 else
                 {
@@ -36,6 +33,7 @@ namespace CSharpToNative
             Result.AddLast(word.ToString());
             return Result;
         }
+
         public static string getarray(string[] tokens)
         {
             int length = tokens.Length;

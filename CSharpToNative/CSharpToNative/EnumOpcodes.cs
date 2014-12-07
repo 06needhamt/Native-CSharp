@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpToNative
+﻿namespace CSharpToNative
 {
-    enum EnumOpcodes
+    internal enum EnumOpcodes
     {
         #region Arithmetic
+
         ADD = 1, //Integer add
         ADC = 2, //Add with carry
         SUB = 3, //Subtract
@@ -19,14 +14,18 @@ namespace CSharpToNative
         DIV = 8, //Unsigned divide
         INC = 9, //Increment
         DEC = 10, //Decrement
-        NEG  = 11, //Negate
-        #endregion
+        NEG = 11, //Negate
+
+        #endregion Arithmetic
+
         #region Logic
-        CMP  = 12, //Compare
+
+        CMP = 12, //Compare
         AND = 13, //And
         OR = 14, //Or
         XOR = 15, //Exclusive or
         NOT = 16,//Not
-        #endregion
+
+        #endregion Logic
     }
 }
