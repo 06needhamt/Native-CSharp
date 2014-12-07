@@ -65,7 +65,7 @@ namespace CSharpToNative
 
             switch (operation) // see what operation we are performing
             {
-                case EnumOperator.UNARY_PLUS: // adding
+                case EnumOperator.BINARY_PLUS: // adding
                     {
                         for (int i = 0; i < branches.Count; i++)
                         {
@@ -120,7 +120,7 @@ namespace CSharpToNative
                         break;
                     }
 
-                case EnumOperator.UNARY_MINUS:
+                case EnumOperator.BINARY_MINUS:
                     {
                         for (int i = 0; i < branches.Count; i++)
                         {
@@ -174,7 +174,7 @@ namespace CSharpToNative
                         Instruction ins = new Instruction((int)EnumOpcodes.SUB, ops.ToArray<string>()); // create an SUB instruction with the found operands
                         break;
                     }
-                case EnumOperator.UNARY_MULTIPLY:
+                case EnumOperator.BINARY_MULTIPLY:
                     {
                         bool issigned = false;
                         for (int i = 0; i < branches.Count; i++)
@@ -241,7 +241,7 @@ namespace CSharpToNative
 
                         break;
                     }
-                case EnumOperator.UNARY_DIVIDE:
+                case EnumOperator.BINARY_DIVIDE:
                     {
                         bool issigned = false;
                         for (int i = 0; i < branches.Count; i++)
