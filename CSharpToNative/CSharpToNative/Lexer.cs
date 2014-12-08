@@ -12,7 +12,7 @@ namespace CSharpToNative
 
         private static readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
-        private static readonly List<string> types = new List<string>(new string[] { /*"const", "void","static void","static",*/"int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
+        private static readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private static string[] lines;
         private static List<EnumOperator> ops = new List<EnumOperator>(0);
         private static List<EnumKeywords> kywrds = new List<EnumKeywords>(0);
@@ -41,11 +41,19 @@ namespace CSharpToNative
             }
             if (lines[i].Contains('\t'))
             {
-                while (lines[i].Contains('\t'))
+                while (lines[i].StartsWith("\t"))
                 {
                     lines[i] = lines[i].Remove(0, 1);
                     Console.WriteLine(lines[i]);
                 }
+            }
+            if (!linespar[i].EndsWith(";"))
+            {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Error.Write("Expected a ; ");
+                Console.Error.WriteLine(linespar[i]);
+                Console.ResetColor();
+                //Console.ReadKey();
             }
             if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
             {
@@ -438,6 +446,20 @@ namespace CSharpToNative
             }
             else if (tokens[i - 1].Equals(EnumTypes.STRING.ToString().ToLower())) // if it is of type string
             {
+                //string fullvalue = string.Empty;
+                //if (tokens[i + 2].StartsWith("\"") && !tokens[i + 2].EndsWith("\"")) // if the current token + 2 does not end with a double quote
+                //{
+                //    fullvalue = tokens[i + 2]; // add it to the final value of the string
+                //    i += 2; // add 2 to the token counter
+                //    while (!tokens[i].EndsWith("\"")) // if the current token does not end with a double quote
+                //    {
+                //        i++; // increment the counter
+                //        fullvalue += " "; // append a space to the end of the string
+                //        fullvalue += tokens[i]; // append the current token to the end of the string
+                //        Console.Error.WriteLine(fullvalue); // print it to the console
+                //        //Console.ReadKey();
+                //    }
+                //}
                 stringsymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the string symbol table
                 //writer.Write(name); // write the name to the file
                 //writer.Write(','); // and a seperating comma

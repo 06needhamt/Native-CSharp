@@ -7,5 +7,7 @@ public static string m = "Hello World";
 public int n = -1;
 private static void main (int i)
 {
-		i = 1
+	int j = 0;
+	i = 1 + 1;
+	j += i;
 }
