@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpToNative\CSharpToNative.csproj">
-      <Project>{3d28d321-e3bc-4673-86e1-15ade77d027b}</Project>
-      <Name>CSharpToNative</Name>
+    <ProjectReference Include="..\ELFLib\ELFLib.csproj">
+      <Project>{afda37b8-7187-42f1-aec1-ebb60946a7b0}</Project>
+      <Name>ELFLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

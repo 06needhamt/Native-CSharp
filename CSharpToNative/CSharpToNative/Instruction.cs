@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace CSharpToNative
 {
     internal class Instruction
     {
+        private static Assembly ELFLib;
+        private static Type ELFFile;
         private uint Opcode;
         private string[] Operands;
 
         public Instruction(uint opcode, string[] operands)
         {
+            ELFLib = Assembly.LoadFile(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll");
+            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++ )
+            {
+                Console.Error.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
+            }
+                ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
             //this.Opcode = int.Parse(hexop, System.Globalization.NumberStyles.HexNumber);
@@ -115,7 +124,7 @@ namespace CSharpToNative
             List<byte[]> operandbyes = new List<byte[]>(0);     // Array to hold the byte value of the operands
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
-            ELFFile elf;
+            object elf = Activator.CreateInstance(ELFFile, new object[] { "output.o" });
             BinaryWriter writer;
             if (File.Exists(outfile))
             {
@@ -125,7 +134,7 @@ namespace CSharpToNative
             {
                 File.Create(outfile);
             }
-            elf = new ELFFile(outfile);
+            //elf = new ELFFile(outfile);
             writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             //writer.Write(" ");
             if (this.Operands != null)

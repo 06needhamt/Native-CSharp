@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpToNative
 {
-    internal class CPUInfo
+    public class CPUInfo
     {
         [DllImport("kernel32.dll")]
         private static extern void GetNativeSystemInfo(ref SYSTEM_INFO lpSystemInfo);

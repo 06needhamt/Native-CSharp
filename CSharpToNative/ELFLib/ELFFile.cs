@@ -1,9 +1,9 @@
-﻿using ELFLib;
+﻿using CSharpToNative;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CSharpToNative
+namespace ELFLib
 {
     public class ELFFile
     {

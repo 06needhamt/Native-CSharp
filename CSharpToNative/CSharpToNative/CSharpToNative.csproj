@@ -24,6 +24,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,7 +50,6 @@
     <Compile Include="Branch.cs" />
     <Compile Include="CPUInfo.cs" />
     <Compile Include="DefineTest.cs" />
-    <Compile Include="ELFFile.cs" />
     <Compile Include="EnumAccessModifiers.cs" />
     <Compile Include="EnumKeywords.cs" />
     <Compile Include="EnumOpcodes.cs" />
@@ -74,12 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="test.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ELFLib\ELFLib.csproj">
-      <Project>{afda37b8-7187-42f1-aec1-ebb60946a7b0}</Project>
-      <Name>ELFLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

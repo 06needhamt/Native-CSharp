@@ -64,8 +64,5 @@ C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNativ
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb
-C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb

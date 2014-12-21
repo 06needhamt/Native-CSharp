@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CSharpToNative
 {
-    internal class Lexer
+    public class Lexer
     {
         //public static string[] pubtokens;
         public static List<string[]> pubtokenslist = new List<string[]>(0);
