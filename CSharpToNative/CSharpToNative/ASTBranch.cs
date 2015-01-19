@@ -30,7 +30,10 @@ namespace CSharpToNative
             // list of allowed operators
             int times = 0;
             int index = 0;
-            tree = new AST<T1, T2, T3, T4>(); // initialise the tree
+            if (tree == null)
+            {
+                tree = new AST<T1, T2, T3, T4>(); // initialise the tree
+            }
             // set default values
             EnumAccessModifiers eprotval = EnumAccessModifiers.NO_MODIFIER;
             EnumTypes etypeval = EnumTypes.NO_TYPE;
@@ -146,19 +149,20 @@ namespace CSharpToNative
                 Console.WriteLine(this.Value);
                 Console.WriteLine(this.value2);
                 //Console.ReadKey();
+                if (tree.ASTbranches.Count == 0) // if this is the first branch in the tree
+                {
+                    this.isroot = true; // make it the root
+                    this.parent = null;
+                }
+                else
+                {
+                    this.isroot = false; // otherwise dont
+                    this.parent = parent;
+                }
+                tree.ASTbranches.Add(this); // add the branch to the tree
             }
 
-            if (tree.ASTbranches.Count == 0) // if this is the first branch in the tree
-            {
-                this.isroot = true; // make it the root
-                this.parent = null;
-            }
-            else
-            {
-                this.isroot = false; // otherwise dont
-                this.parent = parent;
-            }
-            tree.ASTbranches.Add(this); // add the branch to the tree
+            
 
             /* EnumAccessModifiers eprotval = EnumAccessModifiers.NO_MODIFIER;
             EnumTypes etypeval = EnumTypes.NO_TYPE;

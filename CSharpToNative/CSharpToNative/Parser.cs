@@ -10,6 +10,7 @@ namespace CSharpToNative
         private int[] numericaltypes = { 0, 3, 4, 5, 6, 9, 11 }; // array to hold the enum values of numerical types
         private int[] alphanumericaltypes = { 1, 8 }; // array to hold the enum values of alphanumerical types
         private List<ASTBranch<dynamic, dynamic, dynamic, dynamic>> branches; // list to hold the branches we are working with
+        private List<Branch<dynamic, dynamic>> treebranches;
         private AST<dynamic, dynamic, dynamic, dynamic> thetree; /* new AST<dynamic,dynamic,dynamic,dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(0)); */
 
         // the tree we are working with
@@ -19,7 +20,7 @@ namespace CSharpToNative
 
         public Parser(AST<dynamic, dynamic, dynamic, dynamic> tree, ref int i)
         {
-            this.thetree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
+            this.thetree = tree;
             //create a tree with the current tokens
             this.branches = thetree.ASTbranches; // get the trees branches
 

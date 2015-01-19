@@ -19,6 +19,7 @@ namespace ELFLib
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
             CreateHeader();
+            CreateShsrtabSegment();
             Createdatasement(Lexer.getintsymboltable());
             Createdatasement(Lexer.getstringsymboltable());
             WriteFile("Default.o");
@@ -29,6 +30,7 @@ namespace ELFLib
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
             CreateHeader();
+            CreateShsrtabSegment();
             Createdatasement(Lexer.getintsymboltable());
             Createdatasement(Lexer.getstringsymboltable());
             WriteFile(name);
