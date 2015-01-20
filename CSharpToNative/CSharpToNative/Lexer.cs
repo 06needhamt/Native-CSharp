@@ -446,89 +446,75 @@ namespace CSharpToNative
             }
             else if (tokens[i - 1].Equals(EnumTypes.STRING.ToString().ToLower())) // if it is of type string
             {
-                //string fullvalue = string.Empty;
-                //if (tokens[i + 2].StartsWith("\"") && !tokens[i + 2].EndsWith("\"")) // if the current token + 2 does not end with a double quote
-                //{
-                //    fullvalue = tokens[i + 2]; // add it to the final value of the string
-                //    i += 2; // add 2 to the token counter
-                //    while (!tokens[i].EndsWith("\"")) // if the current token does not end with a double quote
-                //    {
-                //        i++; // increment the counter
-                //        fullvalue += " "; // append a space to the end of the string
-                //        fullvalue += tokens[i]; // append the current token to the end of the string
-                //        Console.Error.WriteLine(fullvalue); // print it to the console
-                //        //Console.ReadKey();
-                //    }
-                //}
                 stringsymboltable.AddLast(new Tuple<string, string, string>(prot, name, value)); // add it to the string symbol table
                 //writer.Write(name); // write the name to the file
                 //writer.Write(','); // and a seperating comma
                 return;
             }
-            //else // if we are here it must be a function or a non implemented type
-            //{
-            //    isafunction = checkisafunction(ref tokens, ref i); // check if it is a function
+            else // if we are here it must be a function or a non implemented type
+            {
+                isafunction = checkisafunction(ref tokens, ref i); // check if it is a function
 
-            //    if (isafunction) // if it is a function
-            //    {
-            //         parse parameters not working yet
-            //        List<char[]> partype = new List<char[]>(0);
-            //        char[] partypechararr;
-            //        string[] partypearr;
-            //        if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower()))
-            //        {
-            //            for (int j = 0; j < tokens.Length; j++)
-            //            {
-            //                if (tokens[j] == EnumTypes.INT.ToString().ToLower())
-            //                {
-            //                    partypearr = tokens[i].Split(tokens, 1, StringSplitOptions.RemoveEmptyEntries);
-            //                    foreach (string str in partypearr)
-            //                    {
-            //                        partype.Add(str.ToCharArray());
-            //                    }
-            //                }
-            //            }
-            //        }
-            //         return;
-            //        char[] partype;
+                if (isafunction) // if it is a function
+                {
+                     //parse parameters not working yet
+                    List<char[]> partype = new List<char[]>(0);
+                    char[] partypechararr;
+                    string[] partypearr;
+                    if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower()))
+                    {
+                        for (int j = 0; j < tokens.Length; j++)
+                        {
+                            if (tokens[j] == EnumTypes.INT.ToString().ToLower())
+                            {
+                                partypearr = tokens[i].Split(tokens, 1, StringSplitOptions.RemoveEmptyEntries);
+                                foreach (string str in partypearr)
+                                {
+                                    partype.Add(str.ToCharArray());
+                                }
+                            }
+                        }
+                    }
+                     return;
+                    //char[] partype;
 
-            //        string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
+                    string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
 
-            //        for (int m = 0; m < funcsplit.Length; m++)
-            //        {
-            //            Console.WriteLine(funcsplit[m]);
-            //            Console.ReadKey();
-            //        }
+                    for (int m = 0; m < funcsplit.Length; m++)
+                    {
+                        Console.WriteLine(funcsplit[m]);
+                        Console.ReadKey();
+                    }
 
-            //        if (!functionsymboltable.Contains(funcsplit)) // if it is not in the symbol table
-            //        {
-            //            functionsymboltable.AddLast(funcsplit); // add it
-            //            for (int m = 0; m < funcsplit.Length; m++)
-            //            {
-            //                Console.WriteLine(funcsplit[m]);
-            //                Console.ReadKey();
-            //            }
-            //            if (string.IsNullOrWhiteSpace(functionsymboltable.ElementAt(i)[1])) // if it has no parameters
-            //            {
-            //                funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis
-            //            }
-            //            writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file
-            //            writer.Write(','); // and a seperating comma
-            //        }
-            //        else // just write it to the file
-            //        {
-            //            //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
-            //            //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
-            //            for (int j = 0; i < funcsplit.Length; j++)
-            //            {
-            //                writer.Write(funcsplit[j]);
-            //                writer.Write(',');
-            //            }
+                    if (!functionsymboltable.Contains(funcsplit)) // if it is not in the symbol table
+                    {
+                        functionsymboltable.AddLast(funcsplit); // add it
+                        for (int m = 0; m < funcsplit.Length; m++)
+                        {
+                            Console.WriteLine(funcsplit[m]);
+                            Console.ReadKey();
+                        }
+                        if (string.IsNullOrWhiteSpace(functionsymboltable.ElementAt(i)[1])) // if it has no parameters
+                        {
+                            funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis
+                        }
+                        writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file
+                        writer.Write(','); // and a seperating comma
+                    }
+                    else // just write it to the file
+                    {
+                        //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
+                        //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
+                        for (int j = 0; i < funcsplit.Length; j++)
+                        {
+                            writer.Write(funcsplit[j]);
+                            writer.Write(',');
+                        }
 
-            //            return;
-            //        }
-            //    }
-            //}
+                        return;
+                    }
+                }
+            }
         }
 
         public static dynamic getintsymboltable()

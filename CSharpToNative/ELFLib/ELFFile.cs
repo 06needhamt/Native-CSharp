@@ -7,10 +7,10 @@ namespace ELFLib
 {
     public class ELFFile
     {
-        private byte[] fileheader = new byte[41];
+        private byte[] fileheader = new byte[40];
         private string currentdir = System.Environment.CurrentDirectory + "/";
         public static long origin;
-        public string archetecture;
+        private readonly string archetecture;
         private Dictionary<string, string> datasegment = new Dictionary<string, string>();
         private ShsrtabSegment s;
 
@@ -177,6 +177,11 @@ namespace ELFLib
         {
             this.datasegment = seg;
             return this.datasegment;
+        }
+
+        public string getArchitecture()
+        {
+            return this.archetecture;
         }
     }
 }
