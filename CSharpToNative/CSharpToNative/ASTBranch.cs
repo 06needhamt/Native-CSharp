@@ -140,7 +140,7 @@ namespace CSharpToNative
                 }
                 // assign the tempory values to the actual tree
                 this.type = etypeval;
-                this.set = eopval;
+                this.operation = eopval;
                 this.protectionlevel = eprotval;
                 Console.WriteLine(Convert.ToString(this.type));
                 Console.WriteLine(Convert.ToString(this.operation));
