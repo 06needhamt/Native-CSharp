@@ -36,18 +36,18 @@ namespace CSharpToNative
 
         public static string getarray(string[] tokens)
         {
+            int length = tokens.Length;
             string array = string.Empty;
-            for (int i = 0; i < tokens.Length; i++)
+            for (int i = 0; i < length; i++)
             {
-                int length = tokens.Length;
                 if (i < length - 2)
                 {
-                    array += tokens[i];
-                    array += ",";
+                    array = array + tokens[i];
+                    array = array + ",";
                 }
                 else
                 {
-                    array += tokens[i];
+                    array = array + tokens[i];
                 }
             }
             return array;

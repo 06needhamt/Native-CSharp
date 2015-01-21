@@ -23,7 +23,12 @@ namespace CSharpToNative
             this.thetree = tree;
             //create a tree with the current tokens
             this.branches = thetree.ASTbranches; // get the trees branches
-            Console.WriteLine();
+
+            //foreach (ASTBranch<dynamic,dynamic,dynamic,dynamic> b in tree.ASTbranches)
+            //{
+            //    tree.treebranches.Add(new Branch<dynamic, dynamic>(Lexer.pubtokens));
+            //}
+
             foreach (ASTBranch<dynamic, dynamic, dynamic, dynamic> branch in this.branches)
             {
                 if (IsNumerical(branch.type)) // check if the branch is numerical
@@ -74,9 +79,9 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(j).Value, "([0-9])")) // find it on the tree too
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
                                     {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt(j).Value); // and then add it to the list
+                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
                                     }
                                     else
                                     {
@@ -129,9 +134,9 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(j).Value, "([0-9])")) // find it on the tree too
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
                                     {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt(j).Value); // and then add it to the list
+                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
                                     }
                                     else
                                     {
@@ -188,9 +193,9 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(j).Value, "([0-9])")) // find it in the tree
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
                                     {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt(j).Value); // and add it in the list
+                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
                                     }
                                     else
                                     {
@@ -255,9 +260,9 @@ namespace CSharpToNative
                                 //}
                                 for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                                 {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(j).Value, "([0-9])")) // find it in the tree
+                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
                                     {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt(j).Value); // and add it in the list
+                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
                                     }
                                     else
                                     {
@@ -309,18 +314,7 @@ namespace CSharpToNative
 
         private void CreateAlphaNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
-            List<string> ops = new List<string>(0); // list to hold the operands
-            DefineVariable(Type, name, val);
-            for(int i = 0; i < this.thetree.ASTbranches.Count; i++)
-            {
-                if(operation.Equals(EnumOperator.ASSIGNMEMT))
-                {
-                    if(Regex.IsMatch((string) this.thetree.ASTbranches.ElementAt(i).Value, "^[a-zA-Z0-9_]+$"))
-                    {
-                        // TODO Finish implemening move Functions
-                    }
-                }
-            }
+            DefineVariable(Type, name, null);
         }
 
         private void CreateBinaryInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
