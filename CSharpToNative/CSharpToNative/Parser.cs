@@ -315,6 +315,17 @@ namespace CSharpToNative
         private void CreateAlphaNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
             DefineVariable(Type, name, null);
+            DefineVariable(Type, name, val);
+            for (int i = 0; i < this.thetree.ASTbranches.Count; i++)
+            {
+                if (operation.Equals(EnumOperator.ASSIGNMEMT))
+                {
+                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(i).Value, "^[a-zA-Z0-9_]+$"))
+                    {
+                        // TODO Finish implemening move Functions
+                    }
+                }
+            }
         }
 
         private void CreateBinaryInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
