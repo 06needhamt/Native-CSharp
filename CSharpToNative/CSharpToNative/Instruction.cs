@@ -19,9 +19,9 @@ namespace CSharpToNative
             ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
             for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++ )
             {
-                Console.Error.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
+                Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
             }
-                ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
+            ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
             //this.Opcode = int.Parse(hexop, System.Globalization.NumberStyles.HexNumber);

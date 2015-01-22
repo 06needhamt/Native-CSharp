@@ -50,7 +50,7 @@ namespace CSharpToNative
             if (!linespar[i].EndsWith(";"))
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Error.Write("Expected a ; ");
+                Console.Error.Write("ERROR : Expected a ; ");
                 Console.Error.WriteLine(linespar[i]);
                 Console.ResetColor();
                 //Console.ReadKey();

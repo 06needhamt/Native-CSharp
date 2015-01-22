@@ -45,6 +45,7 @@ namespace CSharpToNative
             //writer = new StreamWriter(currentdir + args[0] + ".lex");
             writer = new StreamWriter(currentdir + args[0] + ".tokens");
             lines = File.ReadAllLines(currentdir + args[0]);
+            Console.Error.WriteLine("Compiling File: " + args[0]);
             //Console.WriteLine(operators.Count);
             //Console.WriteLine(keywords.Count);
             //Console.WriteLine(Convert.ToString((EnumOperator)1));
@@ -66,14 +67,14 @@ namespace CSharpToNative
             writer.Flush();
             writer.Close();
             writer.Dispose();
-            Console.WriteLine("Lexical Analasis Complete");
-            Console.WriteLine("Reading int symbol table");
+            Console.Error.WriteLine("Lexical Analasis Complete");
+            Console.Error.WriteLine("Reading int symbol table");
             Symbol.readintsymboltable(Lexer.getintsymboltable());
-            Console.WriteLine("Reading string symbol table");
+            Console.Error.WriteLine("Reading string symbol table");
             Symbol.readstringsymboltable(Lexer.getstringsymboltable());
-            Console.WriteLine("Reading Function Symbol table");
+            Console.Error.WriteLine("Reading Function Symbol table");
             Symbol.readfunctionsymboltable(Lexer.getfunctionsymboltable());
-            Console.WriteLine("Compilation Commencing");
+            Console.Error.WriteLine("Compilation Commencing");
             Console.WriteLine(Lexer.pubtokenslist.Count);
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {
@@ -95,11 +96,13 @@ namespace CSharpToNative
                 {
                     continue;
                 }
-
-                Console.WriteLine("Compilation Complete");
-                Console.WriteLine("Press Any Key To Exit");
-                Console.ReadKey();
+                GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
+                GC.WaitForFullGCComplete(5000);
             }
+
+            Console.Error.WriteLine("Compilation Complete");
+            Console.Error.WriteLine("Press Any Key To Exit");
+            Console.ReadKey();
         }
 
         private static bool checknull(bool[] nullornot)
