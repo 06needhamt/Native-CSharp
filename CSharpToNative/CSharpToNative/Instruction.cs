@@ -12,10 +12,11 @@ namespace CSharpToNative
         private static Type ELFFile;
         private uint Opcode;
         private string[] Operands;
+        private string currentdir = Environment.CurrentDirectory + "/";
 
         public Instruction(uint opcode, string[] operands)
         {
-            ELFLib = Assembly.LoadFile(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll");
+            ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
             for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++ )
             {
                 Console.Error.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
@@ -124,7 +125,19 @@ namespace CSharpToNative
             List<byte[]> operandbyes = new List<byte[]>(0);     // Array to hold the byte value of the operands
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
-            object elf = Activator.CreateInstance(ELFFile, new object[] { "output.o" });
+            try
+            {
+                object elf = Activator.CreateInstance(ELFFile, "output.o");
+            }
+            catch (TargetInvocationException ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                Console.Error.WriteLine(ex.StackTrace);
+                Console.Error.WriteLine();
+                Console.Error.WriteLine(ex.InnerException.Message);
+                Console.Error.WriteLine(ex.InnerException.StackTrace);
+                Console.ReadKey();
+            }
             BinaryWriter writer;
             if (File.Exists(outfile))
             {

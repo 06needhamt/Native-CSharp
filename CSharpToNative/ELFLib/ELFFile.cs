@@ -7,7 +7,7 @@ namespace ELFLib
 {
     public class ELFFile
     {
-        private byte[] fileheader = new byte[40];
+        private byte[] fileheader = new byte[41];
         private string currentdir = System.Environment.CurrentDirectory + "/";
         public static long origin;
         private readonly string archetecture;
@@ -29,7 +29,7 @@ namespace ELFLib
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
-            CreateHeader();
+            //CreateHeader();
             CreateShsrtabSegment();
             Createdatasement(Lexer.getintsymboltable());
             Createdatasement(Lexer.getstringsymboltable());
