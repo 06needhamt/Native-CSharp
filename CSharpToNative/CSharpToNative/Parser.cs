@@ -16,6 +16,9 @@ namespace CSharpToNative
         // the tree we are working with
         public Parser()
         {
+            Console.Error.WriteLine("Creating empty parser");
+            this.thetree = new AST<dynamic, dynamic, dynamic, dynamic>();
+            this.SetBranches(null);
         }
 
         public Parser(AST<dynamic, dynamic, dynamic, dynamic> tree, ref int i)
@@ -49,9 +52,13 @@ namespace CSharpToNative
             }
         }
 
-        private void SetBranches()
+        private void UpdateBranches()
         {
             this.branches = this.thetree.ASTbranches;
+        }
+        private void SetBranches(List<ASTBranch<dynamic,dynamic,dynamic,dynamic>> branches )
+        {
+            this.branches = branches;
         }
 
         private List<ASTBranch<dynamic, dynamic, dynamic, dynamic>> GetBranches()
@@ -61,255 +68,288 @@ namespace CSharpToNative
 
         private void CreateNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
-            List<string> ops = new List<string>(0); // list to hold the operands
-            DefineVariable(Type, name, null); // try and define a variable
-
             switch (operation) // see what operation we are performing
             {
                 case EnumOperator.BINARY_PLUS: // adding
                     {
-                        for (int i = 0; i < branches.Count; i++)
-                        {
-                            if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
-                            {
-                                ops.Add((string)branches.ElementAt(i).Value); // add it to the list
-                                //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
-                                //{
-                                //    ops.Add((string)this.tree.getroot(tree).Value);
-                                //}
-                                for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
-                                {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
-                                    {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            if (ops.Count < 1) // if there were no operands found
-                            {
-                                try // throw an exception
-                                {
-                                    throw new InvalidOperationException("Cannot Create Specified instruction type with no operands");
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                                    Console.WriteLine(ex.GetType());
-                                    Console.WriteLine(ex.Message);
-                                    Console.WriteLine(ex.StackTrace);
-                                    Console.ResetColor();
-                                }
-                                finally
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Magenta;
-                                    Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
-                                    Console.ResetColor();
-                                    // System.Threading.Thread.Sleep(2500);
-                                    Environment.Exit(-1);
-                                }
-                            }
-                        }
-                        Instruction ins = new Instruction((int)EnumOpcodes.ADD, ops.ToArray<string>()); // create an add instruction with the found operands
+                        CreateADDInstruction(Type, operation, name, val);
                         break;
                     }
 
                 case EnumOperator.BINARY_MINUS:
                     {
-                        for (int i = 0; i < branches.Count; i++)
-                        {
-                            if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
-                            {
-                                ops.Add((string)branches.ElementAt(i).Value); // add it to the list
-                                //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
-                                //{
-                                //    ops.Add((string)this.tree.getroot(tree).Value);
-                                //}
-                                for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
-                                {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
-                                    {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            if (ops.Count < 1) // if there were no operands found
-                            {
-                                try // throw an exception
-                                {
-                                    throw new InvalidOperationException("Cannot Create Specified instruction type with no operands");
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                                    Console.WriteLine(ex.GetType());
-                                    Console.WriteLine(ex.Message);
-                                    Console.WriteLine(ex.StackTrace);
-                                    Console.ResetColor();
-                                }
-                                finally
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Magenta;
-                                    Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
-                                    Console.ResetColor();
-                                    // System.Threading.Thread.Sleep(2500);
-                                    Environment.Exit(-1);
-                                }
-                            }
-                        }
-                        Instruction ins = new Instruction((int)EnumOpcodes.SUB, ops.ToArray<string>()); // create an SUB instruction with the found operands
+                        CreateSubInstruction(Type, operation, name, val);
                         break;
                     }
                 case EnumOperator.BINARY_MULTIPLY:
                     {
-                        bool issigned = false;
-                        for (int i = 0; i < branches.Count; i++)
-                        {
-                            if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
-                            {
-                                if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
-                                {
-                                    issigned = true;
-                                }
-                                ops.Add((string)branches.ElementAt(i).Value); // add it to the list
-                                //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
-                                //{
-                                //    ops.Add((string)this.tree.getroot(tree).Value);
-                                //}
-                                for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
-                                {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
-                                    {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            if (ops.Count < 1) // if there were no operands
-                            {
-                                try
-                                {
-                                    throw new InvalidOperationException("Cannot Create Specified instruction type with no operands"); // throw an error
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                                    Console.WriteLine(ex.GetType());
-                                    Console.WriteLine(ex.Message);
-                                    Console.WriteLine(ex.StackTrace);
-                                    Console.ResetColor();
-                                }
-                                finally
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Magenta;
-                                    Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
-                                    Console.ResetColor();
-                                    // System.Threading.Thread.Sleep(2500);
-                                    Environment.Exit(-1);
-                                }
-                            }
-                        }
-                        if (issigned)
-                        {
-                            Instruction ins = new Instruction((int)EnumOpcodes.IMUL, ops.ToArray<string>()); // if it is signed create an IMUL instruction with the found operands
-                        }
-                        else
-                        {
-                            Instruction ins = new Instruction((int)EnumOpcodes.MUL, ops.ToArray<string>()); // if it is unsigned create an MUL instruction with the found operands
-                        }
-
+                        CreateMulInstruction(Type, operation, name, val);
                         break;
                     }
                 case EnumOperator.BINARY_DIVIDE:
                     {
-                        bool issigned = false;
-                        for (int i = 0; i < branches.Count; i++)
-                        {
-                            if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
-                            {
-                                if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
-                                {
-                                    issigned = true;
-                                }
-                                ops.Add((string)branches.ElementAt(i).Value); // add it to the list
-                                //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
-                                //{
-                                //    ops.Add((string)this.tree.getroot(tree).Value);
-                                //}
-                                for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
-                                {
-                                    if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
-                                    {
-                                        ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                            if (ops.Count < 1) // if there were no operands
-                            {
-                                try
-                                {
-                                    throw new InvalidOperationException("Cannot Create Specified instruction type with no operands"); // throw an error
-                                }
-                                catch (InvalidOperationException ex)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                                    Console.WriteLine(ex.GetType());
-                                    Console.WriteLine(ex.Message);
-                                    Console.WriteLine(ex.StackTrace);
-                                    Console.ResetColor();
-                                }
-                                finally
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Magenta;
-                                    Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
-                                    Console.ResetColor();
-                                    // System.Threading.Thread.Sleep(2500);
-                                    Environment.Exit(-1);
-                                }
-                            }
-                        }
-                        if (issigned)
-                        {
-                            Instruction ins = new Instruction((int)EnumOpcodes.IDIV, ops.ToArray<string>()); // if it is signed create an IDIV instruction with the found operands
-                        }
-                        else
-                        {
-                            Instruction ins = new Instruction((int)EnumOpcodes.DIV, ops.ToArray<string>()); // if it is unsigned create an DIV instruction with the found operands
-                        }
+                        CreateDivInstruction(Type, operation, name, val);
                         break;
                     }
             }
             return;
+        }
+
+        private Instruction CreateDivInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        {
+            List<string> ops = new List<string>(0); // list to hold the operands
+            DefineVariable(Type, name, null); // try and define a variable
+            bool issigned = false;
+
+            for (int i = 0; i < branches.Count; i++)
+            {
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                {
+                    if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
+                    {
+                        issigned = true;
+                    }
+                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
+                    //{
+                    //    ops.Add((string)this.tree.getroot(tree).Value);
+                    //}
+                    for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
+                    {
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
+                        {
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+                if (ops.Count < 1) // if there were no operands
+                {
+                    try
+                    {
+                        throw new InvalidOperationException("Cannot Create Specified instruction type with no operands"); // throw an error
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.GetType());
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                    }
+                    finally
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
+                        Console.ResetColor();
+                        // System.Threading.Thread.Sleep(2500);
+                        Environment.Exit(-1);
+                    }
+                }
+            }
+            if (issigned)
+            {
+                Instruction ins = new Instruction((int)EnumOpcodes.IDIV, ops.ToArray<string>()); // if it is signed create an IDIV instruction with the found operands
+                return ins; 
+            }
+            else
+            {
+                Instruction ins = new Instruction((int)EnumOpcodes.DIV, ops.ToArray<string>()); // if it is unsigned create an DIV instruction with the found operands
+                return ins;
+            }
+        }
+
+        private Instruction CreateMulInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        {
+            List<string> ops = new List<string>(0); // list to hold the operands
+            DefineVariable(Type, name, null); // try and define a variable
+
+            bool issigned = false;
+            for (int i = 0; i < branches.Count; i++)
+            {
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                {
+                    if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
+                    {
+                        issigned = true;
+                    }
+                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
+                    //{
+                    //    ops.Add((string)this.tree.getroot(tree).Value);
+                    //}
+                    for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
+                    {
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it in the tree
+                        {
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and add it in the list
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+                if (ops.Count < 1) // if there were no operands
+                {
+                    try
+                    {
+                        throw new InvalidOperationException("Cannot Create Specified instruction type with no operands"); // throw an error
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.GetType());
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                    }
+                    finally
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
+                        Console.ResetColor();
+                        // System.Threading.Thread.Sleep(2500);
+                        Environment.Exit(-1);
+                    }
+                }
+            }
+            if (issigned)
+            {
+                Instruction ins = new Instruction((int)EnumOpcodes.IMUL, ops.ToArray<string>()); // if it is signed create an IMUL instruction with the found operands
+                return ins;
+            }
+            else
+            {
+                Instruction ins = new Instruction((int)EnumOpcodes.MUL, ops.ToArray<string>()); // if it is unsigned create an MUL instruction with the found operands
+                return ins;
+            }
+
+        }
+
+        private Instruction CreateSubInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        {
+            List<string> ops = new List<string>(0); // list to hold the operands
+            DefineVariable(Type, name, null); // try and define a variable
+            for (int i = 0; i < branches.Count; i++)
+            {
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                {
+                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
+                    //{
+                    //    ops.Add((string)this.tree.getroot(tree).Value);
+                    //}
+                    for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
+                    {
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
+                        {
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+                if (ops.Count < 1) // if there were no operands found
+                {
+                    try // throw an exception
+                    {
+                        throw new InvalidOperationException("Cannot Create Specified instruction type with no operands");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.GetType());
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                    }
+                    finally
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
+                        Console.ResetColor();
+                        // System.Threading.Thread.Sleep(2500);
+                        Environment.Exit(-1);
+                    }
+                }
+            }
+            Instruction ins = new Instruction((int)EnumOpcodes.SUB, ops.ToArray<string>()); // create an SUB instruction with the found operands
+            return ins;
+        }
+
+        private Instruction CreateADDInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        {
+            List<string> ops = new List<string>(0); // list to hold the operands
+            DefineVariable(Type, name, null); // try and define a variable
+            for (int i = 0; i < branches.Count; i++)
+            {
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                {
+                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
+                    //{
+                    //    ops.Add((string)this.tree.getroot(tree).Value);
+                    //}
+                    for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
+                    {
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value, "([0-9])")) // find it on the tree too
+                        {
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch<dynamic, dynamic, dynamic, dynamic>>(j).Value); // and then add it to the list
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+                if (ops.Count < 1) // if there were no operands found
+                {
+                    try // throw an exception
+                    {
+                        throw new InvalidOperationException("Cannot Create Specified instruction type with no operands");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.GetType());
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                    }
+                    finally
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A FATAL ERROR HAS OCCURED DURING CODE GENERATION : CANNOT CREATE INSTRUCTION WITHOUT AN OPCODE OR OPERANDS ");
+                        Console.ResetColor();
+                        // System.Threading.Thread.Sleep(2500);
+                        Environment.Exit(-1);
+                    }
+                }
+            }
+            Instruction ins = new Instruction((int)EnumOpcodes.ADD, ops.ToArray<string>()); // create an add instruction with the found operands
+            return ins;
         }
 
         private void CreateAlphaNumericalInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)

@@ -4,30 +4,24 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D28D321-E3BC-4673-86E1-15ADE77D027B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{2EE1A4DC-B6A0-438A-AF97-233906566F4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpToNative</RootNamespace>
-    <AssemblyName>CSharpToNative</AssemblyName>
+    <RootNamespace>MySTL</RootNamespace>
+    <AssemblyName>MySTL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <DocumentationFile>
-    </DocumentationFile>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -45,34 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AST.cs" />
-    <Compile Include="ASTBranch.cs" />
-    <Compile Include="Branch.cs" />
-    <Compile Include="CPUInfo.cs" />
-    <Compile Include="DefineTest.cs" />
-    <Compile Include="EnumAccessModifiers.cs" />
-    <Compile Include="EnumKeywords.cs" />
-    <Compile Include="EnumOpcodes.cs" />
-    <Compile Include="EnumOperator.cs" />
-    <Compile Include="EnumTypes.cs" />
-    <Compile Include="Instruction.cs" />
-    <Compile Include="Lexer.cs" />
-    <Compile Include="Parser.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="NativeList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringManipulation.cs" />
-    <Compile Include="Tree.cs" />
-    <Compile Include="TypeMismatchException.cs" />
-    <Compile Include="Symbol.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="test.txt.tokens">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="test.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
