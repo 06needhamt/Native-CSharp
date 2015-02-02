@@ -91,8 +91,27 @@ namespace CSharpToNative
                         CreateDivInstruction(Type, operation, name, val);
                         break;
                     }
+
+                case EnumOperator.ASSIGNMEMT: // if it is an assignment
+                    {
+                        CreateMOVInstruction(Type,operation,name,val);
+                        break;
+                    }
+                    
             }
             return;
+        }
+
+        private void CreateMOVInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        {
+            List<string> ops = new List<string>(0); // list to hold the operands
+            DefineVariable(Type, name, null); // try and define a variable
+
+            for (int i = 0; i < branches.Count; i++)
+            {
+                ops.Add(this.thetree.ASTbranches.ElementAt(i).name); // add the name of the variable to the operands list
+                ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value); // add the variable to assign to the variable to the operands list
+            }
         }
 
         private Instruction CreateDivInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
