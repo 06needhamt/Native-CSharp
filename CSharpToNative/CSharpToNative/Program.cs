@@ -7,9 +7,6 @@ namespace CSharpToNative
 {
     internal class Program
     {
-        //private static List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
-        //private static List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void" });
-        //private static List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private static string[] lines; // array to hold the lines
 
         private static StreamWriter writer; // writer for writing to the file
@@ -24,46 +21,24 @@ namespace CSharpToNative
             bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "output.txt", false);
             Console.SetOut(conwriter);
-            //string[] split = StringManipulation.HandMadeSplit("public static void main(int i);").ToArray();
-            //for (int i = 0; i < split.Length; i++)
-            //{
-            //    Console.WriteLine(split[i]);
-            //}
-            //Console.ReadKey();
-            //Environment.Exit(0);
-            // DefineTest.run();
             Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
             ins.printAssemblyInstruction();
             //Console.ReadKey();
             ins.PrintBinaryInstruction();
-            //Console.ReadKey();
-            //Environment.Exit(0);
-            //outloc = args[0] + ".lex";
-            //Console.WriteLine(EnumKeywords.PUBLIC.ToString());
-            //Console.ReadKey();
-            //Environment.Exit(0);
-            //writer = new StreamWriter(currentdir + args[0] + ".lex");
+
             writer = new StreamWriter(currentdir + args[0] + ".tokens");
             lines = File.ReadAllLines(currentdir + args[0]);
             Console.Error.WriteLine("Compiling File: " + args[0]);
-            //Console.WriteLine(operators.Count);
-            //Console.WriteLine(keywords.Count);
-            //Console.WriteLine(Convert.ToString((EnumOperator)1));
             for (int i = 0; i < lines.Length; i++)
             {
-                //if(System.Text.RegularExpressions.Regex.IsMatch(lines[i], @"//.*|/\*([~/]|\*[~/])*\*+/"));
-                //{
-                //    continue;
-                //}
+
                 if (lines[i].StartsWith("//"))
                 {
                     continue;
                 }
                 Console.WriteLine(lines[i]);
                 Lexer.Start(ref lines, ref i, writer);
-                //Tokenizer.Start(lines,writer);
             }
-            //Tokenizer.Start(lines, writer);
             writer.Flush();
             writer.Close();
             writer.Dispose();
