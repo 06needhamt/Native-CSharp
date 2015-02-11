@@ -27,5 +27,9 @@
         NOT = 16,//Not
 
         #endregion Logic
+
+        #region Data
+        MOV = 17
+        #endregion Data
     }
 }

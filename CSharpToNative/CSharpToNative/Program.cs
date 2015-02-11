@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace CSharpToNative
 {
@@ -21,10 +22,10 @@ namespace CSharpToNative
             bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "output.txt", false);
             Console.SetOut(conwriter);
-            Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
-            ins.printAssemblyInstruction();
-            //Console.ReadKey();
-            ins.PrintBinaryInstruction();
+            //Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
+            //ins.printAssemblyInstruction();
+            ////Console.ReadKey();
+            //ins.PrintBinaryInstruction();
 
             writer = new StreamWriter(currentdir + args[0] + ".tokens");
             lines = File.ReadAllLines(currentdir + args[0]);
@@ -56,6 +57,7 @@ namespace CSharpToNative
                 Console.WriteLine("In loop 1");
                 for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
                 {
+                    List<Instruction> inst;
                     Console.WriteLine("In loop 2");
                     if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
                     {
@@ -65,6 +67,13 @@ namespace CSharpToNative
                     {
                         AST<dynamic, dynamic, dynamic, dynamic> tokentree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
                         Parser parse = new Parser(tokentree, ref i);
+                        inst = parse.getInstructions();
+                        for (int k = 0; k < inst.Count; k++)
+                        {
+                            Console.Error.WriteLine("Printing Instruction");
+                            inst.ElementAt(k).printAssemblyInstruction();
+                            inst.ElementAt(k).PrintBinaryInstruction();
+                        }
                     }
                 }
                 if (checknull(nullornot))

@@ -1,1 +1,1 @@
-ADD eax,ecx
+MOV i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0,i,0

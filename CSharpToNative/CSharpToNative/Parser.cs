@@ -12,11 +12,13 @@ namespace CSharpToNative
         private List<ASTBranch<dynamic, dynamic, dynamic, dynamic>> branches; // list to hold the branches we are working with
         private List<Branch<dynamic, dynamic>> treebranches;
         private AST<dynamic, dynamic, dynamic, dynamic> thetree; /* new AST<dynamic,dynamic,dynamic,dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(0)); */
+        private List<Instruction> instructions;
 
         // the tree we are working with
         public Parser()
         {
             Console.Error.WriteLine("Creating empty parser");
+            this.instructions = new List<Instruction>();
             this.thetree = new AST<dynamic, dynamic, dynamic, dynamic>();
             this.SetBranches(null);
         }
@@ -26,6 +28,7 @@ namespace CSharpToNative
             this.thetree = tree;
             //create a tree with the current tokens
             this.branches = thetree.ASTbranches; // get the trees branches
+            this.instructions = new List<Instruction>();
 
             //foreach (ASTBranch<dynamic,dynamic,dynamic,dynamic> b in tree.ASTbranches)
             //{
@@ -72,29 +75,29 @@ namespace CSharpToNative
             {
                 case EnumOperator.BINARY_PLUS: // adding
                     {
-                        CreateADDInstruction(Type, operation, name, val);
+                        instructions.Add(CreateADDInstruction(Type, operation, name, val));
                         break;
                     }
 
                 case EnumOperator.BINARY_MINUS:
                     {
-                        CreateSubInstruction(Type, operation, name, val);
+                        instructions.Add(CreateSubInstruction(Type, operation, name, val));
                         break;
                     }
                 case EnumOperator.BINARY_MULTIPLY:
                     {
-                        CreateMulInstruction(Type, operation, name, val);
+                        instructions.Add(CreateMulInstruction(Type, operation, name, val));
                         break;
                     }
                 case EnumOperator.BINARY_DIVIDE:
                     {
-                        CreateDivInstruction(Type, operation, name, val);
+                        instructions.Add(CreateDivInstruction(Type, operation, name, val));
                         break;
                     }
 
                 case EnumOperator.ASSIGNMEMT: // if it is an assignment
                     {
-                        CreateMOVInstruction(Type,operation,name,val);
+                        instructions.Add(CreateMOVInstruction(Type,operation,name,val));
                         break;
                     }
                     
@@ -102,7 +105,7 @@ namespace CSharpToNative
             return;
         }
 
-        private void CreateMOVInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
+        private Instruction CreateMOVInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
         {
             List<string> ops = new List<string>(0); // list to hold the operands
             DefineVariable(Type, name, null); // try and define a variable
@@ -112,6 +115,8 @@ namespace CSharpToNative
                 ops.Add(this.thetree.ASTbranches.ElementAt(i).name); // add the name of the variable to the operands list
                 ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value); // add the variable to assign to the variable to the operands list
             }
+            Instruction ins = new Instruction((uint) EnumOpcodes.MOV, ops.ToArray());
+            return ins;
         }
 
         private Instruction CreateDivInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)
@@ -453,6 +458,11 @@ namespace CSharpToNative
                 CreateBinaryInstruction(type, operation, varname, value);
             }
             return false;
+        }
+
+        public List<Instruction> getInstructions()
+        {
+            return this.instructions;
         }
     }
 }
