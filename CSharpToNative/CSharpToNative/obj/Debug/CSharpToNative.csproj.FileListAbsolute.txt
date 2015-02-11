@@ -73,3 +73,9 @@ G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpTo
 G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
 G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+D:\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb

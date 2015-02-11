@@ -136,7 +136,7 @@ namespace CSharpToNative
                 Console.Error.WriteLine();
                 Console.Error.WriteLine(ex.InnerException.Message);
                 Console.Error.WriteLine(ex.InnerException.StackTrace);
-                Console.ReadKey();
+                //Console.ReadKey();
             }
             BinaryWriter writer;
             if (File.Exists(outfile))

@@ -52,12 +52,15 @@ namespace CSharpToNative
             Symbol.readfunctionsymboltable(Lexer.getfunctionsymboltable());
             Console.Error.WriteLine("Compilation Commencing");
             Console.WriteLine(Lexer.pubtokenslist.Count);
+            List<Instruction> inst = new List<Instruction>();
+            Parser parse = null;
+            //List<Instruction> instlist = null;
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {
                 Console.WriteLine("In loop 1");
                 for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
                 {
-                    List<Instruction> inst;
+                   
                     Console.WriteLine("In loop 2");
                     if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
                     {
@@ -66,25 +69,31 @@ namespace CSharpToNative
                     else
                     {
                         AST tokentree = new AST(Lexer.pubtokenslist.ElementAt<string[]>(i));
-                        Parser parse = new Parser(tokentree, ref i);
-                        inst = parse.getInstructions();
-                        for (int k = 0; k < inst.Count; k++)
+                        parse = new Parser(tokentree, ref i);
+                        if (parse.getInstructions() != null)
                         {
-                            Console.Error.WriteLine("Printing Instruction");
-                            inst.ElementAt(k).printAssemblyInstruction();
-                            inst.ElementAt(k).PrintBinaryInstruction();
+                            inst = inst.Concat(parse.getInstructions()).ToList();
                         }
+                       
                     }
                 }
+               
                 if (checknull(nullornot))
                 {
                     continue;
                 }
-                GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
-                GC.WaitForFullGCComplete(5000);
+                
+                
             }
-
+            for (int k = 0; k < inst.Count; k++)
+            {
+                Console.Error.WriteLine("Printing Instruction");
+                inst.ElementAt(k).printAssemblyInstruction();
+                inst.ElementAt(k).PrintBinaryInstruction();
+            }
             Console.Error.WriteLine("Compilation Complete");
+            GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
+            GC.WaitForFullGCComplete(5000);
             Console.Error.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
         }
