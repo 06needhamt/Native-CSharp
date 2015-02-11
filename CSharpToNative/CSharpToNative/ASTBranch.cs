@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CSharpToNative
 {
-    public class ASTBranch<T1, T2, T3, T4> : Branch<T1, T2>
+    public class ASTBranch : Branch
     {
         private bool isroot = false;
 
@@ -24,7 +24,7 @@ namespace CSharpToNative
             //}
         }
 
-        public ASTBranch(string[] tokens, AST<T1, T2, T3, T4> tree)
+        public ASTBranch(string[] tokens, AST tree)
         {
             List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
             // list of allowed operators
@@ -32,7 +32,7 @@ namespace CSharpToNative
             int index = 0;
             if (tree == null)
             {
-                tree = new AST<T1, T2, T3, T4>(); // initialise the tree
+                tree = new AST(); // initialise the tree
             }
             // set default values
             EnumAccessModifiers eprotval = EnumAccessModifiers.NO_MODIFIER;

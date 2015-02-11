@@ -65,7 +65,7 @@ namespace CSharpToNative
                     }
                     else
                     {
-                        AST<dynamic, dynamic, dynamic, dynamic> tokentree = new AST<dynamic, dynamic, dynamic, dynamic>(Lexer.pubtokenslist.ElementAt<string[]>(i));
+                        AST tokentree = new AST(Lexer.pubtokenslist.ElementAt<string[]>(i));
                         Parser parse = new Parser(tokentree, ref i);
                         inst = parse.getInstructions();
                         for (int k = 0; k < inst.Count; k++)

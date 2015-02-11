@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace CSharpToNative
 {
-    public class AST<T1, T2, T3, T4> : Tree<T1, T2, T3>
+    public class AST : Tree
     {
         //Branch<T1,T2> root = new Branch<T1,T2>(Program.pubtokens);
         //AST<T1,T2,T3,T4> def = new AST<T1,T2,T3,T4>();
 
-        private ASTBranch<T1, T2, T3, T4> root; // pointer to the root of the tree
-        private ASTBranch<T1, T2, T3, T4> leftchild; // pointer to the branch to the left of current position
-        private ASTBranch<T1, T2, T3, T4> rightchild; // pointer to the branch to the right of current position
-        public List<ASTBranch<T1, T2, T3, T4>> ASTbranches = new List<ASTBranch<T1, T2, T3, T4>>(1); // list of branches
+        private ASTBranch root; // pointer to the root of the tree
+        private ASTBranch leftchild; // pointer to the branch to the left of current position
+        private ASTBranch rightchild; // pointer to the branch to the right of current position
+        public List<ASTBranch> ASTbranches = new List<ASTBranch>(1); // list of branches
 
         public AST()
         {
@@ -24,12 +24,12 @@ namespace CSharpToNative
         public AST(string[] tokens)
         {
             // set up pointers
-            root = new ASTBranch<T1, T2, T3, T4>(tokens, this);
-            leftchild = new ASTBranch<T1, T2, T3, T4>(tokens, this);
-            rightchild = new ASTBranch<T1, T2, T3, T4>(tokens, this);
+            root = new ASTBranch(tokens, this);
+            leftchild = new ASTBranch(tokens, this);
+            rightchild = new ASTBranch(tokens, this);
         }
 
-        public void seroot(ASTBranch<T1, T2, T3, T4> newroot)
+        public void seroot(ASTBranch newroot)
         {
             if (newroot.parent != null) // if the passed branch is not the root of the tree
             {
@@ -62,9 +62,9 @@ namespace CSharpToNative
             }
         }
 
-        public ASTBranch<T1, T2, T3, T4> getroot(AST<T1, T2, T3, T4> tree)
+        public ASTBranch getroot(AST tree)
         {
-            foreach (ASTBranch<T1, T2, T3, T4> branch in tree.treebranches) // find the root of the tree
+            foreach (ASTBranch branch in tree.treebranches) // find the root of the tree
             {
                 if (branch.parent.Equals(null)) // if it has no parent it must be the root
                 {
@@ -79,26 +79,26 @@ namespace CSharpToNative
             /*new String(new char[]  { 'n','o',' ','r','o','o','t' });*/
         }
 
-        public ASTBranch<T1, T2, T3, T4> getrightchild(int i)
+        public ASTBranch getrightchild(int i)
         {
-            this.rightchild = this.ASTbranches.ElementAt<ASTBranch<T1, T2, T3, T4>>(i + 1); // find the right child
+            this.rightchild = this.ASTbranches.ElementAt<ASTBranch>(i + 1); // find the right child
             return this.rightchild;
         }
 
-        public ASTBranch<T1, T2, T3, T4> getleftchild(int i)
+        public ASTBranch getleftchild(int i)
         {
-            this.leftchild = this.ASTbranches.ElementAt<ASTBranch<T1, T2, T3, T4>>(i - 1);  // find the left child
+            this.leftchild = this.ASTbranches.ElementAt<ASTBranch>(i - 1);  // find the left child
             return this.leftchild;
         }
 
         public void setrightchild(int i)
         {
-            this.rightchild = this.ASTbranches.ElementAt<ASTBranch<T1, T2, T3, T4>>(i + 1); // find the right child
+            this.rightchild = this.ASTbranches.ElementAt<ASTBranch>(i + 1); // find the right child
         }
 
         public void setleftchild(int i)
         {
-            this.leftchild = this.ASTbranches.ElementAt<ASTBranch<T1, T2, T3, T4>>(i - 1);  // find the left child
+            this.leftchild = this.ASTbranches.ElementAt<ASTBranch>(i - 1);  // find the left child
         }
     }
 }

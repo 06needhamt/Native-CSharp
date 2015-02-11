@@ -2,7 +2,7 @@
 
 namespace CSharpToNative
 {
-    public class Branch<T1, T2>
+    public class Branch
     {
         //struct properties
         //{
@@ -19,7 +19,7 @@ namespace CSharpToNative
         public object Value;
         public object value2 = null;
         public EnumOperator operation2 = EnumOperator.NO_OPERATOR;
-        public Branch<T1, T2> parent = null;
+        public Branch parent = null;
         ///public long depth;
 
         public Branch()
@@ -35,32 +35,32 @@ namespace CSharpToNative
             this.Value = tokens[4];
         }
 
-        private EnumAccessModifiers getaccessmodifier(Branch<T1, T2> branch)
+        private EnumAccessModifiers getaccessmodifier(Branch branch)
         {
             return branch.protectionlevel;
         }
 
-        private EnumTypes gettype(Branch<T1, T2> branch)
+        private EnumTypes gettype(Branch branch)
         {
             return branch.type;
         }
 
-        private string getname(Branch<T1, T2> branch)
+        private string getname(Branch branch)
         {
             return branch.name;
         }
 
-        private object getvalue(Branch<T1, T2> branch)
+        private object getvalue(Branch branch)
         {
             return branch.Value;
         }
 
-        private EnumOperator getoperator(Branch<T1, T2> branch)
+        private EnumOperator getoperator(Branch branch)
         {
             return branch.operation;
         }
 
-        protected Branch<T1, T2> Union(Branch<T1, T2> lhs, Branch<T1, T2> rhs)  // merge branches together
+        protected Branch Union(Branch lhs, Branch rhs)  // merge branches together
         {
             if (lhs.Equals(rhs)) // if the branches are equal dont merge them
             {
@@ -94,7 +94,7 @@ namespace CSharpToNative
                 }
                 else // go ahead and merge the branches
                 {
-                    Branch<T1, T2> newbranch = new Branch<T1, T2>(); // create a new branch
+                    Branch newbranch = new Branch(); // create a new branch
                     newbranch.type = lhs.type;
                     newbranch.name = lhs.name;
                     newbranch.protectionlevel = rhs.protectionlevel;
