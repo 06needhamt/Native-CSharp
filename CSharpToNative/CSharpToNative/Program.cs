@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace CSharpToNative
 {
@@ -13,6 +14,9 @@ namespace CSharpToNative
         private static StreamWriter writer; // writer for writing to the file
         private static StreamWriter conwriter;
         private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
+        private static string outfile = "output.o";
+        private static Assembly ELFLib;
+        private static Type ELFFile;
 
         private static void Main(string[] args)
         {
@@ -22,6 +26,8 @@ namespace CSharpToNative
             bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "output.txt", false);
             Console.SetOut(conwriter);
+            CreateAssemblyFile();
+            CreateObjectFile();
             //Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
             //ins.printAssemblyInstruction();
             ////Console.ReadKey();
@@ -52,15 +58,12 @@ namespace CSharpToNative
             Symbol.readfunctionsymboltable(Lexer.getfunctionsymboltable());
             Console.Error.WriteLine("Compilation Commencing");
             Console.WriteLine(Lexer.pubtokenslist.Count);
-            List<Instruction> inst = new List<Instruction>();
-            Parser parse = null;
-            //List<Instruction> instlist = null;
             for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
             {
                 Console.WriteLine("In loop 1");
                 for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
                 {
-                   
+                    List<Instruction> inst;
                     Console.WriteLine("In loop 2");
                     if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
                     {
@@ -69,35 +72,75 @@ namespace CSharpToNative
                     else
                     {
                         AST tokentree = new AST(Lexer.pubtokenslist.ElementAt<string[]>(i));
-                        parse = new Parser(tokentree, ref i);
-                        if (parse.getInstructions() != null)
+                        Parser parse = new Parser(tokentree, ref i);
+                        inst = parse.getInstructions();
+                        for (int k = 0; k < inst.Count; k++)
                         {
-                            inst = inst.Concat(parse.getInstructions()).ToList();
+                            //Console.Error.WriteLine("Printing Instruction");
+                            //Console.Error.WriteLine(inst.ElementAt(k).getOperands().Count());
+                            inst.ElementAt(k).printAssemblyInstruction();
+                            inst.ElementAt(k).PrintBinaryInstruction();
                         }
-                       
+                        inst.Clear();
                     }
                 }
-               
                 if (checknull(nullornot))
                 {
                     continue;
                 }
-                
-                
+                GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
+                GC.WaitForFullGCComplete(5000);
             }
-            for (int k = 0; k < inst.Count; k++)
-            {
-                Console.Error.WriteLine("Printing Instruction");
-                inst.ElementAt(k).printAssemblyInstruction();
-                inst.ElementAt(k).PrintBinaryInstruction();
-            }
+
             Console.Error.WriteLine("Compilation Complete");
-            GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
-            GC.WaitForFullGCComplete(5000);
             Console.Error.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
         }
 
+        private static void CreateObjectFile()
+        {
+
+            ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
+            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
+            {
+                Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
+            }
+            ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
+            //if (!File.Exists(outfile))
+            //{
+            //    File.Create(outfile);
+            //}
+            //else
+            //{
+            //    File.Delete(outfile);
+            //    File.Create(outfile);
+            //}
+            try
+            {
+                object elf = Activator.CreateInstance(ELFFile, "output.o");
+            }
+            catch (TargetInvocationException ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                Console.Error.WriteLine(ex.StackTrace);
+                Console.Error.WriteLine();
+                Console.Error.WriteLine(ex.InnerException.Message);
+                Console.Error.WriteLine(ex.InnerException.StackTrace);
+                Console.ReadKey();
+            }
+        }
+        private static void CreateAssemblyFile()
+        {
+            string outfile = currentdir + "Output.asm";
+            if (File.Exists(outfile)) // if file exists delete and create it again so it is empty
+            {
+                File.Delete(outfile);
+            }
+            //else
+            //{
+            //    File.Create(outfile);
+            //}
+        }
         private static bool checknull(bool[] nullornot)
         {
             for (int i = 0; i < nullornot.Length; i++)

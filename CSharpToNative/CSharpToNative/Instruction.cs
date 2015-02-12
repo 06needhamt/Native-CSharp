@@ -22,6 +22,7 @@ namespace CSharpToNative
                 Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
             }
             ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
+            
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
             //this.Opcode = int.Parse(hexop, System.Globalization.NumberStyles.HexNumber);
@@ -81,11 +82,7 @@ namespace CSharpToNative
         public void printAssemblyInstruction()
         {
             string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
-            string outfile = currentdir + "Output.asm";
-            if (File.Exists(outfile)) // if file exists delete and create it again so it is empty
-            {
-                File.Delete(outfile);
-            }
+            
             //File.Create(outfile);
             StreamWriter writer = new StreamWriter(currentdir + "Output.asm", true); // writer to write to the assembly file
             //writer.Write(" ");
@@ -125,29 +122,9 @@ namespace CSharpToNative
             List<byte[]> operandbyes = new List<byte[]>(0);     // Array to hold the byte value of the operands
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
-            try
-            {
-                object elf = Activator.CreateInstance(ELFFile, "output.o");
-            }
-            catch (TargetInvocationException ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-                Console.Error.WriteLine(ex.StackTrace);
-                Console.Error.WriteLine();
-                Console.Error.WriteLine(ex.InnerException.Message);
-                Console.Error.WriteLine(ex.InnerException.StackTrace);
-                //Console.ReadKey();
-            }
+            
             BinaryWriter writer;
-            if (File.Exists(outfile))
-            {
-                File.Delete(outfile);
-            }
-            else
-            {
-                File.Create(outfile);
-            }
-            //elf = new ELFFile(outfile);
+            //Console.Error.WriteLine("Opcode = : " + this.Opcode);
             writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             //writer.Write(" ");
             if (this.Operands != null)

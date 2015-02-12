@@ -109,12 +109,8 @@ namespace CSharpToNative
         {
             List<string> ops = new List<string>(0); // list to hold the operands
             DefineVariable(Type, name, null); // try and define a variable
-
-            for (int i = 0; i < branches.Count; i++)
-            {
-                ops.Add(this.thetree.ASTbranches.ElementAt(i).name); // add the name of the variable to the operands list
-                ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value); // add the variable to assign to the variable to the operands list
-            }
+            ops.Add(this.thetree.ASTbranches.ElementAt(0).name); // add the name of the variable to the operands list
+            ops.Add((string)this.thetree.ASTbranches.ElementAt(0).Value); // add the variable to assign to the variable to the operands list
             Instruction ins = new Instruction((uint) EnumOpcodes.MOV, ops.ToArray());
             return ins;
         }
@@ -125,7 +121,7 @@ namespace CSharpToNative
             DefineVariable(Type, name, null); // try and define a variable
             bool issigned = false;
 
-            for (int i = 0; i < branches.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
                 {
@@ -133,7 +129,7 @@ namespace CSharpToNative
                     {
                         issigned = true;
                     }
-                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
                     //{
                     //    ops.Add((string)this.tree.getroot(tree).Value);
@@ -196,7 +192,7 @@ namespace CSharpToNative
             DefineVariable(Type, name, null); // try and define a variable
 
             bool issigned = false;
-            for (int i = 0; i < branches.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
                 {
@@ -204,7 +200,7 @@ namespace CSharpToNative
                     {
                         issigned = true;
                     }
-                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
                     //{
                     //    ops.Add((string)this.tree.getroot(tree).Value);
@@ -266,11 +262,11 @@ namespace CSharpToNative
         {
             List<string> ops = new List<string>(0); // list to hold the operands
             DefineVariable(Type, name, null); // try and define a variable
-            for (int i = 0; i < branches.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
                 {
-                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
                     //{
                     //    ops.Add((string)this.tree.getroot(tree).Value);
@@ -323,11 +319,11 @@ namespace CSharpToNative
         {
             List<string> ops = new List<string>(0); // list to hold the operands
             DefineVariable(Type, name, null); // try and define a variable
-            for (int i = 0; i < branches.Count; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
                 {
-                    ops.Add((string)branches.ElementAt(i).Value); // add it to the list
+                    //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
                     //{
                     //    ops.Add((string)this.tree.getroot(tree).Value);
@@ -400,7 +396,7 @@ namespace CSharpToNative
             {
                 case EnumOperator.ASSIGNMEMT: // if it is an assignment
                     {
-                        for (int i = 0; i < branches.Count; i++)
+                        for (int i = 0; i < 2; i++)
                         {
                             ops.Add(this.thetree.ASTbranches.ElementAt(i).name); // add the name of the variable to the operands list
                             ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value); // add the variable to assign to the variable to the operands list

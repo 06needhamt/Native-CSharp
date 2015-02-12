@@ -31,13 +31,3 @@ G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.p
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.csprojResolveAssemblyReference.cache
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe.config
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.pdb
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\ELFLib.dll
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.exe
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\ELFLib.pdb
-D:\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\CSharpToNative.pdb
-D:\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.csprojResolveAssemblyReference.cache
-D:\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.exe
-D:\Compiler-Experimental\CSharpToNative\Linker\obj\Debug\Linker.pdb
