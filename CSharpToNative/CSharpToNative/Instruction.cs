@@ -158,19 +158,6 @@ namespace CSharpToNative
                     }
                 }
 
-                //writer.Write((Convert.ToString(this.Opcode, 2)));
-                //writer.Write(" ");
-
-                //for (int i = 0; i < this.Operands.Length; i++)
-                //{
-                //    foreach (byte b in this.Operands[i])
-                //    {
-                //        writer.Write(b);
-                //        //writer.Write(" ");
-                //    }
-                //    //writer.Write(",");
-                //}
-                //writer.WriteLine();
             }
             else
             {

@@ -17,12 +17,13 @@ namespace CSharpToNative
         private static string outfile = "output.o";
         private static Assembly ELFLib;
         private static Type ELFFile;
-
+        private static Lexer Lex;
         private static void Main(string[] args)
         {
             //Process.Start(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe",
             // @"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\Output.o");
             //Environment.Exit(0);
+            Lex = new Lexer();
             bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "output.txt", false);
             Console.SetOut(conwriter);
@@ -44,34 +45,34 @@ namespace CSharpToNative
                     continue;
                 }
                 Console.WriteLine(lines[i]);
-                Lexer.Start(ref lines, ref i, writer);
+                Lex.Start(ref lines, ref i, writer);
             }
             writer.Flush();
             writer.Close();
             writer.Dispose();
             Console.Error.WriteLine("Lexical Analasis Complete");
             Console.Error.WriteLine("Reading int symbol table");
-            Symbol.readintsymboltable(Lexer.getintsymboltable());
+            Symbol.readintsymboltable(Lex.getintsymboltable());
             Console.Error.WriteLine("Reading string symbol table");
-            Symbol.readstringsymboltable(Lexer.getstringsymboltable());
+            Symbol.readstringsymboltable(Lex.getstringsymboltable());
             Console.Error.WriteLine("Reading Function Symbol table");
-            Symbol.readfunctionsymboltable(Lexer.getfunctionsymboltable());
+            Symbol.readfunctionsymboltable(Lex.getfunctionsymboltable());
             Console.Error.WriteLine("Compilation Commencing");
-            Console.WriteLine(Lexer.pubtokenslist.Count);
-            for (int i = 0; i < Lexer.pubtokenslist.Count; i++)
+            Console.WriteLine(Lex.pubtokenslist.Count);
+            for (int i = 0; i < Lex.pubtokenslist.Count; i++)
             {
                 Console.WriteLine("In loop 1");
-                for (int j = 0; j < Lexer.pubtokenslist.ElementAt<string[]>(i).Length; j++)
+                for (int j = 0; j < Lex.pubtokenslist.ElementAt<string[]>(i).Length; j++)
                 {
                     List<Instruction> inst;
                     Console.WriteLine("In loop 2");
-                    if (Lexer.pubtokenslist.ElementAt<string[]>(i)[j] == null)
+                    if (Lex.pubtokenslist.ElementAt<string[]>(i)[j] == null)
                     {
                         nullornot[j] = true;
                     }
                     else
                     {
-                        AST tokentree = new AST(Lexer.pubtokenslist.ElementAt<string[]>(i));
+                        AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
                         Parser parse = new Parser(tokentree, ref i);
                         inst = parse.getInstructions();
                         for (int k = 0; k < inst.Count; k++)
@@ -117,7 +118,7 @@ namespace CSharpToNative
             //}
             try
             {
-                object elf = Activator.CreateInstance(ELFFile, "output.o");
+                object elf = Activator.CreateInstance(ELFFile,new object[] {Lex,"output.0"});
             }
             catch (TargetInvocationException ex)
             {

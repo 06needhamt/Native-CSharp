@@ -48,7 +48,6 @@
     <Compile Include="AST.cs" />
     <Compile Include="ASTBranch.cs" />
     <Compile Include="Branch.cs" />
-    <Compile Include="CPUInfo.cs" />
     <Compile Include="DefineTest.cs" />
     <Compile Include="EnumAccessModifiers.cs" />
     <Compile Include="EnumKeywords.cs" />

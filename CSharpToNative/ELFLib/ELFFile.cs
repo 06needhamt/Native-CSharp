@@ -18,21 +18,26 @@ namespace ELFLib
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
-            CreateHeader();
-            CreateShsrtabSegment();
-            Createdatasement(Lexer.getintsymboltable());
-            Createdatasement(Lexer.getstringsymboltable());
-            WriteFile("Default.o");
         }
-
-        public ELFFile(string name)
+        public ELFFile(Lexer L)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
             CreateHeader();
             CreateShsrtabSegment();
-            Createdatasement(Lexer.getintsymboltable());
-            Createdatasement(Lexer.getstringsymboltable());
+            Createdatasement(L.getintsymboltable());
+            Createdatasement(L.getstringsymboltable());
+            WriteFile("Default.o");
+        }
+
+        public ELFFile(Lexer L,string name)
+        {
+            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+            Console.WriteLine(this.archetecture);
+            CreateHeader();
+            CreateShsrtabSegment();
+            Createdatasement(L.getintsymboltable());
+            Createdatasement(L.getstringsymboltable());
             WriteFile(name);
         }
 

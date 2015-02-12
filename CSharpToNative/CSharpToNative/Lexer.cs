@@ -7,26 +7,26 @@ namespace CSharpToNative
 {
     public class Lexer
     {
-        //public static string[] pubtokens;
-        public static List<string[]> pubtokenslist = new List<string[]>(0);
+        //public string[] pubtokens;
+        public List<string[]> pubtokenslist = new List<string[]>(0);
 
-        private static readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
-        private static readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
-        private static readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
-        private static string[] lines;
-        private static List<EnumOperator> ops = new List<EnumOperator>(0);
-        private static List<EnumKeywords> kywrds = new List<EnumKeywords>(0);
-        private static List<EnumTypes> typedefs = new List<EnumTypes>(0);
-        private static List<string> usertypedefs = new List<string>(0);
-        private static StreamWriter writer;
-        private static string[] temptokens;  // tokens from each checking stage are stored here
-        private static bool isafunction = false;
-        private static LinkedList<Tuple<string, string, string>> integersymboltable = new LinkedList<Tuple<string, string, string>>();
-        private static LinkedList<Tuple<string, string, string>> stringsymboltable = new LinkedList<Tuple<string, string, string>>();
-        private static LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
-        private static bool isbracket = false;
+        private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
+        private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
+        private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
+        private string[] lines;
+        private List<EnumOperator> ops = new List<EnumOperator>(0);
+        private List<EnumKeywords> kywrds = new List<EnumKeywords>(0);
+        private List<EnumTypes> typedefs = new List<EnumTypes>(0);
+        private List<string> usertypedefs = new List<string>(0);
+        private StreamWriter writer;
+        private string[] temptokens;  // tokens from each checking stage are stored here
+        private bool isafunction = false;
+        private LinkedList<Tuple<string, string, string>> integersymboltable = new LinkedList<Tuple<string, string, string>>();
+        private LinkedList<Tuple<string, string, string>> stringsymboltable = new LinkedList<Tuple<string, string, string>>();
+        private LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
+        private bool isbracket = false;
 
-        public static void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
+        public void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
         {
             lines = linespar;
             writer = writerpar;
@@ -73,7 +73,7 @@ namespace CSharpToNative
             writer.WriteLine();
         }
 
-        private static bool checkoperators(ref int i)
+        private bool checkoperators(ref int i)
         {
             int cops = 0; // amount of operators found in the current line
             for (int j = 0; j < operators.Count; j++)
@@ -99,7 +99,7 @@ namespace CSharpToNative
             return (cops > 0) ? true : false; // return true if we found an operator false if we did not
         }
 
-        private static bool checkkeywords(ref int i)
+        private bool checkkeywords(ref int i)
         {
             int ckeywords = 0; // the amount of keywords that we have found
             bool accessmodifier = false; // does the line contain an access modifier
@@ -136,7 +136,7 @@ namespace CSharpToNative
             return (ckeywords > 0) ? true : false; // return true if we found a keyword false if we did not
         }
 
-        private static bool checktypes(ref int i) // TODO add user typedefs
+        private bool checktypes(ref int i) // TODO add user typedefs
         {
             int ctypes = 0; // the number of types we have found
             for (int j = -0; j < types.Count; j++)
@@ -156,7 +156,7 @@ namespace CSharpToNative
             return (ctypes > 0) ? true : false; // return true if we found a type false if we did not
         }
 
-        private static bool isvardeclared(ref string[] tokens, ref int i) // function for checking if a variable is declared
+        private bool isvardeclared(ref string[] tokens, ref int i) // function for checking if a variable is declared
         {
             string type = tokens.FirstOrDefault<string>(j => types.Contains(j)); // string to hold the type of a variable
             if (string.IsNullOrEmpty(tokens[i]) || tokens[i].Equals("{") || tokens[i].Equals("{")) // if the variable is a bracket skip it
@@ -211,14 +211,14 @@ namespace CSharpToNative
             }
         }
 
-        private static bool checkisafunction(ref string[] tokens, ref int i)
+        private bool checkisafunction(ref string[] tokens, ref int i)
         {
             // is the current line a function
             // Currently not working
             return (tokens.Contains("(") && tokens.Contains(")")) ? true : false;
         }
 
-        public static bool isInteger(String str)
+        public bool isInteger(String str)
         {
             if (str == null)
             {
@@ -249,7 +249,7 @@ namespace CSharpToNative
             return true;
         }
 
-        private static void printTokens(string[] tokens)  // function to print tokens
+        private void printTokens(string[] tokens)  // function to print tokens
         {
             int index; // int to store the index of the current token in reference arrays
             //bool keyword = false;
@@ -422,7 +422,7 @@ namespace CSharpToNative
             writer.WriteLine("END"); // mark the end of the line
         }
 
-        private static void defineVariable(ref string[] tokens, ref int i) // function to define variables
+        private void defineVariable(ref string[] tokens, ref int i) // function to define variables
         {
             //EnumTypes type;
             string prot = tokens[0];
@@ -517,19 +517,27 @@ namespace CSharpToNative
             }
         }
 
-        public static dynamic getintsymboltable()
+        public dynamic getintsymboltable()
         {
             return integersymboltable;
         }
 
-        public static dynamic getstringsymboltable()
+        public dynamic getstringsymboltable()
         {
             return stringsymboltable;
         }
 
-        public static dynamic getfunctionsymboltable()
+        public dynamic getfunctionsymboltable()
         {
             return functionsymboltable;
+        }
+
+        public void SaveSymbolTables(int id)
+        {
+            switch(id)
+            {
+
+            }
         }
     }
 }
