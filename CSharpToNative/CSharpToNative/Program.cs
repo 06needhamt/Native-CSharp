@@ -118,7 +118,7 @@ namespace CSharpToNative
             //}
             try
             {
-                object elf = Activator.CreateInstance(ELFFile,new object[] {Lex,"output.0"});
+                object elf = Activator.CreateInstance(ELFFile,new object[] {Lex,"output.o"});
             }
             catch (TargetInvocationException ex)
             {
