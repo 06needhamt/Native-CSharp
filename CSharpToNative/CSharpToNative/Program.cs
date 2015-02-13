@@ -10,7 +10,6 @@ namespace CSharpToNative
     internal class Program
     {
         private static string[] lines; // array to hold the lines
-
         private static StreamWriter writer; // writer for writing to the file
         private static StreamWriter conwriter;
         private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
@@ -20,20 +19,14 @@ namespace CSharpToNative
         private static Lexer Lex;
         private static void Main(string[] args)
         {
-            //Process.Start(@"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\Debug\Linker.exe",
-            // @"C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\Output.o");
+            //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
+            //Console.ReadKey();
             //Environment.Exit(0);
             Lex = new Lexer();
             bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "output.txt", false);
             Console.SetOut(conwriter);
-            CreateAssemblyFile();
-            CreateObjectFile();
-            //Instruction ins = new Instruction(1, new string[] { "eax", "ecx" });
-            //ins.printAssemblyInstruction();
-            ////Console.ReadKey();
-            //ins.PrintBinaryInstruction();
-
+         
             writer = new StreamWriter(currentdir + args[0] + ".tokens");
             lines = File.ReadAllLines(currentdir + args[0]);
             Console.Error.WriteLine("Compiling File: " + args[0]);
@@ -58,6 +51,8 @@ namespace CSharpToNative
             Console.Error.WriteLine("Reading Function Symbol table");
             Symbol.readfunctionsymboltable(Lex.getfunctionsymboltable());
             Console.Error.WriteLine("Compilation Commencing");
+            CreateAssemblyFile();
+            CreateObjectFile();
             Console.WriteLine(Lex.pubtokenslist.Count);
             for (int i = 0; i < Lex.pubtokenslist.Count; i++)
             {
@@ -102,20 +97,11 @@ namespace CSharpToNative
         {
 
             ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
-            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
-            {
-                Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
-            }
+            //for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
+            //{
+            //    Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
+            //}
             ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
-            //if (!File.Exists(outfile))
-            //{
-            //    File.Create(outfile);
-            //}
-            //else
-            //{
-            //    File.Delete(outfile);
-            //    File.Create(outfile);
-            //}
             try
             {
                 object elf = Activator.CreateInstance(ELFFile,new object[] {Lex,"output.o"});
