@@ -8,7 +8,7 @@ namespace Linker
         {
             LinkExecutable exe = new LinkExecutable();
             BinaryReader read = new BinaryReader(File.OpenRead(args[0]));
-            exe.ReadELF(args[0],read);
+            exe.ReadELF(args[0], read);
         }
     }
 }

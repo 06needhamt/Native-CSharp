@@ -161,12 +161,13 @@ namespace CSharpToNative
                 }
                 tree.ASTbranches.Add(this); // add the branch to the tree
             }
-
         }
+
         public bool GetIsRoot()
         {
             return this.isroot;
         }
+
         public void SetIsRoot(bool b)
         {
             this.isroot = b;

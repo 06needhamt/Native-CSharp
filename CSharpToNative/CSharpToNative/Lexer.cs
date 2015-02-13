@@ -457,7 +457,7 @@ namespace CSharpToNative
 
                 if (isafunction) // if it is a function
                 {
-                     //parse parameters not working yet
+                    //parse parameters not working yet
                     List<char[]> partype = new List<char[]>(0);
                     char[] partypechararr;
                     string[] partypearr;
@@ -475,7 +475,7 @@ namespace CSharpToNative
                             }
                         }
                     }
-                     return;
+                    return;
                     //char[] partype;
 
                     string[] funcsplit = StringManipulation.HandMadeSplit(tokens[i]).ToArray();
@@ -534,9 +534,8 @@ namespace CSharpToNative
 
         public void SaveSymbolTables(int id)
         {
-            switch(id)
+            switch (id)
             {
-
             }
         }
     }

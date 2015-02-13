@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace CSharpToNative
@@ -17,22 +16,22 @@ namespace CSharpToNative
         private static Assembly ELFLib;
         private static Type ELFFile;
         private static Lexer Lex;
+
         private static void Main(string[] args)
         {
             //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
             //Console.ReadKey();
             //Environment.Exit(0);
             Lex = new Lexer();
-            bool[] nullornot = new bool[100];
-            conwriter = new StreamWriter(currentdir + "output.txt", false);
+            //bool[] nullornot = new bool[100];
+            conwriter = new StreamWriter(currentdir + "Sysout.txt", false);
             Console.SetOut(conwriter);
-         
+
             writer = new StreamWriter(currentdir + args[0] + ".tokens");
             lines = File.ReadAllLines(currentdir + args[0]);
             Console.Error.WriteLine("Compiling File: " + args[0]);
             for (int i = 0; i < lines.Length; i++)
             {
-
                 if (lines[i].StartsWith("//"))
                 {
                     continue;
@@ -61,31 +60,36 @@ namespace CSharpToNative
                 {
                     List<Instruction> inst;
                     Console.WriteLine("In loop 2");
-                    if (Lex.pubtokenslist.ElementAt<string[]>(i)[j] == null)
+                    //if (Lex.pubtokenslist.ElementAt<string[]>(i)[j] == null)
+                    //{
+                    //    nullornot[j] = true;
+                    //}
+
+                    AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
+                    Parser parse = new Parser(tokentree, ref i);
+                    inst = parse.getInstructions();
+                    for (int k = 0; k < inst.Count; k++)
                     {
-                        nullornot[j] = true;
+                        //Console.Error.WriteLine("Printing Instruction");
+                        //Console.Error.WriteLine(inst.ElementAt(k).getOperands().Count());
+                        inst.ElementAt(k).printAssemblyInstruction();
+                        inst.ElementAt(k).PrintBinaryInstruction();
                     }
-                    else
-                    {
-                        AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
-                        Parser parse = new Parser(tokentree, ref i);
-                        inst = parse.getInstructions();
-                        for (int k = 0; k < inst.Count; k++)
-                        {
-                            //Console.Error.WriteLine("Printing Instruction");
-                            //Console.Error.WriteLine(inst.ElementAt(k).getOperands().Count());
-                            inst.ElementAt(k).printAssemblyInstruction();
-                            inst.ElementAt(k).PrintBinaryInstruction();
-                        }
-                        inst.Clear();
-                    }
+                    inst.Clear();
                 }
-                if (checknull(nullornot))
-                {
-                    continue;
-                }
-                GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
-                GC.WaitForFullGCComplete(5000);
+                //if (checknull(nullornot))
+                //{
+                //    continue;
+                //}
+                //long beforememory = GC.GetTotalMemory(false);
+                //GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
+                //GCNotificationStatus status = GC.WaitForFullGCComplete(50000);
+                //long aftermemory = GC.GetTotalMemory(false);
+                //if (status != GCNotificationStatus.Succeeded)
+                //{
+                //    Console.Error.WriteLine("Error Collecting Garbage");
+                //}
+                //Console.Error.WriteLine((beforememory - aftermemory) + "Bytes were freed in garbage collection");
             }
 
             Console.Error.WriteLine("Compilation Complete");
@@ -95,7 +99,6 @@ namespace CSharpToNative
 
         private static void CreateObjectFile()
         {
-
             ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
             //for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
             //{
@@ -104,7 +107,7 @@ namespace CSharpToNative
             ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
             try
             {
-                object elf = Activator.CreateInstance(ELFFile,new object[] {Lex,"output.o"});
+                object elf = Activator.CreateInstance(ELFFile, new object[] { Lex, "output.o" });
             }
             catch (TargetInvocationException ex)
             {
@@ -116,6 +119,7 @@ namespace CSharpToNative
                 Console.ReadKey();
             }
         }
+
         private static void CreateAssemblyFile()
         {
             string outfile = currentdir + "Output.asm";
@@ -128,20 +132,21 @@ namespace CSharpToNative
             //    File.Create(outfile);
             //}
         }
-        private static bool checknull(bool[] nullornot)
-        {
-            for (int i = 0; i < nullornot.Length; i++)
-            {
-                if (nullornot[i] != true)
-                {
-                    return true;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            return false;
-        }
+
+        //private static bool checknull(bool[] nullornot)
+        //{
+        //    for (int i = 0; i < nullornot.Length; i++)
+        //    {
+        //        if (nullornot[i] != true)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            continue;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

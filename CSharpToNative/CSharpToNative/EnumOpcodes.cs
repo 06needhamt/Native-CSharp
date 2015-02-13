@@ -29,7 +29,9 @@
         #endregion Logic
 
         #region Data
+
         MOV = 17
+
         #endregion Data
     }
 }

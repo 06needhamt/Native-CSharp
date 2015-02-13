@@ -19,6 +19,7 @@ namespace ELFLib
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
         }
+
         public ELFFile(Lexer L)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
@@ -30,7 +31,7 @@ namespace ELFLib
             WriteFile("Default.o");
         }
 
-        public ELFFile(Lexer L,string name)
+        public ELFFile(Lexer L, string name)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);

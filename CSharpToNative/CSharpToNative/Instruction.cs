@@ -17,12 +17,12 @@ namespace CSharpToNative
         public Instruction(uint opcode, string[] operands)
         {
             ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
-            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++ )
+            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
             {
                 Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
             }
             ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
-            
+
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
             //this.Opcode = int.Parse(hexop, System.Globalization.NumberStyles.HexNumber);
@@ -82,7 +82,7 @@ namespace CSharpToNative
         public void printAssemblyInstruction()
         {
             string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
-            
+
             //File.Create(outfile);
             StreamWriter writer = new StreamWriter(currentdir + "Output.asm", true); // writer to write to the assembly file
             //writer.Write(" ");
@@ -122,7 +122,7 @@ namespace CSharpToNative
             List<byte[]> operandbyes = new List<byte[]>(0);     // Array to hold the byte value of the operands
             string currentdir = System.Environment.CurrentDirectory + "/";
             string outfile = "Output.o";
-            
+
             BinaryWriter writer;
             //Console.Error.WriteLine("Opcode = : " + this.Opcode);
             writer = new BinaryWriter(File.Open(currentdir + outfile, FileMode.OpenOrCreate, FileAccess.ReadWrite));
@@ -157,7 +157,6 @@ namespace CSharpToNative
                         writer.Write(b[i]);
                     }
                 }
-
             }
             else
             {

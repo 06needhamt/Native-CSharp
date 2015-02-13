@@ -59,7 +59,8 @@ namespace CSharpToNative
         {
             this.branches = this.thetree.ASTbranches;
         }
-        private void SetBranches(List<ASTBranch> branches )
+
+        private void SetBranches(List<ASTBranch> branches)
         {
             this.branches = branches;
         }
@@ -97,10 +98,9 @@ namespace CSharpToNative
 
                 case EnumOperator.ASSIGNMEMT: // if it is an assignment
                     {
-                        instructions.Add(CreateMOVInstruction(Type,operation,name,val));
+                        instructions.Add(CreateMOVInstruction(Type, operation, name, val));
                         break;
                     }
-                    
             }
             return;
         }
@@ -111,7 +111,7 @@ namespace CSharpToNative
             DefineVariable(Type, name, null); // try and define a variable
             ops.Add(this.thetree.ASTbranches.ElementAt(0).name); // add the name of the variable to the operands list
             ops.Add((string)this.thetree.ASTbranches.ElementAt(0).Value); // add the variable to assign to the variable to the operands list
-            Instruction ins = new Instruction((uint) EnumOpcodes.MOV, ops.ToArray());
+            Instruction ins = new Instruction((uint)EnumOpcodes.MOV, ops.ToArray());
             return ins;
         }
 
@@ -177,7 +177,7 @@ namespace CSharpToNative
             if (issigned)
             {
                 Instruction ins = new Instruction((int)EnumOpcodes.IDIV, ops.ToArray<string>()); // if it is signed create an IDIV instruction with the found operands
-                return ins; 
+                return ins;
             }
             else
             {
@@ -255,7 +255,6 @@ namespace CSharpToNative
                 Instruction ins = new Instruction((int)EnumOpcodes.MUL, ops.ToArray<string>()); // if it is unsigned create an MUL instruction with the found operands
                 return ins;
             }
-
         }
 
         private Instruction CreateSubInstruction(EnumTypes Type, EnumOperator operation, string name, dynamic val)

@@ -1,16 +1,15 @@
 ﻿using ELFLib;
-
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Linker
 {
     public class LinkExecutable
     {
-        LinkedList<ELFFile> Files;
-        byte[] header = new byte[41];
-        const int HEADER_LENGTH = 41;
+        private LinkedList<ELFFile> Files;
+        private byte[] header = new byte[41];
+        private const int HEADER_LENGTH = 41;
 
         public LinkExecutable()
         {
