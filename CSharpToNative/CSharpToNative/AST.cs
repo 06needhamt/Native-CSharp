@@ -25,8 +25,8 @@ namespace CSharpToNative
         {
             // set up pointers
             root = new ASTBranch(tokens, this);
-            leftchild = new ASTBranch(tokens, this);
-            rightchild = new ASTBranch(tokens, this);
+            leftchild = new ASTBranch(null, this);
+            rightchild = new ASTBranch(null, this);
         }
 
         public void seroot(ASTBranch newroot)

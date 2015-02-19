@@ -26,73 +26,9 @@ namespace CSharpToNative
             //bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "Sysout.txt", false);
             Console.SetOut(conwriter);
-
-            writer = new StreamWriter(currentdir + args[0] + ".tokens");
-            lines = File.ReadAllLines(currentdir + args[0]);
-            Console.Error.WriteLine("Compiling File: " + args[0]);
-            for (int i = 0; i < lines.Length; i++)
-            {
-                if (lines[i].StartsWith("//"))
-                {
-                    continue;
-                }
-                Console.WriteLine(lines[i]);
-                Lex.Start(ref lines, ref i, writer);
-            }
-            writer.Flush();
-            writer.Close();
-            writer.Dispose();
-            Console.Error.WriteLine("Lexical Analasis Complete");
-            Console.Error.WriteLine("Reading int symbol table");
-            Symbol.readintsymboltable(Lex.getintsymboltable());
-            Console.Error.WriteLine("Reading string symbol table");
-            Symbol.readstringsymboltable(Lex.getstringsymboltable());
-            Console.Error.WriteLine("Reading Function Symbol table");
-            Symbol.readfunctionsymboltable(Lex.getfunctionsymboltable());
-            Console.Error.WriteLine("Compilation Commencing");
-            CreateAssemblyFile();
-            CreateObjectFile();
-            Console.WriteLine(Lex.pubtokenslist.Count);
-            for (int i = 0; i < Lex.pubtokenslist.Count; i++)
-            {
-                Console.WriteLine("In loop 1");
-                for (int j = 0; j < Lex.pubtokenslist.ElementAt<string[]>(i).Length; j++)
-                {
-                    List<Instruction> inst;
-                    Console.WriteLine("In loop 2");
-                    //if (Lex.pubtokenslist.ElementAt<string[]>(i)[j] == null)
-                    //{
-                    //    nullornot[j] = true;
-                    //}
-
-                    AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
-                    Parser parse = new Parser(tokentree, ref i);
-                    inst = parse.getInstructions();
-                    for (int k = 0; k < inst.Count; k++)
-                    {
-                        //Console.Error.WriteLine("Printing Instruction");
-                        //Console.Error.WriteLine(inst.ElementAt(k).getOperands().Count());
-                        inst.ElementAt(k).printAssemblyInstruction();
-                        inst.ElementAt(k).PrintBinaryInstruction();
-                    }
-                    inst.Clear();
-                }
-                //if (checknull(nullornot))
-                //{
-                //    continue;
-                //}
-                //long beforememory = GC.GetTotalMemory(false);
-                //GC.Collect(int.MaxValue, GCCollectionMode.Forced, false);
-                //GCNotificationStatus status = GC.WaitForFullGCComplete(50000);
-                //long aftermemory = GC.GetTotalMemory(false);
-                //if (status != GCNotificationStatus.Succeeded)
-                //{
-                //    Console.Error.WriteLine("Error Collecting Garbage");
-                //}
-                //Console.Error.WriteLine((beforememory - aftermemory) + "Bytes were freed in garbage collection");
-            }
-
-            Console.Error.WriteLine("Compilation Complete");
+            LexicallyAnalyseFile(args[0]);
+            ReadSymbolTables();
+            CompileFile();
             Console.Error.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
         }
@@ -133,20 +69,62 @@ namespace CSharpToNative
             //}
         }
 
-        //private static bool checknull(bool[] nullornot)
-        //{
-        //    for (int i = 0; i < nullornot.Length; i++)
-        //    {
-        //        if (nullornot[i] != true)
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            continue;
-        //        }
-        //    }
-        //    return false;
-        //}
+        private static void CompileFile()
+        {
+            Console.Error.WriteLine("Compilation Commencing");
+            CreateAssemblyFile();
+            CreateObjectFile();
+            Console.WriteLine(Lex.pubtokenslist.Count);
+            for (int i = 0; i < Lex.pubtokenslist.Count; i++)
+            {
+                Console.WriteLine("In loop 1");
+                List<Instruction> inst;
+                //Console.WriteLine("In loop 2");
+                //Console.Error.WriteLine(Lex.pubtokenslist.ElementAt(i)[0]);
+                
+                AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
+                Parser parse = new Parser(tokentree, ref i);
+                inst = parse.getInstructions();
+                for (int k = 0; k < inst.Count; k++)
+                {
+                    inst.ElementAt(k).printAssemblyInstruction();
+                    inst.ElementAt(k).PrintBinaryInstruction();
+                }
+                inst.Clear();
+            }
+
+            Console.Error.WriteLine("Compilation Complete");
+        }
+
+        private static void ReadSymbolTables()
+        {
+            Console.Error.WriteLine("Reading int symbol table");
+            Symbol.readintsymboltable(Lex.getintsymboltable());
+            Console.Error.WriteLine("Reading string symbol table");
+            Symbol.readstringsymboltable(Lex.getstringsymboltable());
+            Console.Error.WriteLine("Reading Function Symbol table");
+            Symbol.readfunctionsymboltable(Lex.getfunctionsymboltable());
+        }
+
+        private static void LexicallyAnalyseFile(string file)
+        {
+            writer = new StreamWriter(currentdir + file + ".tokens");
+            lines = File.ReadAllLines(currentdir + file);
+            Console.Error.WriteLine("Compiling File: " + file);
+            Console.Error.WriteLine("Lexical Analasis Commencing");
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].StartsWith("//"))
+                {
+                    continue;
+                }
+                Console.WriteLine(lines[i]);
+                Lex.Start(ref lines, ref i, writer);
+            }
+            writer.Flush();
+            writer.Close();
+            writer.Dispose();
+            Console.Error.WriteLine("Lexical Analasis Complete");
+        }
     }
 }

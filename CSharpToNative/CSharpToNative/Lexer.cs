@@ -10,7 +10,7 @@ namespace CSharpToNative
         //public string[] pubtokens;
         public List<string[]> pubtokenslist = new List<string[]>(0);
 
-        private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
+        private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private string[] lines;
@@ -25,6 +25,11 @@ namespace CSharpToNative
         private LinkedList<Tuple<string, string, string>> stringsymboltable = new LinkedList<Tuple<string, string, string>>();
         private LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private bool isbracket = false;
+
+        public Lexer()
+        {
+
+        }
 
         public void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
         {
@@ -536,6 +541,7 @@ namespace CSharpToNative
         {
             switch (id)
             {
+                // TODO Save Symbol Tables
             }
         }
     }

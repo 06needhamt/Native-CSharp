@@ -20,6 +20,7 @@ namespace Linker
         {
             long origin = 0;
             ELFFile file = new ELFFile();
+            Files = new LinkedList<ELFFile>();
             Files.AddLast(file);
             read.Read(header, (int)origin, HEADER_LENGTH);
             file.setheader(header);

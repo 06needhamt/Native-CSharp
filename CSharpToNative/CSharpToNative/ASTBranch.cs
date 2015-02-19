@@ -7,6 +7,7 @@ namespace CSharpToNative
     public class ASTBranch : Branch
     {
         private bool isroot = false;
+        private bool isvoid = false;
 
         //static Type T4;
         public ASTBranch()
@@ -39,14 +40,22 @@ namespace CSharpToNative
             EnumTypes etypeval = EnumTypes.NO_TYPE;
             EnumOperator eopval = EnumOperator.NO_OPERATOR;
             bool infunction = false;
-
-            if (tokens.Contains((EnumTypes.VOID.ToString())))
+            if(tokens == null)
             {
                 return;
+            }
+            if (tokens.Contains((EnumTypes.VOID.ToString())))
+            {
+                isvoid = true;
             }
 
             for (int i = 0; i < tokens.Length; i++)
             {
+                if(isvoid)
+                {
+                    return;
+                }
+
                 if (Enum.IsDefined(typeof(EnumAccessModifiers), tokens[i].ToUpper())) // if current token is a access modifier
                 {
                     eprotval = (EnumAccessModifiers)Enum.Parse(typeof(EnumAccessModifiers), tokens[i].ToUpper()); // assign it to access modifier variable
@@ -130,7 +139,9 @@ namespace CSharpToNative
                             catch (Exception ex)
                             {
                                 Console.ForegroundColor = ConsoleColor.Magenta;
-                                Console.Error.WriteLine("An Error Occured");
+                                Console.Error.WriteLine("For Some Reason An Error Occured");
+                                Console.Error.WriteLine(ex.Message);
+                                Console.Error.WriteLine(ex.StackTrace);
                                 Console.ResetColor();
                                 Console.ReadKey();
                                 Environment.Exit(-1);
