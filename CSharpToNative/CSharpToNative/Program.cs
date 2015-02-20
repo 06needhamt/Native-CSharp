@@ -83,9 +83,11 @@ namespace CSharpToNative
                 //Console.Error.WriteLine(Lex.pubtokenslist.ElementAt(i)[0]);
                 
                 AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
-                Parser parse = new Parser(tokentree, ref i);
-                inst = parse.getInstructions();
-                for (int k = 0; k < inst.Count; k++)
+                Parser parser = new Parser(tokentree, ref i);
+                parser.Parse();
+                inst = parser.getInstructions();
+                Console.Error.WriteLine("There Are " + inst.Count + " Instructions");
+                for (int k = 0; k < inst.Count; k+=6) // HACK Warning revert to k++ when parser is fixed
                 {
                     inst.ElementAt(k).printAssemblyInstruction();
                     inst.ElementAt(k).PrintBinaryInstruction();

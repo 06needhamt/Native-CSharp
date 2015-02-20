@@ -35,6 +35,10 @@ namespace CSharpToNative
             //    tree.treebranches.Add(new Branch(Lexer.pubtokens));
             //}
 
+            
+        }
+        public void Parse()
+        {
             foreach (ASTBranch branch in this.branches)
             {
                 if (IsNumerical(branch.type)) // check if the branch is numerical
@@ -54,7 +58,6 @@ namespace CSharpToNative
                 }
             }
         }
-
         private void UpdateBranches()
         {
             this.branches = this.thetree.ASTbranches;

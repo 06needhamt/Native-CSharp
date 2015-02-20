@@ -44,14 +44,15 @@ namespace CSharpToNative
             {
                 return;
             }
-            if (tokens.Contains((EnumTypes.VOID.ToString())))
+            else if (tokens.Contains((EnumTypes.VOID.ToString())))
             {
                 isvoid = true;
+                infunction = true;
             }
 
             for (int i = 0; i < tokens.Length; i++)
             {
-                if(isvoid)
+                if(isvoid && infunction)
                 {
                     return;
                 }
@@ -123,7 +124,7 @@ namespace CSharpToNative
                                         continue;
                                     }
                                 }
-                                this.operation2 = (EnumOperator)index; // lookup the index in the enumerator and assign it to the operator value
+                                this.operation2 = (EnumOperator)index2; // lookup the index in the enumerator and assign it to the operator value
                             }
                             else
                             {
