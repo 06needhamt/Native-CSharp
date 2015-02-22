@@ -19,6 +19,7 @@ namespace CSharpToNative
 
         private static void Main(string[] args)
         {
+            Console.Error.WriteLine((ulong) Math.BigMul(int.MaxValue, int.MinValue));
             //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
             //Console.ReadKey();
             //Environment.Exit(0);

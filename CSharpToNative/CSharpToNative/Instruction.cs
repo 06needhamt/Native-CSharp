@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CSharpToNative
 {
-    internal class Instruction
+    internal class Instruction : IRegisterSet
     {
         private static Assembly ELFLib;
         private static Type ELFFile;

@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace CSharpToNative
 {
-    internal class Parser
+    internal class Parser : IRegisterSet
     {
         private int[] numericaltypes = { 0, 3, 4, 5, 6, 9, 11 }; // array to hold the enum values of numerical types
         private int[] alphanumericaltypes = { 1, 8 }; // array to hold the enum values of alphanumerical types
