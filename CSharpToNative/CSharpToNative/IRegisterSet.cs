@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
-    internal interface IRegisterSet
+    internal static class IRegisterSet
     {
         #if WIN64
         #region 64BITS
