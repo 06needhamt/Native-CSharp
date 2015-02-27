@@ -75,6 +75,11 @@ namespace CSharpToNative
             return base.Equals(obj);
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() ^ int.MaxValue;
+        }
+
         // getters 
         public EnumTokenFlags getFlags()
         {

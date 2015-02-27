@@ -89,9 +89,11 @@ namespace CSharpToNative
             int closesquarebracket = 0;
             int opencurlybracket = 0;
             int closecurlybracket = 0;
+            List<Tuple<int, int>> bracketloc = new List<Tuple<int, int>>();
+            Console.ForegroundColor = ConsoleColor.Magenta;
             for (int i = 0; i < lines.Length; i++)
             {
-                char[] chars = lines[i].ToCharArray();
+                List<char> chars = lines[i].ToList<char>();
                 foreach (char c in chars)
                 {
                     switch (c)
@@ -99,31 +101,37 @@ namespace CSharpToNative
                         case '(':
                             {
                                 openbracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         case ')':
                             {
                                 closebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         case '[':
                             {
                                 opensquarebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         case ']':
                             {
                                 closesquarebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         case '{':
                             {
                                 opencurlybracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         case '}':
                             {
                                 closecurlybracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
                                 break;
                             }
                         default:
@@ -133,6 +141,7 @@ namespace CSharpToNative
                     }
                 }
             }
+            Console.ResetColor();
             if((openbracket - closebracket == 0) && (opensquarebracket - closesquarebracket == 0) && (opencurlybracket - closecurlybracket == 0))
             {
                 return 0;
