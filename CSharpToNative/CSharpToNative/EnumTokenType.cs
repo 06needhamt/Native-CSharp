@@ -8,6 +8,7 @@ namespace CSharpToNative
 {
     internal enum EnumTokenType
     {
+        UNKNOWN = 0x00,
         CHARACTER = 0x01,
         INTEGER = 0x02,
         FLOATING_POINT = 0x03,
@@ -25,6 +26,7 @@ namespace CSharpToNative
         SINGLE_QUOTE = 0x0F,
         DOUBLE_QUOTE = 0x10,
         BACKSLASH = 0x11,
-        FORWARDSLASH = 0X12,
+        FORWARDSLASH = 0x12,
+        END_OF_FILE = 0x13
     }
 }

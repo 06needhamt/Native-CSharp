@@ -8,6 +8,7 @@ namespace CSharpToNative
 {
     internal enum EnumTokenFlags
     {
+        NO_FLAGS = 0x00,
         StartOfLine = 0x01,  // At start of line or only after whitespace
         // (considering the line after macro expansion).
         LeadingSpace = 0x02,  // Whitespace exists before this token (considering 

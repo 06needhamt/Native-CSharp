@@ -26,15 +26,17 @@ namespace CSharpToNative
         private LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
         private bool isbracket = false;
 
-        public Lexer()
-        {
-
-        }
-
-        public void Start(ref string[] linespar, ref int i, StreamWriter writerpar)
+        public Lexer(ref string[] linespar, StreamWriter writerpar)
         {
             lines = linespar;
             writer = writerpar;
+        }
+
+        public void Start(ref int i)
+        {
+            //lines = linespar;
+            //writer = writerpar;
+           
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
             {
                 return;
@@ -52,11 +54,11 @@ namespace CSharpToNative
                     Console.WriteLine(lines[i]);
                 }
             }
-            if (!linespar[i].EndsWith(";"))
+            if (!lines[i].EndsWith(";"))
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Error.Write("ERROR : Expected a ; ");
-                Console.Error.WriteLine(linespar[i]);
+                Console.Error.WriteLine(lines[i]);
                 Console.ResetColor();
                 //Console.ReadKey();
             }
@@ -78,6 +80,77 @@ namespace CSharpToNative
             writer.WriteLine();
         }
 
+        public int CheckBrackets()
+        {
+            
+            int openbracket = 0;
+            int closebracket = 0;
+            int opensquarebracket = 0;
+            int closesquarebracket = 0;
+            int opencurlybracket = 0;
+            int closecurlybracket = 0;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                char[] chars = lines[i].ToCharArray();
+                foreach (char c in chars)
+                {
+                    switch (c)
+                    {
+                        case '(':
+                            {
+                                openbracket++;
+                                break;
+                            }
+                        case ')':
+                            {
+                                closebracket++;
+                                break;
+                            }
+                        case '[':
+                            {
+                                opensquarebracket++;
+                                break;
+                            }
+                        case ']':
+                            {
+                                closesquarebracket++;
+                                break;
+                            }
+                        case '{':
+                            {
+                                opencurlybracket++;
+                                break;
+                            }
+                        case '}':
+                            {
+                                closecurlybracket++;
+                                break;
+                            }
+                        default:
+                            {
+                                continue;
+                            }
+                    }
+                }
+            }
+            if((openbracket - closebracket == 0) && (opensquarebracket - closesquarebracket == 0) && (opencurlybracket - closecurlybracket == 0))
+            {
+                return 0;
+            }
+            else if((openbracket - closebracket) != 0)
+            {
+                return 1;
+            }
+            else if((opensquarebracket - closesquarebracket != 0))
+            {
+                return 2;
+            }
+            else if((opencurlybracket - closecurlybracket != 0 ))
+            {
+                return 3;
+            }
+            return -1;
+        }
         private bool checkoperators(ref int i)
         {
             int cops = 0; // amount of operators found in the current line

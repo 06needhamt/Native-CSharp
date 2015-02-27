@@ -19,11 +19,13 @@ namespace CSharpToNative
 
         private static void Main(string[] args)
         {
+            Token a = null;
+            Token b = new Token();
+            bool ac = a == b;
             Console.Error.WriteLine((ulong) Math.BigMul(int.MaxValue, int.MinValue));
             //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
             //Console.ReadKey();
             //Environment.Exit(0);
-            Lex = new Lexer();
             //bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "Sysout.txt", false);
             Console.SetOut(conwriter);
@@ -113,8 +115,33 @@ namespace CSharpToNative
         {
             writer = new StreamWriter(currentdir + file + ".tokens");
             lines = File.ReadAllLines(currentdir + file);
+            Lex = new Lexer(ref lines, writer);
             Console.Error.WriteLine("Compiling File: " + file);
             Console.Error.WriteLine("Lexical Analasis Commencing");
+
+            switch (Lex.CheckBrackets())
+            {
+                case 0:
+                    {
+                        Console.Error.WriteLine("All braces matched");
+                        break;
+                    }
+                case 1:
+                    {
+                        Console.Error.WriteLine("Expected ( or )");
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.Error.WriteLine("Expected [ or ]");
+                        break;
+                    }
+                case 3:
+                    {
+                        Console.Error.WriteLine("Expected { or }");
+                        break;
+                    }
+            }
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].StartsWith("//"))
@@ -122,7 +149,8 @@ namespace CSharpToNative
                     continue;
                 }
                 Console.WriteLine(lines[i]);
-                Lex.Start(ref lines, ref i, writer);
+              
+                Lex.Start(ref i);
             }
             writer.Flush();
             writer.Close();
