@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpToNative", "CSharpToNative\CSharpToNative.csproj", "{3D28D321-E3BC-4673-86E1-15ADE77D027B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compiler", "CSharpToNative\Compiler.csproj", "{3D28D321-E3BC-4673-86E1-15ADE77D027B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linker", "Linker\Linker.csproj", "{40BF607B-DE72-4E99-B04D-097AA5F5C612}"
 EndProject
