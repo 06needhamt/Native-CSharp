@@ -1,10 +1,8 @@
 ﻿// Tokeniser for C#
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace CSharpToNative
 {
@@ -19,7 +17,7 @@ namespace CSharpToNative
         private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
-        
+
         public Tokeniser(string directory, string name)
         {
             this.directory = directory;
@@ -29,30 +27,30 @@ namespace CSharpToNative
             this.tokens = new LinkedList<Token>();
             this.lines = File.ReadAllLines(this.filepath);
             Console.Error.WriteLine("Tokeniser sucessfully constructed");
-
         }
 
         public bool Start()
         {
             //bool error = false;
-            if(CheckForErrors())
+            if (CheckForErrors())
             {
                 return false;
             }
-            else if(!CheckForKeywords())
+            else if (!CheckForKeywords())
             {
                 return false;
             }
-            else if(!CheckForTypes())
+            else if (!CheckForTypes())
             {
                 return false;
             }
-            else if(!CheckForOperators())
+            else if (!CheckForOperators())
             {
                 return false;
             }
             return true;
         }
+
         private bool CheckForTypes() // TODO add user typedefs
         {
             List<EnumTypes> typedefs = new List<EnumTypes>();
@@ -182,6 +180,5 @@ namespace CSharpToNative
         {
             return this.lines;
         }
-
     }
 }

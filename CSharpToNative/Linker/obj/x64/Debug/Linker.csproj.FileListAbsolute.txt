@@ -9,3 +9,14 @@ G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\bin\x64\Debug\CSharpToNati
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\x64\Debug\Linker.csprojResolveAssemblyReference.cache
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\x64\Debug\Linker.exe
 G:\GitHub\Compiler-Experimental\CSharpToNative\Linker\obj\x64\Debug\Linker.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\test.txt.tokens
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\Linker.exe.config
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\Linker.exe
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\Linker.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\CSharpToNative.exe
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\bin\x64\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\obj\x64\Debug\Linker.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\obj\x64\Debug\Linker.exe
+G:\GitHub\Native-CSharp\CSharpToNative\Linker\obj\x64\Debug\Linker.pdb

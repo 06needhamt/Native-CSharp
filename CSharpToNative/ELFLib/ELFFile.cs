@@ -20,27 +20,27 @@ namespace ELFLib
             Console.WriteLine(this.archetecture);
         }
 
-        public ELFFile(Lexer L)
-        {
-            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
-            Console.WriteLine(this.archetecture);
-            CreateHeader();
-            CreateShsrtabSegment();
-            Createdatasement(L.getintsymboltable());
-            Createdatasement(L.getstringsymboltable());
-            WriteFile("Default.o");
-        }
+        //public ELFFile(Lexer L)
+        //{
+        //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+        //    Console.WriteLine(this.archetecture);
+        //    CreateHeader();
+        //    CreateShsrtabSegment();
+        //    Createdatasement(L.getintsymboltable());
+        //    Createdatasement(L.getstringsymboltable());
+        //    WriteFile("Default.o");
+        //}
 
-        public ELFFile(Lexer L, string name)
-        {
-            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
-            Console.WriteLine(this.archetecture);
-            CreateHeader();
-            CreateShsrtabSegment();
-            Createdatasement(L.getintsymboltable());
-            Createdatasement(L.getstringsymboltable());
-            WriteFile(name);
-        }
+        //public ELFFile(Lexer L, string name)
+        //{
+        //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+        //    Console.WriteLine(this.archetecture);
+        //    CreateHeader();
+        //    CreateShsrtabSegment();
+        //    Createdatasement(L.getintsymboltable());
+        //    Createdatasement(L.getstringsymboltable());
+        //    WriteFile(name);
+        //}
 
         private DataSegment Createdatasement(LinkedList<Tuple<string, string, string>> symboltable)
         {

@@ -87,12 +87,6 @@
     <Compile Include="Symbol.cs" />
     <Compile Include="SymTab.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CSharpToNative\Compiler.csproj">
-      <Project>{3d28d321-e3bc-4673-86e1-15ade77d027b}</Project>
-      <Name>Compiler</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y /S "$(SolutionDir)\ELFLib\bin\Debug\ELFLib.dll" "$(SolutionDir)CSharpToNative\bin\Debug"</PostBuildEvent>

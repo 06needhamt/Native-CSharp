@@ -6,3 +6,11 @@ G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\x64\Debug\CSharpToNati
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.csprojResolveAssemblyReference.cache
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.dll
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\x64\Debug\test.txt.tokens
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\x64\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\x64\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\x64\Debug\CSharpToNative.exe
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\x64\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\x64\Debug\ELFLib.pdb

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpToNative
 {
@@ -18,12 +14,14 @@ namespace CSharpToNative
             this.type = Type;
             this.tokenVal = TokenVal;
         }
+
         public Token()
         {
             this.flags = EnumTokenFlags.NO_FLAGS;
             this.type = EnumTokenType.UNKNOWN;
             this.tokenVal = 0x00;
         }
+
         public bool CompareTokenType(EnumTokenType Type)
         {
             return ((int)this.type == (int)Type) ? true : false;
@@ -33,8 +31,9 @@ namespace CSharpToNative
         {
             return ((int)T.getType() == (int)Type) ? true : false;
         }
+
         // comparison functions
-        public static bool operator==(Token x, Token y)
+        public static bool operator ==(Token x, Token y)
         {
             // If both are same instance, return true.
             if (System.Object.ReferenceEquals(x, y))
@@ -61,11 +60,11 @@ namespace CSharpToNative
         {
             return !(x == y);
         }
+
         public override bool Equals(object obj)
         {
-
             // If parameter cannot be cast to Token return false:
-            Token p = (Token) obj;
+            Token p = (Token)obj;
             if ((object)p == null)
             {
                 return false;
@@ -80,7 +79,7 @@ namespace CSharpToNative
             return base.GetHashCode() ^ int.MaxValue;
         }
 
-        // getters 
+        // getters
         public EnumTokenFlags getFlags()
         {
             return this.flags;

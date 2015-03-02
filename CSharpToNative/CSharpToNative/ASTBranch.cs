@@ -40,7 +40,7 @@ namespace CSharpToNative
             EnumTypes etypeval = EnumTypes.NO_TYPE;
             EnumOperator eopval = EnumOperator.NO_OPERATOR;
             bool infunction = false;
-            if(tokens == null)
+            if (tokens == null)
             {
                 return;
             }
@@ -52,7 +52,7 @@ namespace CSharpToNative
 
             for (int i = 0; i < tokens.Length; i++)
             {
-                if(isvoid && infunction)
+                if (isvoid && infunction)
                 {
                     return;
                 }

@@ -28,7 +28,6 @@ namespace CSharpToNative
 
         public Lexer_Old()
         {
-
         }
 
         public void Start(ref string[] linespar, ref int i, StreamWriter writerpar)

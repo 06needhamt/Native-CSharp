@@ -34,9 +34,8 @@ namespace CSharpToNative
             //{
             //    tree.treebranches.Add(new Branch(Lexer.pubtokens));
             //}
-
-            
         }
+
         public void Parse()
         {
             foreach (ASTBranch branch in this.branches)
@@ -58,6 +57,7 @@ namespace CSharpToNative
                 }
             }
         }
+
         private void UpdateBranches()
         {
             this.branches = this.thetree.ASTbranches;
@@ -384,7 +384,7 @@ namespace CSharpToNative
             //    {
             //        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt(i).Value, "^[a-zA-Z0-9_]+$"))
             //        {
-            //            
+            //
             //        }
             //    }
             //}

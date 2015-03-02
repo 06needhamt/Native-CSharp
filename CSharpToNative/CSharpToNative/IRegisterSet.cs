@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpToNative
+﻿namespace CSharpToNative
 {
     internal static class IRegisterSet
     {
-        #if WIN64
+#if WIN64
+
         #region 64BITS
+
         public const string RAX = "RAX";
         public const string RBX = "RAX";
         public const string RCX = "RCX";
@@ -23,33 +19,40 @@ namespace CSharpToNative
         public const string R13 = "R13";
         public const string R14 = "R14";
         public const string R15 = "R15";
-        #endregion
-        #endif
+
+        #endregion 64BITS
+
+#endif
 
         #region 32BITS
+
         public const string EAX = "EAX";
         public const string EBX = "EBX";
         public const string ECX = "ECX";
         public const string EDX = "EDX";
-        #endregion
+
+        #endregion 32BITS
 
         #region 16BITS
+
         public const string AX = "AX";
         public const string BX = "BX";
         public const string CX = "CX";
         public const string DX = "DX";
-        #endregion
+
+        #endregion 16BITS
 
         #region 8BITS
+
         public const string AL = "AL";
         public const string BL = "BL";
         public const string CL = "CL";
-        public const string DL= "DL";
+        public const string DL = "DL";
         public const string AH = "AH";
         public const string BH = "BH";
         public const string CH = "CH";
         public const string DH = "DH";
-        #endregion
 
+        #endregion 8BITS
     }
 }

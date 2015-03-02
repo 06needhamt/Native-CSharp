@@ -42,12 +42,12 @@ namespace CSharpToNative
             {
                 if (i < length - 2)
                 {
-                    array = array + tokens[i];
-                    array = array + ",";
+                    array += tokens[i];
+                    array += ",";
                 }
                 else
                 {
-                    array = array + tokens[i];
+                    array += tokens[i];
                 }
             }
             return array;

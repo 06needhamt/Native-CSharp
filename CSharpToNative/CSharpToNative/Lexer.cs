@@ -36,7 +36,7 @@ namespace CSharpToNative
         {
             //lines = linespar;
             //writer = writerpar;
-           
+
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
             {
                 return;
@@ -82,7 +82,6 @@ namespace CSharpToNative
 
         public int CheckBrackets()
         {
-            
             int openbracket = 0;
             int closebracket = 0;
             int opensquarebracket = 0;
@@ -142,24 +141,25 @@ namespace CSharpToNative
                 }
             }
             Console.ResetColor();
-            if((openbracket - closebracket == 0) && (opensquarebracket - closesquarebracket == 0) && (opencurlybracket - closecurlybracket == 0))
+            if ((openbracket - closebracket == 0) && (opensquarebracket - closesquarebracket == 0) && (opencurlybracket - closecurlybracket == 0))
             {
                 return 0;
             }
-            else if((openbracket - closebracket) != 0)
+            else if ((openbracket - closebracket) != 0)
             {
                 return 1;
             }
-            else if((opensquarebracket - closesquarebracket != 0))
+            else if ((opensquarebracket - closesquarebracket != 0))
             {
                 return 2;
             }
-            else if((opencurlybracket - closecurlybracket != 0 ))
+            else if ((opencurlybracket - closecurlybracket != 0))
             {
                 return 3;
             }
             return -1;
         }
+
         private bool checkoperators(ref int i)
         {
             int cops = 0; // amount of operators found in the current line

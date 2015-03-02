@@ -19,10 +19,7 @@ G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\bin\Debug\CSharpToNative.p
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
 G:\GitHub\Compiler-Experimental\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
-G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\test.txt.tokens
 G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll
 G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.pdb
-G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\CSharpToNative.exe
-G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\CSharpToNative.pdb
 G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
 G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb

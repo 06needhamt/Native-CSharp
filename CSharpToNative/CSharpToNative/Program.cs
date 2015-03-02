@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace CSharpToNative
 {
-    internal class Program
+    public class Program
     {
         private static string[] lines; // array to hold the lines
         private static StreamWriter writer; // writer for writing to the file
@@ -16,13 +16,14 @@ namespace CSharpToNative
         private static Assembly ELFLib;
         private static Type ELFFile;
         private static Lexer Lex;
+        private static bool is64Bits;
 
         private static void Main(string[] args)
         {
             Token a = null;
             Token b = new Token();
             bool ac = a == b;
-            Console.Error.WriteLine((ulong) Math.BigMul(int.MaxValue, int.MinValue));
+            CheckIf64Bits();
             //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
             //Console.ReadKey();
             //Environment.Exit(0);
@@ -34,6 +35,22 @@ namespace CSharpToNative
             CompileFile();
             Console.Error.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
+        }
+
+        public static bool CheckIf64Bits()
+        {
+            try
+            {
+                Console.Error.WriteLine(Math.Pow(int.MaxValue, 2)); // check if we are running on 64 bits
+                is64Bits = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.StackTrace);
+                is64Bits = false;
+                return false;
+            }
         }
 
         private static void CreateObjectFile()
@@ -84,13 +101,13 @@ namespace CSharpToNative
                 List<Instruction> inst;
                 //Console.WriteLine("In loop 2");
                 //Console.Error.WriteLine(Lex.pubtokenslist.ElementAt(i)[0]);
-                
+
                 AST tokentree = new AST(Lex.pubtokenslist.ElementAt<string[]>(i));
                 Parser parser = new Parser(tokentree, ref i);
                 parser.Parse();
                 inst = parser.getInstructions();
                 Console.Error.WriteLine("There Are " + inst.Count + " Instructions");
-                for (int k = 0; k < inst.Count; k+=6) // HACK Warning revert to k++ when parser is fixed
+                for (int k = 0; k < inst.Count; k += 6) // HACK Warning revert to k++ when parser is fixed
                 {
                     inst.ElementAt(k).printAssemblyInstruction();
                     inst.ElementAt(k).PrintBinaryInstruction();
@@ -149,7 +166,7 @@ namespace CSharpToNative
                     continue;
                 }
                 Console.WriteLine(lines[i]);
-              
+
                 Lex.Start(ref i);
             }
             writer.Flush();
