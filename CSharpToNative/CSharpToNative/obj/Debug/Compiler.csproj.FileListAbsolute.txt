@@ -4,3 +4,6 @@ G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.e
 G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
 G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\Compiler.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb

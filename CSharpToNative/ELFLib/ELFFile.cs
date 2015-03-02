@@ -1,5 +1,4 @@
-﻿using CSharpToNative;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,12 +11,21 @@ namespace ELFLib
         private static long origin;
         private readonly string archetecture;
         private Dictionary<string, string> datasegment = new Dictionary<string, string>();
-        private ShsrtabSegment s;
+        private ShsrtabSegment shr;
 
         public ELFFile()
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
+        }
+        public ELFFile(string name)
+        {
+            this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
+            Console.WriteLine(this.archetecture);
+            CreateHeader();
+            shr = CreateShsrtabSegment();
+            Createdatasement(null);
+            WriteFile(name);
         }
 
         //public ELFFile(Lexer L)
@@ -25,7 +33,7 @@ namespace ELFLib
         //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
         //    Console.WriteLine(this.archetecture);
         //    CreateHeader();
-        //    CreateShsrtabSegment();
+        //    shr = CreateShsrtabSegment();
         //    Createdatasement(L.getintsymboltable());
         //    Createdatasement(L.getstringsymboltable());
         //    WriteFile("Default.o");
@@ -36,7 +44,7 @@ namespace ELFLib
         //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
         //    Console.WriteLine(this.archetecture);
         //    CreateHeader();
-        //    CreateShsrtabSegment();
+        //    shr = CreateShsrtabSegment();
         //    Createdatasement(L.getintsymboltable());
         //    Createdatasement(L.getstringsymboltable());
         //    WriteFile(name);
@@ -44,11 +52,13 @@ namespace ELFLib
 
         private DataSegment Createdatasement(LinkedList<Tuple<string, string, string>> symboltable)
         {
-            //foreach (var item in symboltable)
-            //{
-            //    datasegment.Add(item.Item1.ToString(),item.Item2.ToString());
-            //}
-            ShsrtabSegment shr = CreateShsrtabSegment();
+            if(this.shr != null)
+            {
+                shr.AddSegmentName(".data");
+            }
+            {
+                shr = CreateShsrtabSegment();
+            }
             DataSegment data = new DataSegment(".data", shr.getBeginOffset(), shr.getEndOffset(), new LinkedList<byte>());
             return data;
         }
@@ -70,7 +80,7 @@ namespace ELFLib
             origin = writeheader(ref writer, ref origin);
             origin = writedatasegment(datasegment, ref origin, ref writer);
             writer.Write(".code");
-            origin = writer.Seek((int)origin, SeekOrigin.End);
+            origin = writer.Seek((Math.Abs((int)origin)), SeekOrigin.End);
             writer.Flush();
             writer.Close();
             writer.Dispose();

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+
+using ELFLib;
 
 namespace CSharpToNative
 {
@@ -13,8 +14,6 @@ namespace CSharpToNative
         private static StreamWriter conwriter;
         private static string currentdir = System.Environment.CurrentDirectory + "/"; // current working directory
         private static string outfile = "output.o";
-        private static Assembly ELFLib;
-        private static Type ELFFile;
         private static Lexer Lex;
         private static bool is64Bits;
 
@@ -39,33 +38,20 @@ namespace CSharpToNative
 
         public static bool CheckIf64Bits()
         {
-            try
-            {
-                Console.Error.WriteLine(Math.Pow(int.MaxValue, 2)); // check if we are running on 64 bits
-                is64Bits = true;
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.Error.WriteLine(e.StackTrace);
-                is64Bits = false;
-                return false;
-            }
+            return is64Bits;
         }
 
         private static void CreateObjectFile()
         {
-            ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
             //for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
             //{
             //    Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
             //}
-            ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
             try
             {
-                object elf = Activator.CreateInstance(ELFFile, new object[] { Lex, "output.o" });
+                ELFFile elf = new ELFFile("output.o");
             }
-            catch (TargetInvocationException ex)
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex.Message);
                 Console.Error.WriteLine(ex.StackTrace);

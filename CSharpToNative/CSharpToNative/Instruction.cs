@@ -1,27 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text;
+
+using ELFLib;
 
 namespace CSharpToNative
 {
     internal class Instruction
     {
-        private static Assembly ELFLib;
-        private static Type ELFFile;
         private uint Opcode;
         private string[] Operands;
         private string currentdir = Environment.CurrentDirectory + "/";
 
         public Instruction(uint opcode, string[] operands)
         {
-            ELFLib = Assembly.LoadFile(currentdir + "ELFLib.dll");
-            for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
-            {
-                Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
-            }
-            ELFFile = ELFLib.GetType("ELFLib.ELFFile", true);
+            ELFFile elf = new ELFFile("output.o");
 
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
