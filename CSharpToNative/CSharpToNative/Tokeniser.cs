@@ -17,7 +17,7 @@ namespace CSharpToNative
         private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
-
+        private int bracketstatus;
         public Tokeniser(string directory, string name)
         {
             this.directory = directory;
@@ -142,13 +142,125 @@ namespace CSharpToNative
         {
             for (int i = 0; i < lines.Length; i++)
             {
+                bracketstatus = CheckBrackets();
                 if (!lines[i].EndsWith(";"))
                 {
+                    return true;
+                }
+                else if(bracketstatus != 0)
+                {
+                    FindBracketErrorCause(i,bracketstatus);
                     return true;
                 }
                 //else if(...)
             }
             return false;
+        }
+
+        private string FindBracketErrorCause(int line, int code)
+        {
+            BracketErrorHandler breh = new BracketErrorHandler(code, 0, 0, line);
+            if (breh.getError().Equals("No Error"))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return breh.getError();
+            }
+                
+        }
+
+        private int CheckBrackets()
+        {
+            int openbracket = 0;
+            int closebracket = 0;
+            int opensquarebracket = 0;
+            int closesquarebracket = 0;
+            int opencurlybracket = 0;
+            int closecurlybracket = 0;
+            List<Tuple<int, int>> bracketloc = new List<Tuple<int, int>>();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                List<char> chars = lines[i].ToList<char>();
+                foreach (char c in chars)
+                {
+                    switch (c)
+                    {
+                        case '(':
+                            {
+                                openbracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        case ')':
+                            {
+                                closebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        case '[':
+                            {
+                                opensquarebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        case ']':
+                            {
+                                closesquarebracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        case '{':
+                            {
+                                opencurlybracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        case '}':
+                            {
+                                closecurlybracket++;
+                                bracketloc.Add(new Tuple<int, int>(i, chars.IndexOf(c)));
+                                break;
+                            }
+                        default:
+                            {
+                                continue;
+                            }
+                    }
+                }
+            }
+            Console.ResetColor();
+            if ((openbracket - closebracket == 0) && (opensquarebracket - closesquarebracket == 0) && (opencurlybracket - closecurlybracket == 0))
+            {
+                return 0;
+            }
+            else if ((openbracket - closebracket) != 0)
+            {
+                if(openbracket > closebracket)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+            else if ((opensquarebracket - closesquarebracket != 0))
+            {
+                if(opensquarebracket > closesquarebracket)
+                {
+                    return 3;
+                }
+                return 4;
+            }
+            else if ((opencurlybracket - closecurlybracket != 0))
+            {
+                if(opencurlybracket > closecurlybracket)
+                {
+                    return 5;
+                }
+                return 6;
+            }
+            return -1;
         }
 
         public StreamWriter getWriter()

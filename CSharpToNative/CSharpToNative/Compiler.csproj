@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="AST.cs" />
     <Compile Include="ASTBranch.cs" />
+    <Compile Include="BracketErrorHandler.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="DefineTest.cs" />
     <Compile Include="EnumAccessModifiers.cs" />

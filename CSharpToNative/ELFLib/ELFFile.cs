@@ -80,7 +80,7 @@ namespace ELFLib
             origin = writeheader(ref writer, ref origin);
             origin = writedatasegment(datasegment, ref origin, ref writer);
             writer.Write(".code");
-            origin = writer.Seek((Math.Abs((int)origin)), SeekOrigin.End);
+            origin = writer.Seek((int)origin, SeekOrigin.Begin);
             writer.Flush();
             writer.Close();
             writer.Dispose();

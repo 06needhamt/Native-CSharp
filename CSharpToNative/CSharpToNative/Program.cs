@@ -43,10 +43,6 @@ namespace CSharpToNative
 
         private static void CreateObjectFile()
         {
-            //for (int i = 0; i < ELFLib.GetExportedTypes().Length; i++)
-            //{
-            //    Console.WriteLine(ELFLib.GetExportedTypes()[i].ToString());
-            //}
             try
             {
                 ELFFile elf = new ELFFile("output.o");
@@ -62,23 +58,19 @@ namespace CSharpToNative
             }
         }
 
-        private static void CreateAssemblyFile()
+        private static void EmptyAssemblyFile()
         {
             string outfile = currentdir + "Output.asm";
             if (File.Exists(outfile)) // if file exists delete and create it again so it is empty
             {
                 File.Delete(outfile);
             }
-            //else
-            //{
-            //    File.Create(outfile);
-            //}
         }
 
         private static void CompileFile()
         {
             Console.Error.WriteLine("Compilation Commencing");
-            CreateAssemblyFile();
+            EmptyAssemblyFile();
             CreateObjectFile();
             Console.WriteLine(Lex.pubtokenslist.Count);
             for (int i = 0; i < Lex.pubtokenslist.Count; i++)

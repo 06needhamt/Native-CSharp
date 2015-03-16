@@ -15,7 +15,7 @@ namespace CSharpToNative
 
         public Instruction(uint opcode, string[] operands)
         {
-            ELFFile elf = new ELFFile("output.o");
+            //ELFFile elf = new ELFFile("output.o");
 
             this.Opcode = opcode;
             //string hexop = Convert.ToString(this.Opcode, 16);
