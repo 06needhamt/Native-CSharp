@@ -23,7 +23,7 @@ namespace CSharpToNative
             this.directory = directory;
             this.filename = name;
             this.filepath = directory + "/" + name;
-            this.writer = new StreamWriter(this.filepath, false);
+            this.writer = new StreamWriter(this.filepath + ".tokens", false);
             this.tokens = new LinkedList<Token>();
             this.lines = File.ReadAllLines(this.filepath);
             Console.Error.WriteLine("Tokeniser sucessfully constructed");
@@ -32,21 +32,47 @@ namespace CSharpToNative
         public bool Start()
         {
             //bool error = false;
-            if (CheckForErrors())
+            CheckForFunctions();
+            //if (CheckForErrors())
+            //{
+            //    Destroy();
+            //    return false;
+            //}
+            //else if (!CheckForKeywords())
+            //{
+            //    Destroy();
+            //    return false;
+            //}
+            //else if (!CheckForTypes())
+            //{
+            //    Destroy();
+            //    return false;
+            //}
+            //else if (!CheckForOperators())
+            //{
+            //    Destroy();
+            //    return false;
+            //}
+            Destroy();
+            return true;
+        }
+        public void Destroy()
+        {
+            writer.Flush();
+            writer.Close();
+            writer.Dispose();
+        }
+
+        private bool CheckForFunctions()
+        {
+            string[] temptokens;
+            for(int i = 0; i < lines.Length; i++)
             {
-                return false;
-            }
-            else if (!CheckForKeywords())
-            {
-                return false;
-            }
-            else if (!CheckForTypes())
-            {
-                return false;
-            }
-            else if (!CheckForOperators())
-            {
-                return false;
+                temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
+                for(int j = 0; j < temptokens.Length; j++)
+                {
+                    Console.Error.WriteLine("Tokens j = " + temptokens[j]);
+                }
             }
             return true;
         }
