@@ -19,9 +19,8 @@ namespace CSharpToNative
 
         private static void Main(string[] args)
         {
-            Token a = null;
-            Token b = new Token();
-            bool ac = a == b;
+            Token A = new Token(EnumTokenFlags.NO_FLAGS, EnumTokenType.UNKNOWN, (byte)'7');
+            Console.Error.WriteLine(A.isNumeric());
             CheckIf64Bits();
             //Process.Start(currentdir + "Linker.exe", currentdir + "output.o");
             //Console.ReadKey();

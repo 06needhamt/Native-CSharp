@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace CSharpToNative
 {
@@ -6,7 +7,7 @@ namespace CSharpToNative
     {
         private EnumTokenFlags flags;
         private EnumTokenType type;
-        private byte tokenVal;
+        private readonly byte tokenVal;
 
         public Token(EnumTokenFlags Flags, EnumTokenType Type, byte TokenVal)
         {
@@ -105,6 +106,15 @@ namespace CSharpToNative
         public void setType(EnumTokenType type)
         {
             this.type = type;
+        }
+
+        public bool isNumeric()
+        {
+            return Char.IsDigit((char)this.tokenVal);
+        }
+        public bool isLetter()
+        {
+            return Char.IsLetter((char)this.tokenVal);
         }
     }
 }

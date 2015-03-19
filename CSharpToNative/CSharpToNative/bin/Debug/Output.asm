@@ -4,4 +4,5 @@ ADD
 ADD 
 MOV l,2
 MOV n,-1
+MOV n,-1
 MOV j,0
