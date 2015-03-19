@@ -5,6 +5,7 @@ public int k = i + j;
 public const int l = 2;
 public static string m = "Hello World";
 public int n = -1;
+main(i);
 private static void main (int i)
 {
 	int j = 0;

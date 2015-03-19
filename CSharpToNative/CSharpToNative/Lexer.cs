@@ -24,6 +24,7 @@ namespace CSharpToNative
         private LinkedList<Tuple<string, string, string>> integersymboltable = new LinkedList<Tuple<string, string, string>>();
         private LinkedList<Tuple<string, string, string>> stringsymboltable = new LinkedList<Tuple<string, string, string>>();
         private LinkedList<string[]> functionsymboltable = new LinkedList<string[]>();
+        private List<string> functionnams = new List<string>();
         private bool isbracket = false;
 
         public Lexer(ref string[] linespar, StreamWriter writerpar)
@@ -62,10 +63,14 @@ namespace CSharpToNative
                 Console.ResetColor();
                 //Console.ReadKey();
             }
+            getFunctionNames();
             if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
             {
-                Console.Error.Write("Invalid Input");
-                Console.WriteLine(lines[i]);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Error.Write(lines[i] + " ");
+                Console.Error.WriteLine("Invalid Input");
+                Console.ResetColor();
+                
                 //Console.ReadKey();
             }
             // System.Threading.Thread.Sleep(100);
@@ -585,12 +590,13 @@ namespace CSharpToNative
                         {
                             funcsplit[1] = EnumKeywords.VOID.ToString(); // write void between the parenthasis
                         }
+                        //functionsymboltable.AddLast(new string[] { funcsplit[0], funcsplit[1] });
                         writer.Write(funcsplit[0] + "(" + funcsplit[1] + ")"); // write the function to the file
                         writer.Write(','); // and a seperating comma
                     }
                     else // just write it to the file
                     {
-                        //functionsymboltable.Add(new Tuple<string, string>(funcsplit[0], funcsplit[1]));
+                        //functionsymboltable.AddLast(new string[] {funcsplit[0], funcsplit[1]} );
                         //Console.WriteLine(functionsymboltable.ElementAt<Tuple<string, string>>(0));
                         for (int j = 0; i < funcsplit.Length; j++)
                         {
@@ -617,6 +623,17 @@ namespace CSharpToNative
         public dynamic getfunctionsymboltable()
         {
             return functionsymboltable;
+        }
+        public List<string> getFunctionNames()
+        {
+            foreach (string[] s in this.functionsymboltable)
+            {
+                for (int i = 0; i < s.Length; i++)
+                {
+                    Console.Error.WriteLine(s[i]);
+                }
+            }
+            return new List<string>();
         }
 
         public void SaveSymbolTables(int id)
