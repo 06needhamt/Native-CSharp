@@ -643,5 +643,12 @@ namespace CSharpToNative
                 // TODO Save Symbol Tables
             }
         }
+
+        public void Destroy()
+        {
+            writer.Flush();
+            writer.Close();
+            writer.Dispose();
+        }
     }
 }

@@ -16,9 +16,19 @@ namespace CSharpToNative
         private static string outfile = "output.o";
         private static Lexer Lex;
         private static bool is64Bits;
+        private static Tokeniser T;
 
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            if(args.Length == 0)
+            {
+                Console.Error.WriteLine("Invalid Arguments");
+                Console.Error.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            T = new Tokeniser(currentdir, args[0]);
+            T.Start();
             Token A = new Token(EnumTokenFlags.NO_FLAGS, EnumTokenType.UNKNOWN, (byte)'7');
             Console.Error.WriteLine(A.isNumeric());
             CheckIf64Bits();
@@ -28,6 +38,7 @@ namespace CSharpToNative
             //bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "Sysout.txt", false);
             Console.SetOut(conwriter);
+            
             LexicallyAnalyseFile(args[0]);
             ReadSymbolTables();
             CompileFile();
@@ -146,9 +157,7 @@ namespace CSharpToNative
 
                 Lex.Start(ref i);
             }
-            writer.Flush();
-            writer.Close();
-            writer.Dispose();
+            Lex.Destroy();
             Console.Error.WriteLine("Lexical Analasis Complete");
         }
     }
