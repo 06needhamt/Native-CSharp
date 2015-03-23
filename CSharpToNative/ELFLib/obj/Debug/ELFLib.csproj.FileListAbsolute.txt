@@ -29,3 +29,8 @@ D:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAsse
 D:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
 D:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
 G:\GitHub\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.pdb

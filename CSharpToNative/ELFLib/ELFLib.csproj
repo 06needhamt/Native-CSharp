@@ -79,6 +79,7 @@
     <Compile Include="DataSegment.cs" />
     <Compile Include="ELFFile.cs" />
     <Compile Include="EnumDataSizes.cs" />
+    <Compile Include="IGlobalConstants.cs" />
     <Compile Include="NullSegement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Segment.cs" />
