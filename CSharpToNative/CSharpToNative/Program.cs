@@ -7,7 +7,7 @@ using ELFLib;
 
 namespace CSharpToNative
 {
-    public class Program
+    public class Program 
     {
         private static string[] lines; // array to hold the lines
         private static StreamWriter writer; // writer for writing to the file
@@ -20,6 +20,7 @@ namespace CSharpToNative
 
         public static void Main(string[] args)
         {
+            Console.Error.WriteLine("Constant = " + IGlobalConstants.test);
             if(args.Length == 0)
             {
                 Console.Error.WriteLine("Invalid Arguments");
