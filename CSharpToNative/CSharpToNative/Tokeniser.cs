@@ -71,7 +71,7 @@ namespace CSharpToNative
                 temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
                 for(int j = 0; j < temptokens.Length; j++)
                 {
-                    Console.Error.WriteLine("Tokens j = " + temptokens[j]);
+                    Console.Error.WriteLine("Tokens " + j + " = "  + temptokens[j]);
                 }
             }
             return true;
@@ -194,7 +194,7 @@ namespace CSharpToNative
             {
                 return breh.getError();
             }
-                
+
         }
 
         private int CheckBrackets()

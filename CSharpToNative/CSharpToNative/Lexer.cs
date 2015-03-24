@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ELFLib;
 
 namespace CSharpToNative
 {
@@ -35,9 +36,9 @@ namespace CSharpToNative
 
         public void Start(ref int i)
         {
+            int t = IGlobalConstants.test;
             //lines = linespar;
             //writer = writerpar;
-
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
             {
                 return;
@@ -429,6 +430,7 @@ namespace CSharpToNative
                         negated = false;
                     }
                     writer.Write("INTVALUE(" + tokens[i] + ")"); // write it to the file with an INTVALUE tag
+                    writer.Write(",");
                     continue;
                 }
                 else if (tokens[i].Equals("\n")) // if it is a new line get the next token
@@ -441,6 +443,7 @@ namespace CSharpToNative
                     if (tokens[i].StartsWith("\"") && tokens[i].EndsWith("\""))
                     {
                         writer.Write("STRINGVALUE(" + tokens[i] + ")"); // it must be a string literal so give it a STRINGVALUE tag
+                        writer.Write(",");
                         continue;
                     }
                     else if (tokens[i].StartsWith("\"") && !tokens[i].EndsWith("\""))
@@ -453,6 +456,7 @@ namespace CSharpToNative
                             writer.Write(tokens[i]);
                         }
                         writer.Write(")");
+                        writer.Write(",");
                         continue;
                     }
                     if ((tokens[0].Equals(EnumKeywords.PRIVATE.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PUBLIC.ToString().ToLower()) || tokens[0].Equals(EnumKeywords.PROTECTED.ToString().ToLower())) /*&& !isvardeclared(ref tokens,ref i)*/)

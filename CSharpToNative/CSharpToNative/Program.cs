@@ -20,7 +20,7 @@ namespace CSharpToNative
 
         public static void Main(string[] args)
         {
-            Console.Error.WriteLine("Constant = " + IGlobalConstants.test);
+            //Console.Error.WriteLine("Constant = " + );
             if(args.Length == 0)
             {
                 Console.Error.WriteLine("Invalid Arguments");
@@ -96,7 +96,7 @@ namespace CSharpToNative
                 parser.Parse();
                 inst = parser.getInstructions();
                 Console.Error.WriteLine("There Are " + inst.Count + " Instructions");
-                for (int k = 0; k < inst.Count; k += 6) // HACK Warning revert to k++ when parser is fixed
+                for (int k = 0; k < inst.Count; k++) // parser is now fixed
                 {
                     inst.ElementAt(k).printAssemblyInstruction();
                     inst.ElementAt(k).PrintBinaryInstruction();

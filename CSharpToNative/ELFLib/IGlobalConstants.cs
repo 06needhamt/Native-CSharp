@@ -8,6 +8,6 @@ namespace ELFLib
 {
     public static class IGlobalConstants
     {
-        public static readonly int test = 0x01;
+        public static int test = 0xFF;
     }
 }
