@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpToNative
+﻿namespace CSharpToNative
 {
-    class BracketErrorHandler
+    internal class BracketErrorHandler
     {
         public enum ErrorTypes
         {
@@ -25,8 +19,7 @@ namespace CSharpToNative
         private readonly int closingLocation;
         private readonly int lineNumber;
 
-
-        public BracketErrorHandler(int ErrorCode, int openingLoc, int closingLoc, int lineno )
+        public BracketErrorHandler(int ErrorCode, int openingLoc, int closingLoc, int lineno)
         {
             this.error = (ErrorTypes)ErrorCode;
             this.openingLocation = openingLoc;
@@ -43,10 +36,12 @@ namespace CSharpToNative
         {
             return this.openingLocation;
         }
+
         public int getClosingLocation()
         {
             return this.closingLocation;
         }
+
         public int getLineNumber()
         {
             return this.lineNumber;
@@ -103,6 +98,5 @@ namespace CSharpToNative
                 }
             }
         }
-
     }
 }

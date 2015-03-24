@@ -2,7 +2,6 @@
 {
     internal static class IRegisterSet
     {
-
 #if WIN64
 
         #region 64BITS
