@@ -1,13 +1,12 @@
-﻿using System;
+﻿using ELFLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using ELFLib;
-
 namespace CSharpToNative
 {
-    public class Program 
+    public class Program
     {
         private static string[] lines; // array to hold the lines
         private static StreamWriter writer; // writer for writing to the file
@@ -21,7 +20,7 @@ namespace CSharpToNative
         public static void Main(string[] args)
         {
             //Console.Error.WriteLine("Constant = " + );
-            if(args.Length == 0)
+            if (args.Length == 0)
             {
                 Console.Error.WriteLine("Invalid Arguments");
                 Console.Error.WriteLine("Press Any Key To Continue...");
@@ -39,7 +38,7 @@ namespace CSharpToNative
             //bool[] nullornot = new bool[100];
             conwriter = new StreamWriter(currentdir + "Sysout.txt", false);
             Console.SetOut(conwriter);
-            
+
             LexicallyAnalyseFile(args[0]);
             ReadSymbolTables();
             CompileFile();

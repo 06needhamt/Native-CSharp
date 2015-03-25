@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ELFLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ELFLib;
 
 namespace CSharpToNative
 {
@@ -71,7 +71,7 @@ namespace CSharpToNative
                 Console.Error.Write(lines[i] + " ");
                 Console.Error.WriteLine("Invalid Input");
                 Console.ResetColor();
-                
+
                 //Console.ReadKey();
             }
             // System.Threading.Thread.Sleep(100);
@@ -628,6 +628,7 @@ namespace CSharpToNative
         {
             return functionsymboltable;
         }
+
         public List<string> getFunctionNames()
         {
             foreach (string[] s in this.functionsymboltable)

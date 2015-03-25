@@ -1,0 +1,10 @@
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\test.txt.tokens
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\CompilerTest.dll
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\CompilerTest.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\CSharpToNative.exe
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\bin\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\obj\Debug\CompilerTest.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\obj\Debug\CompilerTest.dll
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CompilerTest\obj\Debug\CompilerTest.pdb
