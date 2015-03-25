@@ -18,6 +18,7 @@ namespace CSharpToNative
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private int bracketstatus;
+
         public Tokeniser(string directory, string name)
         {
             this.directory = directory;
@@ -56,6 +57,7 @@ namespace CSharpToNative
             Destroy();
             return true;
         }
+
         public void Destroy()
         {
             writer.Flush();
@@ -66,12 +68,12 @@ namespace CSharpToNative
         private bool CheckForFunctions()
         {
             string[] temptokens;
-            for(int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
                 temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
-                for(int j = 0; j < temptokens.Length; j++)
+                for (int j = 0; j < temptokens.Length; j++)
                 {
-                    Console.Error.WriteLine("Tokens j = " + temptokens[j]);
+                    Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
                 }
             }
             return true;
@@ -173,9 +175,9 @@ namespace CSharpToNative
                 {
                     return true;
                 }
-                else if(bracketstatus != 0)
+                else if (bracketstatus != 0)
                 {
-                    FindBracketErrorCause(i,bracketstatus);
+                    FindBracketErrorCause(i, bracketstatus);
                     return true;
                 }
                 //else if(...)
@@ -194,7 +196,6 @@ namespace CSharpToNative
             {
                 return breh.getError();
             }
-                
         }
 
         private int CheckBrackets()
@@ -264,7 +265,7 @@ namespace CSharpToNative
             }
             else if ((openbracket - closebracket) != 0)
             {
-                if(openbracket > closebracket)
+                if (openbracket > closebracket)
                 {
                     return 2;
                 }
@@ -272,7 +273,7 @@ namespace CSharpToNative
             }
             else if ((opensquarebracket - closesquarebracket != 0))
             {
-                if(opensquarebracket > closesquarebracket)
+                if (opensquarebracket > closesquarebracket)
                 {
                     return 3;
                 }
@@ -280,7 +281,7 @@ namespace CSharpToNative
             }
             else if ((opencurlybracket - closecurlybracket != 0))
             {
-                if(opencurlybracket > closecurlybracket)
+                if (opencurlybracket > closecurlybracket)
                 {
                     return 5;
                 }

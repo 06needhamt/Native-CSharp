@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linker", "Linker\Linker.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELFLib", "ELFLib\ELFLib.csproj", "{AFDA37B8-7187-42F1-AEC1-EBB60946A7B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompilerTest", "CompilerTest\CompilerTest.csproj", "{ABA75A30-C705-41B6-842F-34E8F872383A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,14 @@ Global
 		{AFDA37B8-7187-42F1-AEC1-EBB60946A7B0}.Release|x64.Build.0 = Release|x64
 		{AFDA37B8-7187-42F1-AEC1-EBB60946A7B0}.Release|x86.ActiveCfg = Release|x86
 		{AFDA37B8-7187-42F1-AEC1-EBB60946A7B0}.Release|x86.Build.0 = Release|x86
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Release|x64.ActiveCfg = Release|Any CPU
+		{ABA75A30-C705-41B6-842F-34E8F872383A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

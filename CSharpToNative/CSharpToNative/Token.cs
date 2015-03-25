@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace CSharpToNative
 {
@@ -112,6 +111,7 @@ namespace CSharpToNative
         {
             return Char.IsDigit((char)this.tokenVal);
         }
+
         public bool isLetter()
         {
             return Char.IsLetter((char)this.tokenVal);

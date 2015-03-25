@@ -18,6 +18,7 @@ namespace ELFLib
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
         }
+
         public ELFFile(string name)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
@@ -52,7 +53,7 @@ namespace ELFLib
 
         private DataSegment Createdatasement(LinkedList<Tuple<string, string, string>> symboltable)
         {
-            if(this.shr != null)
+            if (this.shr != null)
             {
                 shr.AddSegmentName(".data");
             }
