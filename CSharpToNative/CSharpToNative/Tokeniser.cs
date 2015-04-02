@@ -33,7 +33,6 @@ namespace CSharpToNative
         public bool Start()
         {
             //bool error = false;
-            CheckForFunctions();
             //if (CheckForErrors())
             //{
             //    Destroy();
@@ -54,6 +53,8 @@ namespace CSharpToNative
             //    Destroy();
             //    return false;
             //}
+            bool functions = CheckForFunctions();
+            Console.WriteLine(functions);
             Destroy();
             return true;
         }
@@ -68,14 +69,34 @@ namespace CSharpToNative
         private bool CheckForFunctions()
         {
             string[] temptokens;
+            List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
             for (int i = 0; i < lines.Length; i++)
             {
                 temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
                 for (int j = 0; j < temptokens.Length; j++)
                 {
+                    if (temptokens[j].Equals("main"))
+                    {
+                        foreach (Tuple<string, int> t in functionLocations)
+                        {
+                            if (t.Item1.Equals("main"))
+                            {
+                                Console.Error.Write(("FUNCTION CALL: ( " + t.Item1));
+                                int current = j + 1;
+                                while (!temptokens[current].Equals(")"))
+                                {
+                                    Console.Error.Write(temptokens[current] + ",");
+                                    current++;
+                                }
+                                Console.Error.WriteLine(") )");
+                            }
+                        }
+                        functionLocations.Add(new Tuple<string, int>(temptokens[j], i));
+                    }
                     Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
                 }
             }
+
             return true;
         }
 
