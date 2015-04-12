@@ -1,6 +1,0 @@
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\x64\Debug\test.txt.tokens
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\x64\Debug\CSharpToNative.exe.config
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\x64\Debug\CSharpToNative.exe
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\x64\Debug\CSharpToNative.pdb
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\x64\Debug\CSharpToNative.exe
-G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\x64\Debug\CSharpToNative.pdb
