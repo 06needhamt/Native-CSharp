@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace CSharpToNative
 {
@@ -21,14 +22,27 @@ namespace CSharpToNative
         public List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
         public List<Tuple<EnumTypes,string,int>> variables = new List<Tuple<EnumTypes,string,int>>();
 
-        public Tokeniser(string directory, string name)
+        public Tokeniser(string directory, string name, string[] Arguments)
         {
-            this.directory = directory;
-            this.filename = name;
-            this.filepath = directory + "/" + name;
-            this.writer = new StreamWriter(this.filepath + ".tokens", false);
-            this.tokens = new LinkedList<Token>();
-            this.lines = File.ReadAllLines(this.filepath);
+            try
+            {
+                this.directory = directory;
+                this.filename = name;
+                this.filepath = Arguments[0];
+                this.writer = new StreamWriter(this.filepath + ".tokens", false);
+                this.tokens = new LinkedList<Token>();
+                this.lines = File.ReadAllLines(this.filepath);
+            }
+            catch (FileNotFoundException ex)
+            {
+
+                string cwd = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string projectName = "CSharpToNative";  //YOUR PROJECT NAME HERE
+                string solutionPath = cwd.Replace(projectName + "\\bin\\Debug", "");
+                File.Copy(solutionPath + "\\text.txt", cwd);
+
+            }
+            
             Console.Error.WriteLine("Tokeniser sucessfully constructed");
         }
 

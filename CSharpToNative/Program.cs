@@ -29,7 +29,13 @@ namespace CSharpToNative
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            T = new Tokeniser(currentdir, args[0]);
+            string[] tempargs = args[0].Split(new char[] {'\\'});
+            //for(int i = 0; i < tempargs.Length; i++)
+            //{
+            //    Console.Error.WriteLine(tempargs[i]);
+            //}
+            //Console.ReadKey();
+            T = new Tokeniser(currentdir,tempargs[tempargs.Length -1],args);
             T.Start();
             Token A = new Token(EnumTokenFlags.NO_FLAGS, EnumTokenType.UNKNOWN, (byte)'7');
             Console.Error.WriteLine(A.isNumeric());
@@ -151,10 +157,11 @@ namespace CSharpToNative
 
         private static void LexicallyAnalyseFile(string file)
         {
-            writer = new StreamWriter(currentdir + file + ".tokens");
-            lines = File.ReadAllLines(currentdir + file);
+            string[] tempargs = file.Split(new char[] { '\\' });
+            writer = new StreamWriter(currentdir + tempargs[tempargs.Length - 1] + ".tokens");
+            lines = File.ReadAllLines(currentdir + tempargs[tempargs.Length - 1]);
             Lex = new Lexer(ref lines, writer);
-            Console.Error.WriteLine("Compiling File: " + file);
+            Console.Error.WriteLine("Compiling File: " + tempargs[tempargs.Length - 1]);
             Console.Error.WriteLine("Lexical Analasis Commencing");
 
             switch (Lex.CheckBrackets())
