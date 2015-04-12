@@ -18,6 +18,8 @@ namespace CSharpToNative
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private int bracketstatus;
+        public List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
+        public List<Tuple<EnumTypes,string,int>> variables = new List<Tuple<EnumTypes,string,int>>();
 
         public Tokeniser(string directory, string name)
         {
@@ -70,30 +72,63 @@ namespace CSharpToNative
         {
             string[] temptokens;
             List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
+            List<string[]> temptokensList = new List<string[]>();
             for (int i = 0; i < lines.Length; i++)
             {
                 temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
+                temptokensList.Add(temptokens);
                 for (int j = 0; j < temptokens.Length; j++)
                 {
-                    if (temptokens[j].Equals("main"))
+                    if (temptokens[j].Contains('\t'))
                     {
+                        temptokens[j] = temptokens[j].Replace("\t", string.Empty);
+                    }
+                }
+                if(!operators.Contains(temptokens[0]) && !keywords.Contains(temptokens[0]) && !types.Contains(temptokens[0]) && !lines[i].Contains("//"))
+                {
+                    if(temptokens[0].Equals("{") || temptokens[0].Equals("}"))
+                    {
+                        // TODO handle curly braces
+                        continue;
+                    }
+                    if (!temptokens.Contains("("))
+                    {
+                        // TODO handle statements;
+                        bool statement = true;
+                        continue;
+                    }
+                    // must be a function definition;
+                    
+                    Tuple<string, int> func = new Tuple<string, int>(temptokens[0], i);
+                    if(!functionLocations.Contains(func))
+                    {
+                        functionLocations.Add(func);
+                    }
+                    Console.Error.Write(("FUNCTION CALL: ( " ));
+                    writer.Write("FUNCTION CALL: ( ");
+
                         foreach (Tuple<string, int> t in functionLocations)
                         {
-                            if (t.Item1.Equals("main"))
+                            Console.Error.Write(t.Item1);
+                            writer.Write(t.Item1);
+                            var templist = temptokens.ToList();
+                            int current = (templist.IndexOf(t.Item1) + 1);
+                            do
                             {
-                                Console.Error.Write(("FUNCTION CALL: ( " + t.Item1));
-                                int current = j + 1;
-                                while (!temptokens[current].Equals(")"))
-                                {
-                                    Console.Error.Write(temptokens[current] + ",");
-                                    current++;
-                                }
-                                Console.Error.WriteLine(") )");
+                                writer.Write(temptokensList.ElementAt(i)[current] + ",");
+                                Console.Error.Write(temptokensList.ElementAt(i)[current] + ",");
+                                current++;
+                                //
                             }
-                        }
-                        functionLocations.Add(new Tuple<string, int>(temptokens[j], i));
+                            while (!temptokens[current].Equals(")"));
+                            writer.WriteLine(") )");
+                            Console.Error.WriteLine(") )");
                     }
-                    Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
+                        for (int j = 0; j < temptokens.Length; j++)
+                        {
+
+                            Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
+                        }
                 }
             }
 

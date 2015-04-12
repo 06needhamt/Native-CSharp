@@ -33,4 +33,3 @@ G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.dll
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\bin\Debug\ELFLib.pdb
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.dll
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.pdb
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\ELFLib\obj\Debug\ELFLib.csprojResolveAssemblyReference.cache
