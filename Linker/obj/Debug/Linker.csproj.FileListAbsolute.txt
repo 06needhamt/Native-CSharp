@@ -1,0 +1,8 @@
+G:\GitHub\Native-CSharp\Linker\bin\Debug\Linker.exe.config
+G:\GitHub\Native-CSharp\Linker\bin\Debug\Linker.exe
+G:\GitHub\Native-CSharp\Linker\bin\Debug\Linker.pdb
+G:\GitHub\Native-CSharp\Linker\bin\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\Linker\bin\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\Linker\obj\Debug\Linker.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\Linker\obj\Debug\Linker.exe
+G:\GitHub\Native-CSharp\Linker\obj\Debug\Linker.pdb

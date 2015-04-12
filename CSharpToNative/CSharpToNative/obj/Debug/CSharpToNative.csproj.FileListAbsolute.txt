@@ -1,0 +1,81 @@
+F:\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+F:\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+F:\CSharpToNative\CSharpToNative\bin\Debug\test.txt
+F:\CSharpToNative\CSharpToNative\bin\Debug\test.txt.lex
+F:\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+F:\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+F:\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+F:\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\bin\Debug\test.txt
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\bin\Debug\test.txt.lex
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\Stuffimake\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\CSharp-To-Native-Compiler\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.lex
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+F:\CSharp-To-Native-Compiler-master (1)\CSharp-To-Native-Compiler-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Desktop\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+C:\Users\Tom\Desktop\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+C:\Users\Tom\Desktop\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+F:\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+F:\Compiler-Experimental-master\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb
+D:\Compiler-Experimental-master (1)\Compiler-Experimental-master\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+C:\Users\Tom\Documents\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+G:\GitHub\Compiler-Experimental\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.csprojResolveAssemblyReference.cache
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
+G:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb

@@ -1,0 +1,4 @@
+G:\GitHub\Native-CSharp\ELFLib\bin\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\ELFLib\bin\Debug\ELFLib.pdb
+G:\GitHub\Native-CSharp\ELFLib\obj\Debug\ELFLib.dll
+G:\GitHub\Native-CSharp\ELFLib\obj\Debug\ELFLib.pdb
