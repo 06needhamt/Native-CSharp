@@ -12,17 +12,20 @@ namespace ELFLib
         private readonly string archetecture;
         private Dictionary<string, string> datasegment = new Dictionary<string, string>();
         private ShsrtabSegment shr;
+        private string version;
 
         public ELFFile()
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
+            version = this.GetVersionNumber();
         }
 
         public ELFFile(string name)
         {
             this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
             Console.WriteLine(this.archetecture);
+            version = this.GetVersionNumber();
             CreateHeader();
             shr = CreateShsrtabSegment();
             Createdatasement(null);
@@ -33,6 +36,7 @@ namespace ELFLib
         //{
         //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
         //    Console.WriteLine(this.archetecture);
+        //    version = this.GetVersionNumber();
         //    CreateHeader();
         //    shr = CreateShsrtabSegment();
         //    Createdatasement(L.getintsymboltable());
@@ -44,12 +48,20 @@ namespace ELFLib
         //{
         //    this.archetecture = CPUInfo.GetProcessorArchitecture().ToString();
         //    Console.WriteLine(this.archetecture);
+        //    version = this.GetVersionNumber();
         //    CreateHeader();
         //    shr = CreateShsrtabSegment();
         //    Createdatasement(L.getintsymboltable());
         //    Createdatasement(L.getstringsymboltable());
         //    WriteFile(name);
         //}
+
+        public string GetVersionNumber()
+        {
+            var CurrentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            string VersionNumber = CurrentAssembly.GetName().Version.ToString();
+            return VersionNumber;
+        }
 
         private DataSegment Createdatasement(LinkedList<Tuple<string, string, string>> symboltable)
         {

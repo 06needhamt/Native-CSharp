@@ -91,6 +91,12 @@ namespace CSharpToNative
                         // TODO handle curly braces
                         continue;
                     }
+                    if (!temptokens.Contains("("))
+                    {
+                        // TODO handle statements;
+                        bool statement = true;
+                        continue;
+                    }
                     // must be a function definition;
                     
                     Tuple<string, int> func = new Tuple<string, int>(temptokens[0], i);
@@ -112,6 +118,7 @@ namespace CSharpToNative
                                 writer.Write(temptokensList.ElementAt(i)[current] + ",");
                                 Console.Error.Write(temptokensList.ElementAt(i)[current] + ",");
                                 current++;
+                                //
                             }
                             while (!temptokens[current].Equals(")"));
                             writer.WriteLine(") )");

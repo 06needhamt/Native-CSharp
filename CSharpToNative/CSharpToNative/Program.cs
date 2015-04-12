@@ -19,6 +19,26 @@ namespace CSharpToNative
 
         public static void Main(string[] args)
         {
+            ELFFile e = new ELFFile();
+            Console.Error.WriteLine("ELF Version: " + e.GetVersionNumber());
+            if (!GetVersionNumber().Equals(e.GetVersionNumber()))
+            {
+                try
+                {
+                    throw new Exception();
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.Error.WriteLine("Please make sure compiler and ElF Versions are equal");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                    
+                }
+            }
+            Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
+            //Console.ReadKey();
             //Console.Error.WriteLine("Constant = " + );
             if (args.Length == 0)
             {
@@ -44,6 +64,14 @@ namespace CSharpToNative
             CompileFile();
             Console.Error.WriteLine("Press Any Key To Exit");
             Console.ReadKey();
+        }
+
+        private static string GetVersionNumber()
+        {
+            var CurrentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+	        string VersionNumber = CurrentAssembly.GetName().Version.ToString();
+	        Console.Error.WriteLine("Compiler Version:" + VersionNumber);
+            return VersionNumber;
         }
 
         public static bool CheckIf64Bits()

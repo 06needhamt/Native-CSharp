@@ -17,11 +17,11 @@ D:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\Compiler.csprojR
 D:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
 D:\GitHub\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\test.txt.tokens
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe.config
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.exe
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\Native-CSharp.exe.config
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\Native-CSharp.exe
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\Native-CSharp.pdb
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.dll
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\bin\Debug\ELFLib.pdb
 G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\Compiler.csprojResolveAssemblyReference.cache
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.exe
-G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\CSharpToNative.pdb
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\Native-CSharp.exe
+G:\GitHub\Native-CSharp\Native-CSharp\CSharpToNative\CSharpToNative\obj\Debug\Native-CSharp.pdb
