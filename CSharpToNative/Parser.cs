@@ -99,7 +99,7 @@ namespace CSharpToNative
                         break;
                     }
 
-                case EnumOperator.ASSIGNMEMT: // if it is an assignment
+                case EnumOperator.ASSIGNMENT: // if it is an assignment
                     {
                         instructions.Add(CreateMOVInstruction(Type, operation, name, val));
                         break;
@@ -396,7 +396,7 @@ namespace CSharpToNative
             DefineVariable(Type, name, null);
             switch (operation)
             {
-                case EnumOperator.ASSIGNMEMT: // if it is an assignment
+                case EnumOperator.ASSIGNMENT: // if it is an assignment
                     {
                         for (int i = 0; i < 2; i++)
                         {

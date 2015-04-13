@@ -66,7 +66,7 @@ namespace CSharpToNative
                 //Console.ReadKey();
             }
             getFunctionNames();
-            if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
+            if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i) && !CheckForFunctions()) // if the line has no keywords operators or types it must be an error
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Error.Write(lines[i] + " ");
@@ -141,11 +141,6 @@ namespace CSharpToNative
                         while (!temptokens[current].Equals(")"));
                         writer.WriteLine(") )");
                         Console.Error.WriteLine(") )");
-                    }
-                    for (int j = 0; j < temptokens.Length; j++)
-                    {
-
-                        Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
                     }
                 }
             }

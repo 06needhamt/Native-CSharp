@@ -74,7 +74,7 @@ namespace CSharpToNative
 
                 }
             }
-            Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
+            //Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
         }
 
         private static string GetVersionNumber()
