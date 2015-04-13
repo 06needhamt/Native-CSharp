@@ -32,6 +32,7 @@ namespace CSharpToNative
         {
             lines = linespar;
             writer = writerpar;
+            CheckForFunctions();
         }
 
         public void Start(ref int i)
@@ -85,7 +86,72 @@ namespace CSharpToNative
             printTokens(temptokens); // tokenize the checked line and print it to the file
             writer.WriteLine();
         }
+        private bool CheckForFunctions()
+        {
+            string[] temptokens;
+            List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
+            List<string[]> temptokensList = new List<string[]>();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                temptokens = StringManipulation.HandMadeSplit(lines[i]).ToArray();
+                temptokensList.Add(temptokens);
+                for (int j = 0; j < temptokens.Length; j++)
+                {
+                    if (temptokens[j].Contains('\t'))
+                    {
+                        temptokens[j] = temptokens[j].Replace("\t", string.Empty);
+                    }
+                }
+                if (!operators.Contains(temptokens[0]) && !keywords.Contains(temptokens[0]) && !types.Contains(temptokens[0]) && !lines[i].Contains("//"))
+                {
+                    if (temptokens[0].Equals("{") || temptokens[0].Equals("}"))
+                    {
+                        // TODO handle curly braces
+                        continue;
+                    }
+                    if (!temptokens.Contains("("))
+                    {
+                        // TODO handle statements;
+                        bool statement = true;
+                        continue;
+                    }
+                    // must be a function definition;
 
+                    Tuple<string, int> func = new Tuple<string, int>(temptokens[0], i);
+                    if (!functionLocations.Contains(func))
+                    {
+                        functionLocations.Add(func);
+                    }
+                    Console.Error.Write(("FUNCTION CALL: ( "));
+                    writer.Write("FUNCTION CALL: ( ");
+
+                    foreach (Tuple<string, int> t in functionLocations)
+                    {
+                        Console.Error.Write(t.Item1);
+                        writer.Write(t.Item1);
+                        var templist = temptokens.ToList();
+                        int current = (templist.IndexOf(t.Item1) + 1);
+                        do
+                        {
+                            writer.Write(temptokensList.ElementAt(i)[current] + ",");
+                            Console.Error.Write(temptokensList.ElementAt(i)[current] + ",");
+                            current++;
+                            //
+                        }
+                        while (!temptokens[current].Equals(")"));
+                        writer.WriteLine(") )");
+                        Console.Error.WriteLine(") )");
+                    }
+                    for (int j = 0; j < temptokens.Length; j++)
+                    {
+
+                        Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
+                    }
+                }
+            }
+
+            return true;
+        }
         public int CheckBrackets()
         {
             int openbracket = 0;
