@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpToNative
+namespace Compiler
 {
     public class Branch
     {

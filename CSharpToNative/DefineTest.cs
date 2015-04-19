@@ -1,7 +1,7 @@
 ﻿// test file
 using System;
 
-namespace CSharpToNative
+namespace Compiler
 {
     internal static class DefineTest
     {

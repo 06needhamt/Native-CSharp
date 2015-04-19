@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace CSharpToNative
+namespace Compiler
 {
     internal class Parser
     {

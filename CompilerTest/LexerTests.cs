@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpToNative;
+using Compiler;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace CSharpToNative.Tests
+namespace Compiler.Tests
 {
     [TestClass()]
     public class LexerTests

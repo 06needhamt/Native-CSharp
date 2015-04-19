@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Compiler
 {
     public class ASTBranch : Branch
     {

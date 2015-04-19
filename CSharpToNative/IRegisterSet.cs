@@ -1,4 +1,4 @@
-﻿namespace CSharpToNative
+﻿namespace Compiler
 {
     internal static class IRegisterSet
     {

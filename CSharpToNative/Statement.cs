@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpToNative
+namespace Compiler
 {
     class Statement
     {
         EnumTypes ReturnType = EnumTypes.NO_TYPE;
+        Block container;
+
+        internal Block Container
+        {
+            get { return container; }
+            set { container = value; }
+        }
 
         internal EnumTypes ReturnValueType
         {
@@ -47,6 +54,18 @@ namespace CSharpToNative
                 
             }
             return new Statement(temptokens);
+        }
+
+        public void parseLocalVariables(string[] contents)
+        {
+
+            EnumTypes ReturnType;
+            if (Enum.IsDefined(typeof(EnumTypes), contents[0]))
+            {
+                EnumTypes VariableType = (EnumTypes)Enum.Parse(typeof(EnumTypes), contents[0]);
+                container.LocalVariables.Add(new Tuple<EnumTypes, string, object>(VariableType, contents[1], contents[3]));
+                Console.Error.WriteLine("Adding Local Variable");
+            }
         }
     }
 }

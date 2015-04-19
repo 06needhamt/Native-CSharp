@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Compiler
 {
     public class Lexer
     {
@@ -37,7 +37,7 @@ namespace CSharpToNative
 
         public void Start(ref int i)
         {
-            int t = IGlobalConstants.test;
+            int t = Compiler.IGlobalConstants.test;
             //lines = linespar;
             //writer = writerpar;
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
