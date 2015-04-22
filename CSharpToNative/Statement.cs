@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Compiler
 {
-    class Statement
+    internal class Statement
     {
-        EnumTypes ReturnType = EnumTypes.NO_TYPE;
-        Block container;
+        private EnumTypes ReturnType = EnumTypes.NO_TYPE;
+        private Block container;
 
         internal Block Container
         {
@@ -22,7 +19,8 @@ namespace Compiler
             get { return ReturnType; }
             set { ReturnType = value; }
         }
-        Token[] tokens;
+
+        private Token[] tokens;
 
         internal Token[] Tokens
         {
@@ -40,25 +38,22 @@ namespace Compiler
         {
             Token[] temptokens = this.tokens;
             StringBuilder sb = new StringBuilder();
-            foreach(Token t in temptokens)
+            foreach (Token t in temptokens)
             {
-
-                if(!t.isNumeric())
+                if (!t.isNumeric())
                 {
                     sb.Append(t.ToString());
                 }
-                else if(t.getType().Equals(EnumTokenType.CLOSING_BRACE) || t.getType().Equals(EnumTokenType.OPENING_BRACE))
+                else if (t.getType().Equals(EnumTokenType.CLOSING_BRACE) || t.getType().Equals(EnumTokenType.OPENING_BRACE))
                 {
                     sb.Append(t.ToString());
                 }
-                
             }
             return new Statement(temptokens);
         }
 
         public void parseLocalVariables(string[] contents)
         {
-
             EnumTypes ReturnType;
             if (Enum.IsDefined(typeof(EnumTypes), contents[0]))
             {

@@ -29,13 +29,13 @@ namespace Compiler
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            string[] tempargs = args[0].Split(new char[] {'\\'});
+            string[] tempargs = args[0].Split(new char[] { '\\' });
             //for(int i = 0; i < tempargs.Length; i++)
             //{
             //    Console.Error.WriteLine(tempargs[i]);
             //}
             //Console.ReadKey();
-            T = new Tokeniser(currentdir,tempargs[tempargs.Length -1],args);
+            T = new Tokeniser(currentdir, tempargs[tempargs.Length - 1], args);
             T.Start();
             Token A = new Token(EnumTokenFlags.NO_FLAGS, EnumTokenType.UNKNOWN, (byte)'7');
             Console.Error.WriteLine(A.isNumeric());
@@ -71,7 +71,6 @@ namespace Compiler
                     Console.ResetColor();
                     Console.ReadKey();
                     Environment.Exit(0);
-
                 }
             }
             //Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
@@ -80,8 +79,8 @@ namespace Compiler
         private static string GetVersionNumber()
         {
             var CurrentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-	        string VersionNumber = CurrentAssembly.GetName().Version.ToString();
-	        Console.Error.WriteLine("Compiler Version:" + VersionNumber);
+            string VersionNumber = CurrentAssembly.GetName().Version.ToString();
+            Console.Error.WriteLine("Compiler Version:" + VersionNumber);
             return VersionNumber;
         }
 

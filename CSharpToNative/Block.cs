@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Compiler
 {
@@ -15,29 +12,31 @@ namespace Compiler
             get { return localVariables; }
             set { localVariables = value; }
         }
+
         private Scope scope;
         private Scope parent;
         private String[] contents;
-      public Block(Scope parent, string[] contents) : base()
-      {
-          this.contents = contents;
-          this.parent = parent;
-          this.scope = new Scope(this,parent);
 
-      }
+        public Block(Scope parent, string[] contents)
+            : base()
+        {
+            this.contents = contents;
+            this.parent = parent;
+            this.scope = new Scope(this, parent);
+        }
+
         public String[] Contents
         {
             get { return contents; }
             set { contents = value; }
         }
 
-
         internal Scope Parent
         {
             get { return parent; }
             set { parent = value; }
         }
-        
+
         internal Scope Scope
         {
             get { return scope; }
@@ -46,9 +45,6 @@ namespace Compiler
 
         public void ParseBlock()
         {
-           
         }
-
-   
     }
 }

@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Linker</RootNamespace>
-    <AssemblyName>Linker</AssemblyName>
+    <AssemblyName>cslink</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -101,7 +101,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /S "$(SolutionDir)\Linker\bin\Debug\Linker.exe" "$(SolutionDir)CSharpToNative\bin\Debug"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /S "$(SolutionDir)\Linker\bin\Debug\cslink.exe" "$(SolutionDir)CSharpToNative\bin\Debug"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,4 @@
-﻿using ELFLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,7 +36,6 @@ namespace Compiler
 
         public void Start(ref int i)
         {
-            int t = Compiler.IGlobalConstants.test;
             //lines = linespar;
             //writer = writerpar;
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
@@ -86,6 +84,7 @@ namespace Compiler
             printTokens(temptokens); // tokenize the checked line and print it to the file
             writer.WriteLine();
         }
+
         private bool CheckForFunctions()
         {
             string[] temptokens;
@@ -147,6 +146,7 @@ namespace Compiler
 
             return true;
         }
+
         public int CheckBrackets()
         {
             int openbracket = 0;

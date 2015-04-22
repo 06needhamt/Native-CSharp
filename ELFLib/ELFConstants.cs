@@ -1,6 +1,6 @@
 ﻿namespace ELFLib
 {
-    public static class IGlobalConstants
+    public static class ELFConstants
     {
         public static int test = 0xFF;
     }

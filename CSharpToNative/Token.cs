@@ -55,10 +55,12 @@ namespace Compiler
             }
             return false;
         }
+
         public override string ToString()
         {
             return this.tokenVal.ToString();
         }
+
         public static bool operator !=(Token x, Token y)
         {
             return !(x == y);
