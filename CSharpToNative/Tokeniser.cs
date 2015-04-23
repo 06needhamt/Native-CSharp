@@ -19,7 +19,7 @@ namespace Compiler
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
         private int bracketstatus;
         public List<Tuple<string, int>> functionLocations = new List<Tuple<string, int>>();
-        public List<Tuple<EnumTypes, string, int>> variables = new List<Tuple<EnumTypes, string, int>>();
+        public List<Variable<dynamic>> variables = new List<Variable<dynamic>>();
 
         public Tokeniser(string directory, string name, string[] Arguments)
         {
@@ -35,7 +35,7 @@ namespace Compiler
             catch (FileNotFoundException ex)
             {
                 string cwd = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string projectName = "CSharpToNative";  //YOUR PROJECT NAME HERE
+                string projectName = "CSharpToNative"; 
                 string solutionPath = cwd.Replace(projectName + "\\bin\\Debug", "");
                 File.Copy(solutionPath + "\\text.txt", cwd);
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Linker
 {
@@ -7,10 +8,10 @@ namespace Linker
         private static void Main(string[] args)
         {
             GetVersionNumber();
-            Console.ReadKey();
-            //LinkExecutable exe = new LinkExecutable();
-            //BinaryReader read = new BinaryReader(File.OpenRead(args[0]));
-            //exe.ReadELF(args[0], read);
+           // Console.ReadKey();
+            LinkExecutable exe = new LinkExecutable();
+            BinaryReader read = new BinaryReader(File.OpenRead(args[0]));
+            exe.ReadELF(args[0], read);
         }
 
         private static string GetVersionNumber()
