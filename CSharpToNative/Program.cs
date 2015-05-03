@@ -1,10 +1,10 @@
-﻿using ELFLib;
+﻿using Native.CSharp.ELFLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Compiler.Tests
+namespace Native.CSharp.Compiler.Tests
 {
     [TestClass()]
     public class LexerTests

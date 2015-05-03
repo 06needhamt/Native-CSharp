@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     internal class Variable<DataType>
     {

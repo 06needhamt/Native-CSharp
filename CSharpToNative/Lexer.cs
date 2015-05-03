@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     public class Lexer
     {
@@ -47,15 +47,15 @@ namespace Compiler
                 writer.WriteLine(lines[i]);
                 return;
             }
-            if (lines[i].Contains('\t'))
+            if (lines[i].Contains('\t')) // if the line contains a tab 
             {
-                while (lines[i].StartsWith("\t"))
+                while (lines[i].StartsWith("\t")) // while the line starts with a tab remove it until there are none left
                 {
                     lines[i] = lines[i].Remove(0, 1);
                     Console.WriteLine(lines[i]);
                 }
             }
-            if (!lines[i].EndsWith(";"))
+            if (!lines[i].EndsWith(";")) // if the line does not end with a semicolon print an error
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Error.Write("ERROR : Expected a ; ");
@@ -63,7 +63,7 @@ namespace Compiler
                 Console.ResetColor();
                 //Console.ReadKey();
             }
-            getFunctionNames();
+            getFunctionNames(); // get the names af all the functions within a file
             if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i) && !CheckForFunctions()) // if the line has no keywords operators or types it must be an error
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;

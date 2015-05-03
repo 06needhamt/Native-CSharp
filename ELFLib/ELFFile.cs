@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace ELFLib
+namespace Native.CSharp.ELFLib
 {
     public class ELFFile
     {

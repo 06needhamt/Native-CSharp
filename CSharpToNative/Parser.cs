@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     internal class Parser
     {
@@ -40,19 +40,19 @@ namespace Compiler
         {
             foreach (ASTBranch branch in this.branches)
             {
-                if (IsNumerical(branch.type)) // check if the branch is numerical
+                if (IsNumerical(branch.Type)) // check if the branch is numerical
                 {
-                    CreateNumericalInstruction(branch.type, branch.operation, branch.name, branch.Value);
+                    CreateNumericalInstruction(branch.Type, branch.Operation, branch.Name, branch.Value1);
                     // Call the numerical instruction creation function
                 }
-                else if (isAlphaNumerical(branch.type)) // check if the branch is alpha numerical
+                else if (isAlphaNumerical(branch.Type)) // check if the branch is alpha numerical
                 {
-                    CreateAlphaNumericalInstruction(branch.type, branch.operation, branch.name, branch.Value);
+                    CreateAlphaNumericalInstruction(branch.Type, branch.Operation, branch.Name, branch.Value1);
                     // Call the alphanumerical instruction creation function
                 }
                 else // if the branch is in a binary format
                 {
-                    CreateBinaryInstruction(branch.type, branch.operation, branch.name, branch.Value);
+                    CreateBinaryInstruction(branch.Type, branch.Operation, branch.Name, branch.Value1);
                     // Call the binary instruction creation function
                 }
             }
@@ -112,8 +112,8 @@ namespace Compiler
         {
             List<string> ops = new List<string>(0); // list to hold the operands
             DefineVariable(Type, name, null); // try and define a variable
-            ops.Add(this.thetree.ASTbranches.ElementAt(0).name); // add the name of the variable to the operands list
-            ops.Add((string)this.thetree.ASTbranches.ElementAt(0).Value); // add the variable to assign to the variable to the operands list
+            ops.Add(this.thetree.ASTbranches.ElementAt(0).Name); // add the name of the variable to the operands list
+            ops.Add((string)this.thetree.ASTbranches.ElementAt(0).Value1); // add the variable to assign to the variable to the operands list
             Instruction ins = new Instruction((uint)EnumOpcodes.MOV, ops.ToArray());
             return ins;
         }
@@ -126,9 +126,9 @@ namespace Compiler
 
             for (int i = 0; i < 2; i++)
             {
-                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value1, "([0-9])")) // find the numerical operands
                 {
-                    if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
+                    if ((int)branches.ElementAt(i).Value1 < 0) // if the value is negative then it is a signed operation
                     {
                         issigned = true;
                     }
@@ -139,9 +139,9 @@ namespace Compiler
                     //}
                     for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                     {
-                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value, "([0-9])")) // find it in the tree
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1, "([0-9])")) // find it in the tree
                         {
-                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value); // and add it in the list
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1); // and add it in the list
                         }
                         else
                         {
@@ -197,9 +197,9 @@ namespace Compiler
             bool issigned = false;
             for (int i = 0; i < 2; i++)
             {
-                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value1, "([0-9])")) // find the numerical operands
                 {
-                    if ((int)branches.ElementAt(i).Value < 0) // if the value is negative then it is a signed operation
+                    if ((int)branches.ElementAt(i).Value1 < 0) // if the value is negative then it is a signed operation
                     {
                         issigned = true;
                     }
@@ -210,9 +210,9 @@ namespace Compiler
                     //}
                     for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                     {
-                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value, "([0-9])")) // find it in the tree
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1, "([0-9])")) // find it in the tree
                         {
-                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value); // and add it in the list
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1); // and add it in the list
                         }
                         else
                         {
@@ -266,7 +266,7 @@ namespace Compiler
             DefineVariable(Type, name, null); // try and define a variable
             for (int i = 0; i < 2; i++)
             {
-                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value1, "([0-9])")) // find the numerical operands
                 {
                     //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
@@ -275,9 +275,9 @@ namespace Compiler
                     //}
                     for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                     {
-                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value, "([0-9])")) // find it on the tree too
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1, "([0-9])")) // find it on the tree too
                         {
-                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value); // and then add it to the list
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1); // and then add it to the list
                         }
                         else
                         {
@@ -323,7 +323,7 @@ namespace Compiler
             DefineVariable(Type, name, null); // try and define a variable
             for (int i = 0; i < 2; i++)
             {
-                if (Regex.IsMatch((string)branches.ElementAt(i).Value, "([0-9])")) // find the numerical operands
+                if (Regex.IsMatch((string)branches.ElementAt(i).Value1, "([0-9])")) // find the numerical operands
                 {
                     //ops.Add((string)branches.ElementAt(i).Value); // add it to the list
                     //if(Regex.IsMatch((string)this.tree.getroot(tree).Value,"([0-9])"))
@@ -332,9 +332,9 @@ namespace Compiler
                     //}
                     for (int j = 0; j < this.thetree.ASTbranches.Count; j++)
                     {
-                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value, "([0-9])")) // find it on the tree too
+                        if (Regex.IsMatch((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1, "([0-9])")) // find it on the tree too
                         {
-                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value); // and then add it to the list
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt<ASTBranch>(j).Value1); // and then add it to the list
                         }
                         else
                         {
@@ -400,8 +400,8 @@ namespace Compiler
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            ops.Add(this.thetree.ASTbranches.ElementAt(i).name); // add the name of the variable to the operands list
-                            ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value); // add the variable to assign to the variable to the operands list
+                            ops.Add(this.thetree.ASTbranches.ElementAt(i).Name); // add the name of the variable to the operands list
+                            ops.Add((string)this.thetree.ASTbranches.ElementAt(i).Value1); // add the variable to assign to the variable to the operands list
                         }
                     }
                     break;
@@ -439,10 +439,10 @@ namespace Compiler
         protected bool executebranch(ASTBranch branch)
         {
             // create instructions from a branch
-            string varname = branch.name;
-            EnumTypes type = branch.type;
-            EnumOperator operation = branch.operation;
-            Object value = branch.Value;
+            string varname = branch.Name;
+            EnumTypes type = branch.Type;
+            EnumOperator operation = branch.Operation;
+            Object value = branch.Value1;
             if (IsNumerical(type))
             {
                 CreateNumericalInstruction(type, operation, varname, value);

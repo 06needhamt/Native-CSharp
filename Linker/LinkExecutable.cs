@@ -1,9 +1,9 @@
-﻿using ELFLib;
+﻿using Native.CSharp.ELFLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Linker
+namespace Native.CSharp.Linker
 {
     public class LinkExecutable
     {

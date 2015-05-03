@@ -7,7 +7,7 @@
     <ProjectGuid>{3D28D321-E3BC-4673-86E1-15ADE77D027B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Compiler</RootNamespace>
+    <RootNamespace>Native.CSharp.Compiler</RootNamespace>
     <AssemblyName>cscompile</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

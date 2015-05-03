@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     internal class Statement
     {

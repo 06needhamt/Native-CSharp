@@ -1,4 +1,4 @@
-﻿namespace Compiler
+﻿namespace Native.CSharp.Compiler
 {
     public enum EnumKeywords
     {

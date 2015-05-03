@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Compiler
+namespace Native.CSharp.Compiler
 {
     internal class Tokeniser
     {
@@ -35,37 +35,39 @@ namespace Compiler
             catch (FileNotFoundException ex)
             {
                 string cwd = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string projectName = "CSharpToNative"; 
+                string projectName = "CSharpToNative";
                 string solutionPath = cwd.Replace(projectName + "\\bin\\Debug", "");
                 File.Copy(solutionPath + "\\text.txt", cwd);
             }
-
-            Console.Error.WriteLine("Tokeniser sucessfully constructed");
+            finally
+            {
+                Console.Error.WriteLine("Tokeniser sucessfully constructed");
+            }
         }
 
         public bool Start()
         {
-            //bool error = false;
-            //if (CheckForErrors())
-            //{
-            //    Destroy();
-            //    return false;
-            //}
-            //else if (!CheckForKeywords())
-            //{
-            //    Destroy();
-            //    return false;
-            //}
-            //else if (!CheckForTypes())
-            //{
-            //    Destroy();
-            //    return false;
-            //}
-            //else if (!CheckForOperators())
-            //{
-            //    Destroy();
-            //    return false;
-            //}
+            bool error = false;
+            if (CheckForErrors())
+            {
+                Destroy();
+                return false;
+            }
+            else if (!CheckForKeywords())
+            {
+                Destroy();
+                return false;
+            }
+            else if (!CheckForTypes())
+            {
+                Destroy();
+                return false;
+            }
+            else if (!CheckForOperators())
+            {
+                Destroy();
+                return false;
+            }
             bool functions = CheckForFunctions();
             Console.WriteLine(functions);
             Destroy();

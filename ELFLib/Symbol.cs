@@ -1,4 +1,4 @@
-﻿namespace ELFLib
+﻿namespace Native.CSharp.ELFLib
 {
     internal class Symbol
     {

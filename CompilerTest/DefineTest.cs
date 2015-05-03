@@ -1,5 +1,6 @@
 ﻿// test file
 using System;
+using System.Dynamic;
 
 namespace Native.CSharp.Compiler
 {

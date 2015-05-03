@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Linker
+namespace Native.CSharp.Linker
 {
     internal class Program
     {
