@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Native.CSharp.Compiler
 {
     public class Branch
@@ -12,6 +13,10 @@ namespace Native.CSharp.Compiler
             EnumAccessModifiers protectionlevel;
             object Value;
         }
+        private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
+        private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
+        private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
+
         private string name;
 
         public string Name
@@ -19,10 +24,7 @@ namespace Native.CSharp.Compiler
             get { return name; }
             set { name = value; }
         }
-        private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
-        private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
-        private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });
-        private EnumTypes type;
+       private EnumTypes type;
 
         public EnumTypes Type
         {
@@ -79,26 +81,38 @@ namespace Native.CSharp.Compiler
 
         public Branch(string[] tokens) // set tree variables from passed tokens
         {
+            int currenttoken = 0;
             if (tokens == null)
                 return;
-            if (keywords.Contains(tokens[0].ToLower()))
+            if (keywords.Contains(tokens[currenttoken].ToLower()))
             {
-                int index = keywords.IndexOf(tokens[0].ToLower());
+                int index = keywords.IndexOf(tokens[currenttoken].ToLower());
                 this.protectionlevel = (EnumAccessModifiers)index;
+                currenttoken++;
             }
             else
                 this.protectionlevel = EnumAccessModifiers.NO_MODIFIER;
             //this.protectionlevel = (EnumAccessModifiers) Enum.Parse(typeof(EnumAccessModifiers), tokens[0].ToUpper());
-            this.type = (EnumTypes)Enum.Parse(typeof(EnumTypes), tokens[1].ToUpper());
-            this.name = tokens[2];
-            if (operators.Contains(tokens[3].ToLower()))
+            if (types.Contains(tokens[currenttoken]))
             {
-                int index = operators.IndexOf(tokens[3].ToLower());
+                int index = types.IndexOf(tokens[currenttoken].ToLower());
+                this.type = (EnumTypes)index;
+                currenttoken++;
+            }
+            else
+                this.type = EnumTypes.NO_TYPE;
+            this.name = tokens[currenttoken];
+            currenttoken++;
+
+            if (operators.Contains(tokens[currenttoken].ToLower()))
+            {
+                int index = operators.IndexOf(tokens[currenttoken].ToLower());
                 this.operation = (EnumOperator)index;
             }
             else
                 operation = EnumOperator.NO_OPERATOR;
-            this.Value = tokens[4];
+            this.Value = tokens[currenttoken];
+            currenttoken++;
             //this.protectionlevel = (EnumAccessModifiers)Convert.ToInt32(tokens[0]);
             //this.type = ((EnumTypes)Convert.ToInt32(tokens[1]));
             //this.name = tokens[2];
@@ -106,32 +120,58 @@ namespace Native.CSharp.Compiler
             //this.Value = tokens[4];
         }
 
-        private EnumAccessModifiers getaccessmodifier(Branch branch)
+        public static EnumAccessModifiers getaccessmodifier(Branch branch)
         {
             return branch.Protectionlevel;
         }
 
-        private EnumTypes gettype(Branch branch)
+        public static EnumTypes gettype(Branch branch)
         {
             return branch.Type;
         }
 
-        private string getname(Branch branch)
+        public static string getname(Branch branch)
         {
             return branch.name;
         }
 
-        private object getvalue(Branch branch)
+        public static object getvalue(Branch branch)
         {
             return branch.Value1;
         }
 
-        private EnumOperator getoperator(Branch branch)
+        public EnumOperator getoperator()
+        {
+            return this.Operation;
+        }
+
+        public EnumAccessModifiers getaccessmodifier()
+        {
+            return this.Protectionlevel;
+        }
+
+        public EnumTypes gettype()
+        {
+            return this.Type;
+        }
+
+        public string getname()
+        {
+            return this.name;
+        }
+
+        public object getvalue()
+        {
+            return this.Value1;
+        }
+
+        public static EnumOperator getoperator(Branch branch)
         {
             return branch.Operation;
         }
 
-        protected Branch Union(Branch lhs, Branch rhs)  // merge branches together
+
+        protected static Branch Union(Branch lhs, Branch rhs)  // merge branches together
         {
             if (lhs.Equals(rhs)) // if the branches are equal dont merge them
             {
@@ -139,7 +179,7 @@ namespace Native.CSharp.Compiler
             }
             else
             {
-                if (lhs.gettype(lhs) != rhs.gettype(rhs)) // if the two barnches are not the same type
+                if (lhs.gettype() != rhs.gettype()) // if the two barnches are not the same type
                 {
                     try
                     {
@@ -170,6 +210,50 @@ namespace Native.CSharp.Compiler
                     newbranch.name = lhs.name;
                     newbranch.Protectionlevel = rhs.Protectionlevel;
                     newbranch.Value1 = Convert.ToInt32(lhs.Value1) + Convert.ToInt32(rhs.Value1); // merge the two values
+                    return newbranch; // return the merged branch
+                }
+            }
+        }
+
+        protected Branch Union(Branch rhs)  // merge branches together
+        {
+            if (this.Equals(rhs)) // if the branches are equal dont merge them
+            {
+                return this;
+            }
+            else
+            {
+                if (this.gettype() != rhs.gettype()) // if the two barnches are not the same type
+                {
+                    try
+                    {
+                        throw new TypeMismatchException(); // throw an exception
+                    }
+                    catch (TypeMismatchException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(ex.GetType());
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                        Console.ResetColor();
+                    }
+                    finally
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("A FATAL ERROR HAS OCCURED IN UNION OF BRANCHES: TYPES DO NOT MATCH EXITING");
+                        Console.ResetColor();
+                        // System.Threading.Thread.Sleep(2500);
+                        Environment.Exit(-1);
+                    }
+                    return null;
+                }
+                else // go ahead and merge the branches
+                {
+                    Branch newbranch = new Branch(); // create a new branch
+                    newbranch.Type = this.Type;
+                    newbranch.name = this.name;
+                    newbranch.Protectionlevel = rhs.Protectionlevel;
+                    newbranch.Value1 = Convert.ToInt32(this.Value1) + Convert.ToInt32(rhs.Value1); // merge the two values
                     return newbranch; // return the merged branch
                 }
             }
