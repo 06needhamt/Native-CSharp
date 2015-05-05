@@ -196,7 +196,7 @@ namespace Native.CSharp.Compiler
 
                 Lex.Start(ref i);
             }
-            Lex.Destroy();
+            Lex.Dispose();
             Console.Error.WriteLine("Lexical Analasis Complete");
         }
     }

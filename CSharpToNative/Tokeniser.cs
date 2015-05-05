@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Native.CSharp.Compiler
 {
-    internal class Tokeniser
+    internal class Tokeniser : IDisposable
     {
         private StreamWriter writer;
         private readonly string filepath;
@@ -74,7 +74,7 @@ namespace Native.CSharp.Compiler
             return true;
         }
 
-        public void Destroy()
+        private void Destroy()
         {
             writer.Flush();
             writer.Close();
@@ -386,6 +386,11 @@ namespace Native.CSharp.Compiler
         public string[] getLines()
         {
             return this.lines;
+        }
+
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

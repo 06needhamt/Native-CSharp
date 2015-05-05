@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Native.CSharp.Compiler;
 
 namespace Native.CSharp.Compiler.Tests
 {
@@ -36,5 +37,6 @@ namespace Native.CSharp.Compiler.Tests
             lines[0] = "public int i = {1 + 1";
             Assert.IsTrue(L.CheckBrackets() == 3, "curly brackets are not matched so return value should be three");
         }
+
     }
 }

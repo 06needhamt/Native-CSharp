@@ -6,13 +6,13 @@ namespace Native.CSharp.Compiler
 {
     public class Branch
     {
-        struct properties
-        {
-            string name;
-            EnumTypes type;
-            EnumAccessModifiers protectionlevel;
-            object Value;
-        }
+        //protected struct properties
+        //{
+        //    string name;
+        //    EnumTypes type;
+        //    EnumAccessModifiers protectionlevel;
+        //    object Value;
+        //}
         private readonly List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "#++", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
         private readonly List<string> keywords = new List<string>(new string[] { "public", "protected", "private", "const", "volatile", "unsigned", "unsafe", "new", "continue", "break", "for", "if", "else", "else if", "while", "do", "class", "enum", "interface", "private static", "void", "readonly" });
         private readonly List<string> types = new List<string>(new string[] { "int", "string", "bool", "double", "float", "long", "short", "byte", "char", "decimal", "date", "single", "object" });

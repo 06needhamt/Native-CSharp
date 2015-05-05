@@ -40,7 +40,8 @@ namespace Native.CSharp.Compiler
                 newtree.depth = lhs.depth + rhs.depth;
                 newtree.Name = lhs.Name;
                 newtree.Value1 = lhs.Value1;
-                newtree.Type = EnumTypes.OBJECT;
+                newtree.Value2 = lhs.Value2;
+                newtree.Type = lhs.Type;
 
                 for (int i = 0; i < lhs.treebranches.Count; i++)
                 {
