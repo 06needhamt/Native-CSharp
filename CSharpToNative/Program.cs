@@ -141,7 +141,8 @@ namespace Native.CSharp.Compiler
                 inst.Clear();
             }
 
-            Console.Error.WriteLine("Compilation Complete");
+            Console.Error.WriteLine("Compilation Complete with " + StaticValues.Errors + " Errors " + 
+                "And " + StaticValues.Warnings + " Warnings ");
         }
 
         private static void ReadSymbolTables()

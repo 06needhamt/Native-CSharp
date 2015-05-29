@@ -61,6 +61,7 @@ namespace Native.CSharp.Compiler
                 Console.Error.Write("ERROR : Expected a ; ");
                 Console.Error.WriteLine(lines[i]);
                 Console.ResetColor();
+                StaticValues.Errors++;
                 //Console.ReadKey();
             }
             getFunctionNames(); // get the names af all the functions within a file
@@ -318,7 +319,7 @@ namespace Native.CSharp.Compiler
                 isbracket = true;
                 return true;
             }
-            if ((Object)type == null && i < tokens.Length - 1) // if the token is a variable that has not been defined yet
+            if (((Object)type == null) || i < tokens.Length - 1) // if the token is a variable that has not been defined yet
             {
                 int iref = i; // keep i for future reference
                 for (int m = 0; m < tokens.Length; m++)
@@ -353,14 +354,15 @@ namespace Native.CSharp.Compiler
                 else
                 {
                     // if we get here the variable type is not yet implemented
-                    System.Threading.Thread.Sleep(500);
+                    //System.Threading.Thread.Sleep(500);
                     return false;
                 }
             }
             else
             {
-                System.Threading.Thread.Sleep(500);
                 // if we get here the variable type is not declared
+                System.Threading.Thread.Sleep(500);
+                StaticValues.Errors++;
                 return false;
             }
         }
