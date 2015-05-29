@@ -1,21 +1,17 @@
-﻿using ELFLib;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
 
-
-namespace Linker
+namespace Native.CSharp.Linker
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
             GetVersionNumber();
-            Console.ReadKey();
-            //LinkExecutable exe = new LinkExecutable();
-            //BinaryReader read = new BinaryReader(File.OpenRead(args[0]));
-            //exe.ReadELF(args[0], read);
+           // Console.ReadKey();
+            LinkExecutable exe = new LinkExecutable();
+            BinaryReader read = new BinaryReader(File.OpenRead(args[0]));
+            exe.ReadELF(args[0], read);
         }
 
         private static string GetVersionNumber()

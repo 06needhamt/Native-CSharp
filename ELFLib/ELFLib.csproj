@@ -7,7 +7,7 @@
     <ProjectGuid>{AFDA37B8-7187-42F1-AEC1-EBB60946A7B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ELFLib</RootNamespace>
+    <RootNamespace>Native.CSharp.ELFLib</RootNamespace>
     <AssemblyName>ELFLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -79,7 +79,7 @@
     <Compile Include="DataSegment.cs" />
     <Compile Include="ELFFile.cs" />
     <Compile Include="EnumDataSizes.cs" />
-    <Compile Include="IGlobalConstants.cs" />
+    <Compile Include="ELFConstants.cs" />
     <Compile Include="NullSegement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Segment.cs" />

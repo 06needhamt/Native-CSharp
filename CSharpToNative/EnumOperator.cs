@@ -1,9 +1,9 @@
-﻿namespace CSharpToNative
+﻿namespace Native.CSharp.Compiler
 {
     public enum EnumOperator
     {
         NO_OPERATOR = -1,
-        ASSIGNMEMT = 0,
+        ASSIGNMENT = 0,
         EQUALITY = 1,
         NOT_EQUAL = 2,
         BINARY_PLUS = 3,

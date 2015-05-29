@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Native-CSharp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Created by Thomas Needham")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Compiler")]
 [assembly: AssemblyCopyright("Copyright ©  2014 - 2015")]
 [assembly: AssemblyTrademark("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.5580.36588")]
+[assembly: AssemblyVersion("1.2.5603.14485")]
 //[assembly: AssemblyFileVersion("1.0.*")]

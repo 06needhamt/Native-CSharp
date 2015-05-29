@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpToNative;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace CSharpToNative.Tests
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Native.CSharp.Compiler;
+
+namespace Native.CSharp.Compiler.Tests
 {
     [TestClass()]
     public class LexerTests
@@ -17,7 +14,6 @@ namespace CSharpToNative.Tests
             Lexer L = new Lexer(ref lines, new System.IO.StreamWriter("test.txt"));
             Assert.IsTrue(L.isInteger("1"), "Should return true as value is integer");
             Assert.IsFalse(L.isInteger("A"), "Should return false as value is not an integer");
-
         }
 
         [TestMethod()]
@@ -26,7 +22,6 @@ namespace CSharpToNative.Tests
             var lines = new String[] { "public int i = 0;" };
             Lexer L = new Lexer(ref lines, new System.IO.StreamWriter("test.txt"));
             Assert.IsTrue(L != null, "The lexer object should not be null");
-
         }
 
         [TestMethod()]
@@ -41,8 +36,7 @@ namespace CSharpToNative.Tests
             Assert.IsTrue(L.CheckBrackets() == 2, "square brackets are not matched so return value should be two");
             lines[0] = "public int i = {1 + 1";
             Assert.IsTrue(L.CheckBrackets() == 3, "curly brackets are not matched so return value should be three");
-
-
         }
+
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace CSharpToNative
+﻿namespace Native.CSharp.Compiler
 {
     internal class BracketErrorHandler
     {
-        public enum ErrorTypes
+        public enum ErrorTypes // enum for bracket error types
         {
             UnknownError = -1,
             NoError = 0,
@@ -52,7 +52,7 @@
             return getError();
         }
 
-        public string getError()
+        public string getError() // returns the type of bracket error which exists in the code
         {
             if ((int)error == 0)
             {

@@ -1,4 +1,4 @@
-﻿namespace CSharpToNative
+﻿namespace Native.CSharp.Compiler
 {
     internal enum EnumTokenType
     {

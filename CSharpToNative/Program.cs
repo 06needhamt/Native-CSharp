@@ -1,10 +1,10 @@
-﻿using ELFLib;
+﻿using Native.CSharp.ELFLib;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     public class Program
     {
@@ -29,13 +29,13 @@ namespace CSharpToNative
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            string[] tempargs = args[0].Split(new char[] {'\\'});
+            string[] tempargs = args[0].Split(new char[] { '\\' });
             //for(int i = 0; i < tempargs.Length; i++)
             //{
             //    Console.Error.WriteLine(tempargs[i]);
             //}
             //Console.ReadKey();
-            T = new Tokeniser(currentdir,tempargs[tempargs.Length -1],args);
+            T = new Tokeniser(currentdir, tempargs[tempargs.Length - 1], args);
             T.Start();
             Token A = new Token(EnumTokenFlags.NO_FLAGS, EnumTokenType.UNKNOWN, (byte)'7');
             Console.Error.WriteLine(A.isNumeric());
@@ -71,17 +71,16 @@ namespace CSharpToNative
                     Console.ResetColor();
                     Console.ReadKey();
                     Environment.Exit(0);
-
                 }
             }
-            Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
+            //Console.Error.WriteLine("Compiling With ELF Libary Version: " + e.GetVersionNumber());
         }
 
         private static string GetVersionNumber()
         {
             var CurrentAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-	        string VersionNumber = CurrentAssembly.GetName().Version.ToString();
-	        Console.Error.WriteLine("Compiler Version:" + VersionNumber);
+            string VersionNumber = CurrentAssembly.GetName().Version.ToString();
+            Console.Error.WriteLine("Compiler Version:" + VersionNumber);
             return VersionNumber;
         }
 
@@ -142,7 +141,8 @@ namespace CSharpToNative
                 inst.Clear();
             }
 
-            Console.Error.WriteLine("Compilation Complete");
+            Console.Error.WriteLine("Compilation Complete with " + StaticValues.Errors + " Errors " + 
+                "And " + StaticValues.Warnings + " Warnings ");
         }
 
         private static void ReadSymbolTables()
@@ -197,7 +197,7 @@ namespace CSharpToNative
 
                 Lex.Start(ref i);
             }
-            Lex.Destroy();
+            Lex.Dispose();
             Console.Error.WriteLine("Lexical Analasis Complete");
         }
     }

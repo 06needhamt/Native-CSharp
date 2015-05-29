@@ -1,6 +1,6 @@
-﻿namespace CSharpToNative
+﻿namespace Native.CSharp.Compiler
 {
-    internal static class IRegisterSet
+    internal static class RegisterSet
     {
 #if WIN64
 

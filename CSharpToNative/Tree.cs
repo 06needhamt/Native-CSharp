@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     public class Tree : Branch
     {
         public List<Branch> treebranches = new List<Branch>(0); // create a list of branches to the tree
         public ulong depth = 0; // depth of the tree
 
-        public Tree()
+        public Tree() : base()
         {
             this.depth = 0; // set the depth to 0
             this.treebranches = null; // set the branches to null as there arent any yet
         }
 
-        public Tree(List<Branch> branches)
+        public Tree(List<Branch> branches) : base()
         {
             this.treebranches = branches; // assign the passed list of branches to this tree
             this.depth = (ulong)treebranches.Count; // set the depth to the amount of barnches passed in
@@ -38,9 +38,10 @@ namespace CSharpToNative
             {
                 // merge the tree's values
                 newtree.depth = lhs.depth + rhs.depth;
-                newtree.name = lhs.name;
-                newtree.Value = lhs.Value;
-                newtree.type = EnumTypes.OBJECT;
+                newtree.Name = lhs.Name;
+                newtree.Value1 = lhs.Value1;
+                newtree.Value2 = lhs.Value2;
+                newtree.Type = lhs.Type;
 
                 for (int i = 0; i < lhs.treebranches.Count; i++)
                 {
@@ -68,7 +69,7 @@ namespace CSharpToNative
             }
             else
             {
-                return tree.treebranches.FirstOrDefault<Branch>(c => c.Value.Equals(criteria));
+                return tree.treebranches.FirstOrDefault<Branch>(c => c.Value1.Equals(criteria));
             }
         }
 

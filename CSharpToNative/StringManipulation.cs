@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     public static class StringManipulation
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{3D28D321-E3BC-4673-86E1-15ADE77D027B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Native_CSharp</RootNamespace>
-    <AssemblyName>Native-CSharp</AssemblyName>
+    <RootNamespace>Native.CSharp.Compiler</RootNamespace>
+    <AssemblyName>cscompile</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -103,20 +103,24 @@
     <Compile Include="EnumTokenType.cs" />
     <Compile Include="EnumTypes.cs" />
     <Compile Include="Expression.cs" />
+    <Compile Include="CompilerConstants.cs" />
     <Compile Include="Instruction.cs" />
-    <Compile Include="IRegisterSet.cs" />
+    <Compile Include="RegisterSet.cs" />
     <Compile Include="Lexer_Old.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scope.cs" />
     <Compile Include="Statement.cs" />
+    <Compile Include="StaticValues.cs" />
     <Compile Include="StringManipulation.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Tokeniser.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TypeMismatchException.cs" />
     <Compile Include="Symbol.cs" />
+    <Compile Include="Variable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

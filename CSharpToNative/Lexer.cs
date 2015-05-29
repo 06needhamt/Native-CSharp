@@ -1,12 +1,11 @@
-﻿using ELFLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
-    public class Lexer
+    public class Lexer : IDisposable
     {
         //public string[] pubtokens;
         public List<string[]> pubtokenslist = new List<string[]>(0);
@@ -37,7 +36,6 @@ namespace CSharpToNative
 
         public void Start(ref int i)
         {
-            int t = IGlobalConstants.test;
             //lines = linespar;
             //writer = writerpar;
             if (string.IsNullOrEmpty(lines[i])) // if the line is null skip it
@@ -49,24 +47,25 @@ namespace CSharpToNative
                 writer.WriteLine(lines[i]);
                 return;
             }
-            if (lines[i].Contains('\t'))
+            if (lines[i].Contains('\t')) // if the line contains a tab 
             {
-                while (lines[i].StartsWith("\t"))
+                while (lines[i].StartsWith("\t")) // while the line starts with a tab remove it until there are none left
                 {
                     lines[i] = lines[i].Remove(0, 1);
                     Console.WriteLine(lines[i]);
                 }
             }
-            if (!lines[i].EndsWith(";"))
+            if (!lines[i].EndsWith(";")) // if the line does not end with a semicolon print an error
             {
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Error.Write("ERROR : Expected a ; ");
                 Console.Error.WriteLine(lines[i]);
                 Console.ResetColor();
+                StaticValues.Errors++;
                 //Console.ReadKey();
             }
-            getFunctionNames();
-            if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i)) // if the line has no keywords operators or types it must be an error
+            getFunctionNames(); // get the names af all the functions within a file
+            if (!checkkeywords(ref i) && !checkoperators(ref i) && !checktypes(ref i) && !CheckForFunctions()) // if the line has no keywords operators or types it must be an error
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Error.Write(lines[i] + " ");
@@ -86,6 +85,7 @@ namespace CSharpToNative
             printTokens(temptokens); // tokenize the checked line and print it to the file
             writer.WriteLine();
         }
+
         private bool CheckForFunctions()
         {
             string[] temptokens;
@@ -142,16 +142,12 @@ namespace CSharpToNative
                         writer.WriteLine(") )");
                         Console.Error.WriteLine(") )");
                     }
-                    for (int j = 0; j < temptokens.Length; j++)
-                    {
-
-                        Console.Error.WriteLine("Tokens " + j + " = " + temptokens[j]);
-                    }
                 }
             }
 
             return true;
         }
+
         public int CheckBrackets()
         {
             int openbracket = 0;
@@ -323,7 +319,7 @@ namespace CSharpToNative
                 isbracket = true;
                 return true;
             }
-            if ((Object)type == null && i < tokens.Length - 1) // if the token is not a variable (does not have a type)
+            if (((Object)type == null) || i < tokens.Length - 1) // if the token is a variable that has not been defined yet
             {
                 int iref = i; // keep i for future reference
                 for (int m = 0; m < tokens.Length; m++)
@@ -358,14 +354,15 @@ namespace CSharpToNative
                 else
                 {
                     // if we get here the variable type is not yet implemented
-                    System.Threading.Thread.Sleep(50);
+                    //System.Threading.Thread.Sleep(500);
                     return false;
                 }
             }
             else
             {
-                System.Threading.Thread.Sleep(50);
                 // if we get here the variable type is not declared
+                System.Threading.Thread.Sleep(500);
+                StaticValues.Errors++;
                 return false;
             }
         }
@@ -491,7 +488,7 @@ namespace CSharpToNative
                 {
                     if (negated)
                     {
-                        int realToken = (Convert.ToInt32(tokens[i])) * -1;
+                        int realToken = Math.Abs((Convert.ToInt32(tokens[i])));
                         tokens[i] = Convert.ToString(realToken);
                         negated = false;
                     }
@@ -567,7 +564,7 @@ namespace CSharpToNative
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Magenta;
-                            Console.WriteLine("Fatal Error " + tokens[i] + " Is not Declared");
+                            Console.Error.WriteLine("Fatal Error " + tokens[i] + " Is not Declared");
                             Console.ResetColor();
                             return;
                         }
@@ -619,20 +616,20 @@ namespace CSharpToNative
 
                 if (isafunction) // if it is a function
                 {
-                    //parse parameters not working yet
-                    List<char[]> partype = new List<char[]>(0);
+                    //parse parameters now working
+                    List<char[]> partype = new List<char[]>(0); // list for parameter types
                     char[] partypechararr;
                     string[] partypearr;
-                    if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower()))
+                    if (tokens.Contains<string>(EnumTypes.INT.ToString().ToLower())) // if the token list contains an integer is an integer
                     {
                         for (int j = 0; j < tokens.Length; j++)
                         {
-                            if (tokens[j] == EnumTypes.INT.ToString().ToLower())
+                            if (tokens[j] == EnumTypes.INT.ToString().ToLower()) // if the current token is an integer
                             {
-                                partypearr = tokens[i].Split(tokens, 1, StringSplitOptions.RemoveEmptyEntries);
+                                partypearr = tokens[i].Split(tokens, 1, StringSplitOptions.RemoveEmptyEntries); // split it only returning the first substring 
                                 foreach (string str in partypearr)
                                 {
-                                    partype.Add(str.ToCharArray());
+                                    partype.Add(str.ToCharArray()); // add it to the list of parameters
                                 }
                             }
                         }
@@ -697,14 +694,16 @@ namespace CSharpToNative
 
         public List<string> getFunctionNames()
         {
+            List<string> list = new List<string>();
             foreach (string[] s in this.functionsymboltable)
             {
                 for (int i = 0; i < s.Length; i++)
                 {
                     Console.Error.WriteLine(s[i]);
+                    list.Add(s[i]);
                 }
             }
-            return new List<string>();
+            return list;
         }
 
         public void SaveSymbolTables(int id)
@@ -715,11 +714,16 @@ namespace CSharpToNative
             }
         }
 
-        public void Destroy()
+        private void Destroy()
         {
             writer.Flush();
             writer.Close();
             writer.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Destroy();
         }
     }
 }

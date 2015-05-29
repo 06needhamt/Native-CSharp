@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     public class Lexer_Old
     {

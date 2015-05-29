@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     public class ASTBranch : Branch
     {
@@ -10,7 +10,7 @@ namespace CSharpToNative
         private bool isvoid = false;
 
         //static Type T4;
-        public ASTBranch()
+        public ASTBranch() : base()
         {
             //try
             //{
@@ -25,7 +25,7 @@ namespace CSharpToNative
             //}
         }
 
-        public ASTBranch(string[] tokens, AST tree)
+        public ASTBranch(string[] tokens, AST tree) : base(tokens)
         {
             List<string> operators = new List<string>(new string[] { "=", "!=", "==", "+", "-", "*", "/", "++#", "#++", "--#", "#--", ">", "<", ">=", "<=", "&&", "&", "||", "|", "!", "~", "^", "+=", "-=", "*=", "/=", "<<", ">>", "%=", "&=", "|=", "^=", "<<=", ">>=", "?:", ".", "," });
             // list of allowed operators
@@ -100,15 +100,15 @@ namespace CSharpToNative
                     {
                         if (times == 0)
                         {
-                            this.name = tokens[i]; // if this is the first time we have been here it is the name
+                            this.Name = tokens[i]; // if this is the first time we have been here it is the name
                             times++;
                         }
                         else if (times == 1) // if this is the second time we have been here it is the value
                         {
-                            this.Value = tokens[i];
+                            this.Value1 = tokens[i];
                             times++;
                         }
-                        else if (times > 1 && this.Value != null) // check if this is a two operand expression
+                        else if (times > 1 && this.Value1 != null) // check if this is a two operand expression
                         {
                             int index2 = 0;
                             if (operators.Contains(tokens[i]))
@@ -124,11 +124,11 @@ namespace CSharpToNative
                                         continue;
                                     }
                                 }
-                                this.operation2 = (EnumOperator)index2; // lookup the index in the enumerator and assign it to the operator value
+                                this.Operation2 = (EnumOperator)index2; // lookup the index in the enumerator and assign it to the operator value
                             }
                             else
                             {
-                                this.value2 = tokens[i];
+                                this.Value2 = tokens[i];
                             }
                         }
                         else // if we have been here more than twice it is a error
@@ -151,25 +151,25 @@ namespace CSharpToNative
                     }
                 }
                 // assign the tempory values to the actual tree
-                this.type = etypeval;
-                this.operation = eopval;
-                this.protectionlevel = eprotval;
-                Console.WriteLine(Convert.ToString(this.type));
-                Console.WriteLine(Convert.ToString(this.operation));
-                Console.WriteLine(Convert.ToString(this.protectionlevel));
-                Console.WriteLine(this.name);
-                Console.WriteLine(this.Value);
-                Console.WriteLine(this.value2);
+                this.Type = etypeval;
+                this.Operation = eopval;
+                this.Protectionlevel = eprotval;
+                Console.WriteLine(Convert.ToString(this.Type));
+                Console.WriteLine(Convert.ToString(this.Operation));
+                Console.WriteLine(Convert.ToString(this.Protectionlevel));
+                Console.WriteLine(this.Name);
+                Console.WriteLine(this.Value1);
+                Console.WriteLine(this.Value2);
                 //Console.ReadKey();
                 if (tree.ASTbranches.Count == 0) // if this is the first branch in the tree
                 {
                     this.isroot = true; // make it the root
-                    this.parent = null;
+                    this.Parent = null;
                 }
                 else
                 {
                     this.isroot = false; // otherwise dont
-                    this.parent = parent;
+                    this.Parent = Parent;
                 }
                 tree.ASTbranches.Add(this); // add the branch to the tree
             }

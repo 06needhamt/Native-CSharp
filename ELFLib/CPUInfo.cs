@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace ELFLib
+namespace Native.CSharp.ELFLib
 {
     public class CPUInfo
     {

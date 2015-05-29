@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     internal class Instruction
     {

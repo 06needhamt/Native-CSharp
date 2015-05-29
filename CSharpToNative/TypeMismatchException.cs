@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     [Serializable]
     internal class TypeMismatchException : System.Exception

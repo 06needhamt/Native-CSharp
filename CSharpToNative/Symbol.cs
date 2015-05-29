@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     internal class Symbol
     {

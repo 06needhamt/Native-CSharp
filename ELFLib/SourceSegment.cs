@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ELFLib
+namespace Native.CSharp.ELFLib
 {
     public class SourceSegment : Segment
     {

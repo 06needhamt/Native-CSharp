@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpToNative
+namespace Native.CSharp.Compiler
 {
     internal class Token
     {
@@ -55,10 +55,12 @@ namespace CSharpToNative
             }
             return false;
         }
+
         public override string ToString()
         {
             return this.tokenVal.ToString();
         }
+
         public static bool operator !=(Token x, Token y)
         {
             return !(x == y);
