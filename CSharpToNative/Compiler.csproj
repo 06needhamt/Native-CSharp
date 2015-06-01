@@ -115,11 +115,12 @@
     <Compile Include="Statement.cs" />
     <Compile Include="StaticValues.cs" />
     <Compile Include="StringManipulation.cs" />
+    <Compile Include="Symbol.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Tokeniser.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TypeMismatchException.cs" />
-    <Compile Include="Symbol.cs" />
+    <Compile Include="SymbolTable.cs" />
     <Compile Include="Variable.cs" />
   </ItemGroup>
   <ItemGroup>
