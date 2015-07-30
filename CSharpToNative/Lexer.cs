@@ -717,6 +717,7 @@ namespace Native.CSharp.Compiler
                             EnumTypes type = (EnumTypes) Enum.Parse(typeof(EnumTypes), s.Item2);
                             EnumAccessModifiers modifier = (EnumAccessModifiers)Enum.Parse(typeof(EnumAccessModifiers), s.Item1);
                             Symbol<int> sym = new Symbol<int>(type,modifier,s.Item3);
+                            SymbolTable<Symbol<int>> table;
                             
                         }
                         break;

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Native.CSharp.Compiler
 {
-    internal class SymbolTable<T>
+    internal class SymbolTable<T> 
     {
-        private LinkedList<T> symbols;
+        private LinkedList<Symbol<T>> symbols;
 
-        public LinkedList<T> Symbols
+        public LinkedList<Symbol<T>> Symbols
         {
             get { return symbols; }
             set { symbols = value; }
@@ -17,18 +17,22 @@ namespace Native.CSharp.Compiler
         public Type SymbolType
         {
             get { return symbolType; }
-        } 
- 
+        }
 
-        public SymbolTable(LinkedList<T> symbols)
+        public SymbolTable()
+        {
+            this.symbols = new LinkedList<Symbol<T>>();
+            this.symbolType = typeof(T);
+        }
+        public SymbolTable(LinkedList<Symbol<T>> symbols)
         {
             this.symbols = symbols;
             this.symbolType = typeof(T);
         }
 
-        public T findSymbol(Symbol<T> symbolToFind)
+        public bool IsSymbolDefined(Symbol<T> symbolToFind)
         {
-            return this.Symbols.Find(symbolToFind.Value).Value;
+            return symbols.Contains(symbolToFind) ? true : false;
         }
     }
 }
