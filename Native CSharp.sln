@@ -12,6 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompilerTest", "CompilerTest\CompilerTest.csproj", "{ABA75A30-C705-41B6-842F-34E8F872383A}"
 EndProject
 Global
+	GlobalSection(AutomaticVersions) = postSolution
+		UpdateAssemblyVersion = True
+		UpdateAssemblyFileVersion = True
+		UpdateAssemblyInfoVersion = True
+		AssemblyVersionSettings = YearStamp.MonthStamp.DayStamp.TimeStamp
+		AssemblyFileVersionSettings = YearStamp.MonthStamp.DayStamp.TimeStamp
+		AssemblyInfoVersionSettings = YearStamp.MonthStamp.DayStamp.TimeStamp
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64

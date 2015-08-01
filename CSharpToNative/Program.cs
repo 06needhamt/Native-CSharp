@@ -148,11 +148,11 @@ namespace Native.CSharp.Compiler
         private static void ReadSymbolTables()
         {
             Console.Error.WriteLine("Reading int symbol table");
-            Symbol.readintsymboltable(Lex.getintsymboltable());
+            Lexer.readintsymboltable(Lex.getintsymboltable());
             Console.Error.WriteLine("Reading string symbol table");
-            Symbol.readstringsymboltable(Lex.getstringsymboltable());
+            Lexer.readstringsymboltable(Lex.getstringsymboltable());
             Console.Error.WriteLine("Reading Function Symbol table");
-            Symbol.readfunctionsymboltable(Lex.getfunctionsymboltable());
+            Lexer.readfunctionsymboltable(Lex.getfunctionsymboltable());
         }
 
         private static void LexicallyAnalyseFile(string file)

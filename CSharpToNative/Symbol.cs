@@ -1,70 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Native.CSharp.Compiler
 {
-    internal class Symbol
+    internal class Symbol<T>
     {
-        public static void readintsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
+        public Symbol(EnumTypes type, EnumAccessModifiers modifier, string name, dynamic value = null)
         {
-            if (symboltable.Count == 0)
-            {
-                Console.WriteLine("No Ints");
-                return;
-            }
+            this.type = type;
+            this.modifier = modifier;
+            this.name = name;
+            this.value = value;
+        }
+        private readonly EnumAccessModifiers modifier;
 
-            LinkedListNode<Tuple<string, string, string>> node = symboltable.First;
-            //Dictionary<string, string> dict = new Dictionary<string, string>();
-            while (node != null)
-            {
-                Console.WriteLine(node.Value.Item1.ToString());
-                Console.WriteLine(node.Value.Item2.ToString());
-                Console.WriteLine(node.Value.Item3.ToString());
-                //dict.Add(node.Value.Item2.ToString(), node.Value.Item3.ToString());
-                //Console.ReadKey();
-                node = node.Next;
-            }
+        public EnumAccessModifiers Modifier
+        {
+            get { return modifier; }
         }
 
-        public static void readstringsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
-        {
-            if (symboltable.Count == 0)
-            {
-                Console.WriteLine("No Strings");
-                return;
-            }
+        private readonly EnumTypes type;
 
-            LinkedListNode<Tuple<string, string, string>> node = symboltable.First;
-            //Dictionary<string, string> dict = new Dictionary<string, string>();
-            while (node != null)
-            {
-                Console.WriteLine(node.Value.Item1.ToString());
-                Console.WriteLine(node.Value.Item2.ToString());
-                Console.WriteLine(node.Value.Item3.ToString());
-                //dict.Add(node.Value.Item2.ToString(), node.Value.Item3.ToString());
-                //Console.ReadKey();
-                node = node.Next;
-            }
+        public EnumTypes Type
+        {
+            get { return type; }
         }
 
-        public static void readfunctionsymboltable(LinkedList<string[]> funcsymboltable)
+        private readonly string name;
+
+        public string Name
         {
-            if (funcsymboltable.Count == 0)
+            get { return name; }
+        }
+
+        private T value;
+
+        public T Value
+        {
+            get { return this.value; }
+            set { this.value = value; }
+        }
+        private SymbolTable<T> table;
+
+        public SymbolTable<T> Table
+        {
+            get { return table; }
+            set { table = value; }
+        }
+
+        public static bool operator ==(Symbol<T> lhs, Symbol<T> rhs)
+        {
+            if (lhs == null || rhs == null)
             {
-                Console.WriteLine("No Functions");
-                return;
+                return false;
             }
-            LinkedListNode<string[]> node = funcsymboltable.First;
-            while (node != null)
+
+            if (lhs.Name == rhs.Name)
             {
-                for (int i = 0; i < node.Value.Length; i++)
-                {
-                    Console.Write(node.Value[i]);
-                }
-                Console.WriteLine();
-                //Console.ReadKey();
-                node = node.Next;
+                return true;
             }
+            return false;
+        }
+
+        public static bool operator !=(Symbol<T> lhs, Symbol<T> rhs)
+        {
+            if (lhs == null || rhs == null)
+            {
+                return false;
+            }
+
+            if (lhs.Name != rhs.Name)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                Symbol<T> o = (Symbol<T>)obj;
+                return o.Name == this.Name;
+            }
+            catch (InvalidCastException ex)
+            {
+                Console.Error.WriteLine("Both objects were not symbols of the same type");
+                Console.Error.WriteLine(ex.StackTrace);
+                return false;
+            }
+            
         }
     }
 }

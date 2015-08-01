@@ -706,10 +706,22 @@ namespace Native.CSharp.Compiler
             return list;
         }
 
-        public void SaveSymbolTables(int id)
+        public void SaveSymbolTable(int id)
         {
             switch (id)
             {
+                case 0:
+                    {
+                        foreach (var s in integersymboltable)
+                        {
+                            EnumTypes type = (EnumTypes) Enum.Parse(typeof(EnumTypes), s.Item2);
+                            EnumAccessModifiers modifier = (EnumAccessModifiers)Enum.Parse(typeof(EnumAccessModifiers), s.Item1);
+                            Symbol<int> sym = new Symbol<int>(type,modifier,s.Item3);
+                            SymbolTable<Symbol<int>> table;
+                            
+                        }
+                        break;
+                    }
                 // TODO Save Symbol Tables
             }
         }
@@ -724,6 +736,68 @@ namespace Native.CSharp.Compiler
         public void Dispose()
         {
             Destroy();
+        }
+
+        public static void readintsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
+        {
+            if (symboltable.Count == 0)
+            {
+                Console.WriteLine("No Ints");
+                return;
+            }
+
+            LinkedListNode<Tuple<string, string, string>> node = symboltable.First;
+            //Dictionary<string, string> dict = new Dictionary<string, string>();
+            while (node != null)
+            {
+                Console.WriteLine(node.Value.Item1.ToString());
+                Console.WriteLine(node.Value.Item2.ToString());
+                Console.WriteLine(node.Value.Item3.ToString());
+                //dict.Add(node.Value.Item2.ToString(), node.Value.Item3.ToString());
+                //Console.ReadKey();
+                node = node.Next;
+            }
+        }
+
+        public static void readstringsymboltable(LinkedList<Tuple<string, string, string>> symboltable)
+        {
+            if (symboltable.Count == 0)
+            {
+                Console.WriteLine("No Strings");
+                return;
+            }
+
+            LinkedListNode<Tuple<string, string, string>> node = symboltable.First;
+            //Dictionary<string, string> dict = new Dictionary<string, string>();
+            while (node != null)
+            {
+                Console.WriteLine(node.Value.Item1.ToString());
+                Console.WriteLine(node.Value.Item2.ToString());
+                Console.WriteLine(node.Value.Item3.ToString());
+                //dict.Add(node.Value.Item2.ToString(), node.Value.Item3.ToString());
+                //Console.ReadKey();
+                node = node.Next;
+            }
+        }
+
+        public static void readfunctionsymboltable(LinkedList<string[]> funcsymboltable)
+        {
+            if (funcsymboltable.Count == 0)
+            {
+                Console.WriteLine("No Functions");
+                return;
+            }
+            LinkedListNode<string[]> node = funcsymboltable.First;
+            while (node != null)
+            {
+                for (int i = 0; i < node.Value.Length; i++)
+                {
+                    Console.Write(node.Value[i]);
+                }
+                Console.WriteLine();
+                //Console.ReadKey();
+                node = node.Next;
+            }
         }
     }
 }
